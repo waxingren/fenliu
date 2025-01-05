@@ -15,8 +15,7 @@ proxy-groups:
   - {name: 手动选择, type: select, proxies: [🇭🇰香港, 🇯🇵日本, 🇸🇬新加坡, 🇺🇸美国, 其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
   - {name: ✈️ 电报信息, type: select, proxies: [低延迟], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png}
   - {name: 🤖 AIGC, type: select, proxies: [🇭🇰香港, 🇯🇵日本, 🇸🇬新加坡, 🇺🇸美国,低延迟, 其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
-  - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🇭🇰香港, 🇯🇵日本, 🇸🇬新加坡, 🇺🇸美国, 其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png}
-  - {name: Ⓜ️ 微软服务, type: select, proxies: [DIRECT, 🇭🇰香港, 🇯🇵日本, 🇸🇬新加坡, 🇺🇸美国, 其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png}
+
 # 新增代理组 - 下载组
   - {name: 视频下载, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}
 
@@ -181,26 +180,27 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,reject_non_ip,REJECT
   - RULE-SET,reject_domainset,REJECT
+  - RULE-SET,reject_non_ip,REJECT
   - RULE-SET,reject_non_ip_drop,REJECT-DROP
   - RULE-SET,reject_non_ip_no_drop,REJECT
   - RULE-SET,cdn_domainset,🎯 节点选择
   - RULE-SET,cdn_non_ip,🎯 节点选择
-  - RULE-SET,stream_non_ip,🇺🇸美国
+  - RULE-SET,stream_non_ip,🎯 节点选择
   - RULE-SET,telegram_non_ip,✈️ 电报信息
   - RULE-SET,apple_cdn,DIRECT
-  - RULE-SET,download_domainset,🎯 节点选择
-  - RULE-SET,download_non_ip,🎯 节点选择
+  - RULE-SET,download_domainset,DIRECT
+  - RULE-SET,download_non_ip,DIRECT
   - RULE-SET,microsoft_cdn_non_ip,DIRECT
   - RULE-SET,apple_cn_non_ip,DIRECT  
-  - RULE-SET,apple_services,🍎 苹果服务
-  - RULE-SET,microsoft_non_ip,Ⓜ️ 微软服务
+  - RULE-SET,apple_services,DIRECT
+  - RULE-SET,microsoft_non_ip,DIRECT
   - RULE-SET,ai_non_ip,🤖 AIGC
   - RULE-SET,global_non_ip,🎯 节点选择
   - RULE-SET,domestic_non_ip,DIRECT
   - RULE-SET,direct_non_ip,DIRECT
   - RULE-SET,lan_non_ip,DIRECT
+  - RULE-SET,video_download,视频下载
   # 分流规则
 
 
@@ -208,10 +208,9 @@ rules:
   ### IP 类规则
   - RULE-SET,reject_ip,REJECT
   - RULE-SET,telegram_ip,✈️ 电报信息
-  - RULE-SET,stream_ip,🇺🇸美国
+  - RULE-SET,stream_ip,🎯 节点选择
   - RULE-SET,lan_ip,DIRECT
   - RULE-SET,domestic_ip,DIRECT
   - RULE-SET,china_ip,DIRECT
-  - RULE-SET,video_download,视频下载
   - MATCH,DIRECT
   
