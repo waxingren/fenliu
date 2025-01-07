@@ -1,5 +1,3 @@
-DOMAIN,stream1.misakaf.org
-DOMAIN,stream2.misakaf.org
-DOMAIN,stream3.misakaf.org
-DOMAIN,pornemby.com
-DOMAIN,cilipa.com
+DOMAIN-SUFFIX,misakaf.org
+DOMAIN-SUFFIX,pornemby.com
+DOMAIN-SUFFIX,cilipa.com
