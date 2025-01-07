@@ -1,4 +1,3 @@
-DOMAIN,85.17.73.31
 DOMAIN,img.dlsite.jp
 DOMAIN,www.dmm.com
 DOMAIN,secure.hustler.com
@@ -11,11 +10,6 @@ DOMAIN,radiko.jp
 DOMAIN,riseup.net
 DOMAIN,viu.tv
 DOMAIN,ecsm.vs.com
-DOMAIN,14.102.250.18
-DOMAIN,14.102.250.19
-DOMAIN,50.7.31.230
-DOMAIN,174.142.105.153
-DOMAIN,69.65.19.160
 DOMAIN,redditlist.com
 DOMAIN,yes-news.com
 DOMAIN,china-mmm.jp.net
