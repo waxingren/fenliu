@@ -194,7 +194,7 @@ rule-providers:
 
   video_download:
     <<: *RuleSet_classical
-    url: https://raw.githubusercontent.com/waxingren/liumeitick/refs/heads/main/liumeitick.txt
+    url: https://raw.githubusercontent.com/waxingren/liumeitick/refs/heads/main/spxz.txt
     path: ./rule_set/video_download.txt
 
 
