@@ -82,8 +82,6 @@ payload:
   - PROCESS-NAME,xdm.exe
   - PROCESS-NAME,xdman
   - PROCESS-NAME,xdman.exe
-  - PROCESS-NAME,steamwebhelper.exe
-  - PROCESS-NAME,steam
   - PROCESS-NAME,steam.exe
   - PROCESS-NAME,ui32.exe
   - PROCESS-NAME,EpicGamesLauncher.exe
