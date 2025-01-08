@@ -2,4 +2,4 @@ payload:
 - '+.misakaf.org'
 - '+.pornemby.com'
 - '+.cilipa.com'
-- '+.ffqla.ne'
+- '+.ffqla.net'
