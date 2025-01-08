@@ -4,3 +4,4 @@ payload:
 - '+.cilipa.com'
 - '+.ffqla.net'
 - '+.wzhonghe.com'
+- '+.surge.tel'
