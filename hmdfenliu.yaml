@@ -168,12 +168,13 @@ rules:
   - RULE-SET,applications,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,direct,DIRECT
-  - RULE-SET,proxy,🎯 节点选择
   - RULE-SET,private,DIRECT
   - RULE-SET,apple,DIRECT
   - RULE-SET,icloud,DIRECT
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,zxgz,视频下载
+  - RULE-SET,proxy,🎯 节点选择
+
   - RULE-SET,gfw,🎯 节点选择
   - RULE-SET,tld-not-cn,🎯 节点选择
 
@@ -184,5 +185,4 @@ rules:
   - RULE-SET,cncidr,DIRECT
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT
-  - MATCH,DIRECT
-  
+  - MATCH,🎯 节点选择
