@@ -6,3 +6,4 @@ payload:
 - '+.wzhonghe.com'
 - '+.surge.tel'
 - '+.plusmedia.site'
+- '+.xeton.dev'
