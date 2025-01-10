@@ -5,3 +5,4 @@ payload:
 - '+.ffqla.net'
 - '+.wzhonghe.com'
 - '+.surge.tel'
+- '+.plusmedia.site'
