@@ -40,13 +40,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
     path: ./ruleset/direct.yaml
     interval: 86400
-#代理域名列表 proxy.txt
-  proxy:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
-    path: ./ruleset/proxy.yaml
-    interval: 86400
 
 #私有网络专用域名列表 private.txt
   private:
@@ -70,7 +63,6 @@ rule-providers:
     path: ./ruleset/icloud.yaml
     interval: 86400
 #ai域名列表 ai.txt
-
   ai:
     type: http
     behavior: domain
@@ -86,20 +78,6 @@ rule-providers:
     path: ./ruleset/zxgz.yaml
     interval: 86400
 
-#GFWList 域名列表 gfw.txt
-  gfw:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
-    path: ./ruleset/gfw.yaml
-    interval: 86400
-#非中国大陆使用的顶级域名列表 tld-not-cn.txt
-  tld-not-cn:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt"
-    path: ./ruleset/tld-not-cn.yaml
-    interval: 86400
 #Telegram 使用的 IP 地址列表telegramcidr.txt
   telegramcidr:
     type: http
@@ -121,7 +99,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
     path: ./ruleset/cncidr.yaml
     interval: 86400
-
+#直连软件
   applications:
     type: http
     behavior: classical
@@ -141,11 +119,6 @@ rules:
   - RULE-SET,icloud,DIRECT
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,zxgz,视频下载
-  - RULE-SET,proxy,🎯 节点选择
-
-  - RULE-SET,gfw,🎯 节点选择
-  - RULE-SET,tld-not-cn,🎯 节点选择
-
 
     ### IP 类规则
   - RULE-SET,telegramcidr,低延迟
