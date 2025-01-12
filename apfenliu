@@ -33,7 +33,13 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
     path: ./ruleset/reject.yaml
     interval: 86400
-
+  #广告域名列表AdBlock.yaml
+  AdBlock:
+    type: http
+    behavior: classical
+    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AdBlock.yaml"
+    path: ./ruleset/AdBlock.yaml
+    interval: 86400
     #直连域名列表direct.txt
   direct:
     type: http
@@ -107,6 +113,7 @@ rule-providers:
 rules:
   ### 非 IP 类规则
   - RULE-SET,reject,REJECT
+  - RULE-SET,AdBlock,REJECT
   - RULE-SET,telegram,低延迟
   - RULE-SET,zxgz,视频下载
   - RULE-SET,direct,DIRECT
@@ -114,6 +121,7 @@ rules:
   - RULE-SET,apple,DIRECT
   - RULE-SET,icloud,DIRECT
   - RULE-SET,icloud,DIRECT
+
   - RULE-SET,ai,🇺🇸美国
   
     ### IP 类规则
