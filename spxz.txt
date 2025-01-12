@@ -7,3 +7,4 @@ payload:
 - '+.surge.tel'
 - '+.plusmedia.site'
 - '+.xeton.dev'
+- '+.api.steampowered.com'
