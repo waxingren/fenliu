@@ -68,7 +68,7 @@ rule-providers:
 
   ai:
     type: http
-    behavior: domain
+    behavior: classical
     url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
     path: ./ruleset/ai.yaml
     interval: 86400
