@@ -1,10 +1,10 @@
 payload:
-- '+.misakaf.org'
-- '+.pornemby.com'
-- '+.cilipa.com'
-- '+.ffqla.net'
-- '+.wzhonghe.com'
-- '+.surge.tel'
-- '+.plusmedia.site'
-- '+.xeton.dev'
-- '+.api.steampowered.com'
+- DOMAIN-SUFFIX,misakaf.org
+- DOMAIN-SUFFIX,pornemby.com
+- DOMAIN-SUFFIX,cilipa.com
+- DOMAIN-SUFFIX,ffqla.net
+- DOMAIN-SUFFIX,wzhonghe.com
+- DOMAIN-SUFFIX,surge.tel
+- DOMAIN-SUFFIX,plusmedia.site
+- DOMAIN-SUFFIX,xeton.dev
+- DOMAIN,api.steampowered.com
