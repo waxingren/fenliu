@@ -1,10 +1,2 @@
 payload:
-- DOMAIN-SUFFIX,misakaf.org
-- DOMAIN-SUFFIX,pornemby.com
-- DOMAIN-SUFFIX,cilipa.com
-- DOMAIN-SUFFIX,ffqla.net
-- DOMAIN-SUFFIX,wzhonghe.com
-- DOMAIN-SUFFIX,surge.tel
-- DOMAIN-SUFFIX,plusmedia.site
-- DOMAIN-SUFFIX,xeton.dev
 - DOMAIN-SUFFIX,steampowered.com
