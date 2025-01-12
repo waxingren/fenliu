@@ -1,3 +1,2 @@
-payload:
-- '+.misakaf.org'
-- '+.pornemby.com'
+DOMAIN-SUFFIX, misakaf.org
+DOMAIN-SUFFIX, pornemby.com
