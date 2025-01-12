@@ -23,89 +23,90 @@ proxy-groups:
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png}
 
 
+
 # 订阅规则
 rule-providers:
   #广告域名列表reject.txt
   reject:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/reject.yaml"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
     path: ./ruleset/reject.yaml
-    interval: 86400
-
-  #广告域名列表rejectip.txt
-  rejectip:
-    type: http
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/reject@ip.yaml"
-    path: ./ruleset/rejectip.yaml
     interval: 86400
 
     #直连域名列表direct.txt
   direct:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/direct.yaml"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
     path: ./ruleset/direct.yaml
     interval: 86400
 
+
+#私有网络专用域名列表 private.txt
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
 #Apple 在中国大陆可直连的域名列表 apple.txt
   apple:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/apple@cn.yaml"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
     path: ./ruleset/apple.yaml
     interval: 86400
-
+#iCloud 域名列表 icloud.txt
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
 #ai域名列表 ai.txt
+
   ai:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/ai.yaml"
+    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
     path: ./ruleset/ai.yaml
     interval: 86400
 
-#自写规则
-  zxgz:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/spxz"
-    path: ./ruleset/zxgz.yaml
-    interval: 86400
 
-#Telegram 使用的地址列表telegramcidr.txt
-  telegramcidr:
+#Telegram 使用的 IP 地址列表telegramcidr.txt
+  telegram:
     type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/tg"
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-    #Telegram 使用的 IP 地址列表telegramcidrip.txt
-  telegramcidrip:
-    type: http
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/tgip"
-    path: ./ruleset/telegramcidrip.yaml
+    behavior: classical
+    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/Telegram.yaml"
+    path: ./ruleset/telegram.yaml
     interval: 86400
 #局域网 IP 及保留 IP 地址列表 lancidr.txt
-  lancidr:
+  lan:
     type: http
     behavior: ipcidr
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/lan@ip.yaml"
-    path: ./ruleset/lancidr.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lan.yaml
     interval: 86400
 #中国大陆 IP 地址列表 cncidr.txt
   cncidr:
     type: http
     behavior: ipcidr
-    url: "https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/direct@ip.yaml"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
     path: ./ruleset/cncidr.yaml
     interval: 86400
+  zxgz:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
+    path: ./ruleset/zxgz.yaml
+    interval: 86400
+ 
 #直连软件
   applications:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/appfenliu"
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/appfenliu.yaml"
     path: ./ruleset/applications.yaml
     interval: 86400
 
@@ -113,20 +114,20 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,reject,REJECT  
+  - RULE-SET,reject,REJECT
+  - RULE-SET,telegram,低延迟
   - RULE-SET,zxgz,视频下载
   - RULE-SET,applications,DIRECT
   - RULE-SET,direct,DIRECT
+  - RULE-SET,private,DIRECT
   - RULE-SET,apple,DIRECT
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,icloud,DIRECT
   - RULE-SET,ai,🇺🇸美国
-  - RULE-SET,telegramcidr,低延迟
-
+  
     ### IP 类规则
-  - RULE-SET,rejectip,REJECT
-  - RULE-SET,telegramcidrip,低延迟
-  - RULE-SET,lancidr,DIRECT
   - RULE-SET,cncidr,DIRECT
-    ### GEOIP 规则（匹配地理位置的 IP）
-  - GEOIP,LAN,DIRECT
+  - RULE-SET,lan,DIRECT
+  - GEOIP,lan,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,🎯 节点选择
