@@ -1,4 +1,3 @@
 payload:
-- '+.steampowered.com'
 - '+.misakaf.org'
 - '+.pornemby.com'
