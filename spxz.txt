@@ -7,4 +7,4 @@ payload:
 - DOMAIN-SUFFIX,surge.tel
 - DOMAIN-SUFFIX,plusmedia.site
 - DOMAIN-SUFFIX,xeton.dev
-- DOMAIN,api.steampowered.com
+- DOMAIN-SUFFIX,steampowered.com
