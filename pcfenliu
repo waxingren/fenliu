@@ -69,7 +69,7 @@ rule-providers:
   zxgz:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/liumeitick/refs/heads/main/spxz.yaml"
+    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/spxz"
     path: ./ruleset/zxgz.yaml
     interval: 86400
 
@@ -77,14 +77,14 @@ rule-providers:
   telegramcidr:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/liumeitick/refs/heads/main/tg.yaml"
+    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/tg"
     path: ./ruleset/telegramcidr.yaml
     interval: 86400
     #Telegram 使用的 IP 地址列表telegramcidrip.txt
   telegramcidrip:
     type: http
     behavior: ipcidr
-    url: "https://raw.githubusercontent.com/waxingren/liumeitick/refs/heads/main/tgip.yaml"
+    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/tgip"
     path: ./ruleset/telegramcidrip.yaml
     interval: 86400
 #局域网 IP 及保留 IP 地址列表 lancidr.txt
@@ -105,7 +105,7 @@ rule-providers:
   applications:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/waxingren/liumeitick/refs/heads/main/appfenliu"
+    url: "https://raw.githubusercontent.com/waxingren/pcfenliu/refs/heads/main/appfenliu"
     path: ./ruleset/applications.yaml
     interval: 86400
 
