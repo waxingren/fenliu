@@ -26,20 +26,14 @@ proxy-groups:
 
 # 订阅规则
 rule-providers:
-  #广告域名列表reject.txt
-  reject:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/reject.yaml
-    interval: 86400
+
   #广告域名列表AdBlock.yaml
   AdBlock:
     type: http
-    behavior: classical
-    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AdBlock.yaml"
+    behavior: domain
+    url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml"
     path: ./ruleset/AdBlock.yaml
-    interval: 86400
+    interval: 120
     #直连域名列表direct.txt
   direct:
     type: http
@@ -125,7 +119,6 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,reject,REJECT
   - RULE-SET,AdBlock,REJECT
   - RULE-SET,telegram,低延迟
   - RULE-SET,zxgz,视频下载
