@@ -1,3 +1,4 @@
-- DOMAIN-SUFFIX,steampowered.com
-- DOMAIN-SUFFIX,misakaf.org
-- DOMAIN-SUFFIX,pornemby.com
+payload:
+- '+.steampowered.com'
+- '+.misakaf.org'
+- '+.pornemby.com'
