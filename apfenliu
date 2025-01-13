@@ -26,6 +26,8 @@ proxy-groups:
 
 # 订阅规则
 rule-providers:
+
+
     #直连域名列表direct.txt
   direct:
     type: http
@@ -42,22 +44,27 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
     path: ./ruleset/private.yaml
     interval: 86400
-
-#ai域名列表 ai.txt
-
-  ai:
+#Apple 在中国大陆可直连的域名列表 apple.txt
+  apple:
     type: http
-    behavior: classical
-    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
-    path: ./ruleset/ai.yaml
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+#iCloud 域名列表 icloud.txt
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
     interval: 86400
 
 
 #Telegram 使用的 IP 地址列表telegramcidr.txt
   telegram:
     type: http
-    behavior: classical
-    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/Telegram.yaml"
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
     path: ./ruleset/telegram.yaml
     interval: 86400
 #局域网 IP 及保留 IP 地址列表 lancidr.txt
@@ -82,17 +89,16 @@ rule-providers:
     interval: 86400
  
 
-
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,telegram,低延迟
   - RULE-SET,zxgz,视频下载
   - RULE-SET,direct,DIRECT
   - RULE-SET,private,DIRECT
-  - RULE-SET,ai,🇺🇸美国
+
   
     ### IP 类规则
+  - RULE-SET,telegram,低延迟    
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lan,DIRECT
   - GEOIP,lan,DIRECT
