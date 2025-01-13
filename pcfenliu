@@ -112,7 +112,7 @@ rules:
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
-
+  - RULE-SET,ai,🇺🇸美国  # ai 域名列表
   ### IP 类规则
   - RULE-SET,telegram,低延迟  # Telegram 使用的 IP 地址列表
   - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
