@@ -1,0 +1,6 @@
+payload:
+ - '+.github.com'
+ - '+.DOMAIN-SUFFIX,gist.github.com'
+ - '+.DOMAIN-SUFFIX,api.github.com'
+ - '+.DOMAIN-SUFFIX,raw.githubusercontent.com'
+ - '+.DOMAIN-KEYWORD,github'
