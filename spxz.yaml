@@ -5,7 +5,7 @@ payload:
   - 'DOMAIN-SUFFIX,twitter.com'
   - 'DOMAIN-SUFFIX,twimg.com'
   - 'DOMAIN-SUFFIX,steampowered.com'
-
+  - 'DOMAIN-SUFFIX,steamcommunity.com'
 
  #youtube
   - 'DOMAIN-SUFFIX,ggpht.cn'
