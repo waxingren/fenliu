@@ -91,7 +91,7 @@ rule-providers:
   # 自定义规则集
   zxgz:
     type: http
-    behavior: domain
+    behavior: classical
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/zxgz.yaml
     interval: 86400
