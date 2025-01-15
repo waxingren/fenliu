@@ -6,7 +6,7 @@ payload:
   - 'DOMAIN-SUFFIX,twimg.com'
   - 'DOMAIN-SUFFIX,steampowered.com'
   - 'DOMAIN-SUFFIX,steamcommunity.com'
-  - 'DOMAIN-SUFFIX,qichiyu.com'
+
   - '+.000webhost.com'
   - '+.030buy.com'
   - '+.0rz.tw'
