@@ -1,5 +1,4 @@
 payload:
-#自建
   - 'DOMAIN-SUFFIX,misakaf.org'
   - 'DOMAIN-SUFFIX,pornemby.com'
   - 'DOMAIN-SUFFIX,twitter.com'
@@ -6407,7 +6406,3 @@ payload:
   - 'DOMAIN-SUFFIX,yt.be'
   - 'DOMAIN-SUFFIX,ytimg.com'
   - 'DOMAIN-KEYWORD,youtube'
-  - 'IP-CIDR,172.110.32.0/21'
-  - 'IP-CIDR,216.73.80.0/20'
-  - 'IP-CIDR6,2620:120:e000::/40'
-
