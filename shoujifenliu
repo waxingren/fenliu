@@ -1,3 +1,40 @@
+# 代理监听端口
+mixed-port: 7890  # 代理服务监听的端口（通常是 HTTP/HTTPS 代理端口）
+ipv6: false  # 禁用 IPv6
+allow-lan: true  # 允许局域网设备访问代理服务
+unified-delay: false  # 不统一延迟策略，允许每个连接有不同的延迟策略
+tcp-concurrent: true  # 允许 TCP 并发连接
+
+# 进程监控设置
+find-process-mode: strict  # 严格模式，尽可能找到所有进程
+global-client-fingerprint: chrome  # 设置全局客户端指纹为 Chrome
+
+# 配置文件和流量嗅探设置
+profile:
+  store-selected: true  # 存储选择的配置文件
+  store-fake-ip: true  # 存储虚拟 IP 地址
+
+
+# DNS 配置部分
+dns:
+  enable: true  # 启用 DNS 功能
+  ipv6: false  # 禁用 IPv6 的 DNS 查询
+  respect-rules: true  # 尊重 DNS 规则配置
+  enhanced-mode: fake-ip  # 使用 fake-ip 模式增强 DNS 功能
+  fake-ip-filter:
+    - "*"  # 所有请求都使用虚拟 IP
+    - "+.lan"  # 局域网地址使用虚拟 IP
+    - "+.local"  # 本地地址使用虚拟 IP
+    - "+.market.xiaomi.com"  # 小米市场域名使用虚拟 IP
+    - "dns.msftncsi.com"
+    - "www.msftncsi.com"
+    - "www.msftconnecttest.com"
+  default-nameserver: [223.5.5.5, 119.29.29.29]  # 默认的 DNS 服务器，这里使用的是国内的 DNS 服务器。
+  nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']  # 主要的 DNS 服务器，使用 DNS over HTTPS (DoH)，增强隐私性。
+  fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']  
+  # 备用的 DNS 服务器，这些是备用的 DoH 或 DNS over TLS (DoT) 服务器，当主要服务器不可用时使用。
+  fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }  
+
 # 过滤规则
 FilterHK: &FilterHK '^(?!.*(群|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
 FilterJP: &FilterJP '^(?!.*(群|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(日本|JP|Japan|🇯🇵).*'
@@ -100,11 +137,12 @@ rule-providers:
 rules:
   ### 非 IP 类规则
   - RULE-SET,zxgz,视频下载  # 自定义规则集 zxgz，用于视频下载
+  - RULE-SET,ai,🇺🇸美国
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
-  - RULE-SET,ai,🇺🇸美国  # ai 域名列表
+  # ai 域名列表
   ### IP 类规则
   - RULE-SET,telegram,低延迟  # Telegram 使用的 IP 地址列表
   - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
