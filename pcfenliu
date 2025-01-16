@@ -51,6 +51,9 @@ dns:
     - "+.lan"  # 局域网地址使用虚拟 IP
     - "+.local"  # 本地地址使用虚拟 IP
     - "+.market.xiaomi.com"  # 小米市场域名使用虚拟 IP
+    - "dns.msftncsi.com"
+    - "www.msftncsi.com"
+    - "www.msftconnecttest.com"
   default-nameserver: [223.5.5.5, 119.29.29.29]  # 默认的 DNS 服务器，这里使用的是国内的 DNS 服务器。
   nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']  # 主要的 DNS 服务器，使用 DNS over HTTPS (DoH)，增强隐私性。
   fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']  
