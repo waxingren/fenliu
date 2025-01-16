@@ -5,40 +5,6 @@ allow-lan: true  # 允许局域网设备访问代理服务
 unified-delay: false  # 不统一延迟策略，允许每个连接有不同的延迟策略
 tcp-concurrent: true  # 允许 TCP 并发连接
 
-# 进程监控设置
-find-process-mode: strict  # 严格模式，尽可能找到所有进程
-global-client-fingerprint: chrome  # 设置全局客户端指纹为 Chrome
-
-# 配置文件和流量嗅探设置
-profile:
-  store-selected: true  # 存储选择的配置文件
-  store-fake-ip: true  # 存储虚拟 IP 地址
-
-# 嗅探设置，用于识别特定流量协议（如 HTTP、TLS、QUIC）
-sniffer:
-  enable: true  # 启用流量嗅探
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]  # 嗅探 HTTP 流量的端口范围
-      override-destination: true  # 覆盖目标 IP 地址
-    TLS:
-      ports: [443, 8443]  # 嗅探 TLS 流量的端口
-    QUIC:
-      ports: [443, 8443]  # 嗅探 QUIC 流量的端口
-  skip-domain:  # 不嗅探以下域名的流量
-    - "Mijia Cloud"  # 跳过米家云的流量
-    - "+.push.apple.com"  # 跳过 Apple 的推送服务域名
-
-# TUN 模式配置，通常用于代理流量转发到虚拟网络接口
-tun:
-  enable: true  # 启用 TUN 模式
-  stack: mixed  # 使用混合协议栈（TCP/UDP 都支持）
-  dns-hijack:
-    - "any:53"  # 劫持所有 53 端口的 DNS 请求
-    - "tcp://any:53"  # 劫持 TCP 53 端口的 DNS 请求
-  auto-route: true  # 自动路由流量
-  auto-redirect: true  # 自动重定向流量
-  auto-detect-interface: true  # 自动检测网络接口
 
 # DNS 配置部分
 dns:
