@@ -5,15 +5,6 @@ allow-lan: true  # 允许局域网设备访问代理服务
 unified-delay: false  # 不统一延迟策略，允许每个连接有不同的延迟策略
 tcp-concurrent: true  # 允许 TCP 并发连接
 
-# 进程监控设置
-find-process-mode: strict  # 严格模式，尽可能找到所有进程
-global-client-fingerprint: chrome  # 设置全局客户端指纹为 Chrome
-
-# 配置文件和流量嗅探设置
-profile:
-  store-selected: true  # 存储选择的配置文件
-  store-fake-ip: true  # 存储虚拟 IP 地址
-
 
 # DNS 配置部分
 dns:
@@ -132,6 +123,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/zxgz.yaml
     interval: 86400
+
 
 # 分流规则
 rules:
