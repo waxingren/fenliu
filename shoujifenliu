@@ -91,17 +91,17 @@ rule-providers:
   # 自定义规则集
   zxgz:
     type: http
-    behavior: classical
+    behavior: domain
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/zxgz.yaml
     interval: 86400
 
-
+  
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,zxgz,视频下载  # 自定义规则集 zxgz，用于视频下载
   - RULE-SET,ai,🇺🇸美国
+  - RULE-SET,zxgz,视频下载  # 自定义规则集 zxgz，用于视频下载
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
