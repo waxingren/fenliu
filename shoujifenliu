@@ -13,7 +13,7 @@ Select: &Select {type: select, url: 'https://cp.cloudflare.com', disable-udp: fa
 # 策略组
 proxy-groups: 
   - {name: 🎯 节点选择, type: select, proxies: [手动选择, DIRECT], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
-  - {name: 手动选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
+  - {name: 手动选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}  
