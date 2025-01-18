@@ -12,16 +12,15 @@ Select: &Select {type: select, url: 'https://cp.cloudflare.com', disable-udp: fa
 
 # 策略组
 proxy-groups: 
-  - {name: 🎯 节点选择, type: select, proxies: [手动选择, DIRECT], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
-  - {name: 手动选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
+  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}  
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
-  - {name: 低延迟, type: select, proxies: [🇺🇸美国, 🇯🇵日本], icon: https://raw.githubusercontent.com/Orz-3/mini/refs/heads/master/Color/Auto.png}
-  - {name: 视频下载, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
-  - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png}
-
+  - {name: Telegram, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png}
+  - {name: 流媒体, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
+  - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
+  - {name: GLOBAL, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png}  
 # 订阅规则
 rule-providers:
   # 直连域名列表
@@ -107,7 +106,7 @@ rule-providers:
 rules:
   ### 非 IP 类规则
   - RULE-SET,ai,🇺🇸美国
-  - RULE-SET,zxgz,视频下载  # 自定义规则集 zxgz，用于视频下载
+  - RULE-SET,zxgz,流媒体  # 自定义规则集 zxgz，用于视频下载
   - RULE-SET,richang,🎯 节点选择 
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
@@ -115,7 +114,7 @@ rules:
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
   # ai 域名列表
   ### IP 类规则
-  - RULE-SET,telegram,低延迟  # Telegram 使用的 IP 地址列表
+  - RULE-SET,telegram,Telegram  # Telegram 使用的 IP 地址列表
   - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
   - RULE-SET,lan,DIRECT  # 局域网 IP 及保留 IP 地址列表
   - GEOIP,lan,DIRECT  # 局域网 IP
