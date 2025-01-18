@@ -20,7 +20,6 @@ proxy-groups:
   - {name: Telegram, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png}
   - {name: 流媒体, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
-  - {name: GLOBAL, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png}  
 # 订阅规则
 rule-providers:
   # 直连域名列表
