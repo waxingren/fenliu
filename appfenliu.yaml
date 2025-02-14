@@ -89,3 +89,7 @@ payload:
   - PROCESS-NAME,EpicGamesLauncher
   - PROCESS-NAME,MFiles.exe
   - PROCESS-NAME,MFiles
+  - PROCESS-NAME,douyin.exe
+  - PROCESS-NAME,douyin
+  - PROCESS-NAME,douyin_tray.exe
+  - PROCESS-NAME,douyin_tray
