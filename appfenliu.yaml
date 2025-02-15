@@ -93,3 +93,5 @@ payload:
   - PROCESS-NAME,douyin
   - PROCESS-NAME,douyin_tray.exe
   - PROCESS-NAME,douyin_tray
+  - PROCESS-NAME,Doubao.exe
+  - PROCESS-NAME,Doubao
