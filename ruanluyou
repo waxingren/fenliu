@@ -19,57 +19,7 @@ dns:
   listen: :53
   ipv6: false
 
-  default-nameserver: 
-    - 223.5.5.5
-    - 119.29.29.29
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-  fallback:
-    - https://1.0.0.1/dns-query
-    - tls://dns.google
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
 
-
-
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-  - "*.lan"
-  - "*.local"
-  - geosite:private
-  - geosite:cn
-  - 'Mijia Cloud'
-  - 'dlg.io.mi.com'
-  - '+.apple.com'
-  - "+.push.apple.com"
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  sniff:
-    HTTP:
-      ports:
-      - 80
-      - 8080-8880
-      override-destination: true
-    TLS:
-      ports:
-      - 443
-      - 8443
-    QUIC:
-      ports:
-      - 443
-      - 8443
-  skip-domain:
-    - 'Mijia Cloud'
-    - 'dlg.io.mi.com'
-    - '+.apple.com'
-    - "+.push.apple.com"
 
 # 手动选择参数
 Select: &Select {type: select, url: 'https://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
@@ -180,8 +130,6 @@ rules:
   - RULE-SET,telegram,Telegram  # Telegram 使用的 IP 地址列表
   - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
   - RULE-SET,lan,DIRECT  # 局域网 IP 及保留 IP 地址列表
-  - GEOIP,lan,DIRECT  # 局域网 IP
-  - GEOIP,CN,DIRECT  # 中国大陆 IP
 
   ### 默认匹配策略
   - MATCH,🎯 节点选择  
