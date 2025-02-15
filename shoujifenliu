@@ -182,7 +182,7 @@ rules:
   - RULE-SET,richang,🎯 节点选择
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
-  - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
+  - RULE-SET,apple,🎯 节点选择  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
   # ai 域名列表
   ### IP 类规则
