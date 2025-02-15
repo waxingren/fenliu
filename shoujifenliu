@@ -1,3 +1,76 @@
+port: 7895                 #本地http代理端口
+socks-port: 7896          #本地socks5代理端口
+mixed-port: 7897            #本地混合代理(http和socks5合并）端口
+tcp-concurrent: true         #【Meta专属】TCP连接并发，如果域名解析结果对应多个IP，
+                             # 并发所有IP，选择握手最快的IP进行连接
+
+allow-lan: false                  #允许局域网连接(false/true)
+bind-address:                     #监听IP白名单（当allow-lan：true），只允许列表设备
+  '*'                             #全部设备
+  # 192.168.122.11                #单个ip4地址
+  # "[aaaa::a8aa:ff:fe09:57d8]"   #单个ip6地址
+  
+mode: rule                 #clash工作模式（rule/global/direct,meta暂不支持script）
+log-level: warning          #日志等级（info/warning/error/debug/silent）
+ipv6: false                #ip6开关，当为false时，停止解析hostanmes为ip6地址
+global-client-fingerprint: chrome
+dns:
+  enable: true
+  listen: :53
+  ipv6: true
+
+  default-nameserver: 
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - https://1.0.0.1/dns-query
+    - tls://dns.google
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+
+
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+  - "*.lan"
+  - "*.local"
+  - geosite:private
+  - geosite:cn
+  - 'Mijia Cloud'
+  - 'dlg.io.mi.com'
+  - '+.apple.com'
+  - "+.push.apple.com"
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+    TLS:
+      ports:
+      - 443
+      - 8443
+    QUIC:
+      ports:
+      - 443
+      - 8443
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+    - "+.push.apple.com"
+
 # 过滤规则
 FilterHK: &FilterHK '^(?!.*(群|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
 FilterJP: &FilterJP '^(?!.*(群|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(日本|JP|Japan|🇯🇵).*'
@@ -106,7 +179,7 @@ rules:
   ### 非 IP 类规则
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,zxgz,流媒体  # 自定义规则集 zxgz，用于视频下载
-  - RULE-SET,richang,🎯 节点选择 
+  - RULE-SET,richang,🎯 节点选择
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
