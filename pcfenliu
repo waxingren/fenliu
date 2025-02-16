@@ -90,8 +90,7 @@ proxy-groups:
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}  
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
-  - {name: Telegram, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png}
-  - {name: 流媒体, <<: *Select, filter: *FilterAll, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
+  - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
 # 订阅规则
 rule-providers:
@@ -194,7 +193,7 @@ rules:
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
   # ai 域名列表
   ### IP 类规则
-  - RULE-SET,telegram,Telegram  # Telegram 使用的 IP 地址列表
+  - RULE-SET,telegram,🇯🇵日本  # Telegram 使用的 IP 地址列表
   - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
   - RULE-SET,lan,DIRECT  # 局域网 IP 及保留 IP 地址列表
   - GEOIP,lan,DIRECT  # 局域网 IP
