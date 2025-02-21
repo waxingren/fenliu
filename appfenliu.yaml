@@ -1,6 +1,8 @@
 payload:
   - PROCESS-NAME,iTunes.exe
   - PROCESS-NAME,iTunes
+  - PROCESS-NAME,HipsDaemon.exe
+  - PROCESS-NAME,HipsDaemon
   - PROCESS-NAME,leaf
   - PROCESS-NAME,leaf.exe
   - PROCESS-NAME,naive
