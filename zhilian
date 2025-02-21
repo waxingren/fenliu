@@ -1,17 +1,12 @@
 payload:
-  - '+.push.apple.com'
-  - '+.itunes.apple.com'
+  - '+.apple.com'
   - '+.msedge.net'
-  - '+.wns.windows.com'
-  - '+.edge.microsoft.com'
-  - '+.activity.windows.com'
-  - '+.go.microsoft.com'
+  - '+.windows.com'
+  - '+.microsoft.com'
   - '+.bing.com'
-  - '+.substrate.office.com'
-  - '+.graph.microsoft.com'
-
-
-
+  - '+.office.com'
+  - '+.microsoft.com'
+  - '+.bingapis.com'
 
 
 
