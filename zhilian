@@ -5,8 +5,8 @@ payload:
   - '+.wns.windows.com'
   - '+.edge.microsoft.com'
   - '+.activity.windows.com'
-
-
+  - '+.go.microsoft.com'
+  - '+.substrate.office.com'
 
 
 
