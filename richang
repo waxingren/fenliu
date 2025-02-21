@@ -1,5 +1,8 @@
 payload:
   - '+.000webhost.com'
+  - '+.qwenlm.ai'
+  - '+.cloudflare.com'
+  - '+.api.ip.sb'
   - '+.softonic.cn'
   - '+.bugutv.org'
   - '+.invites.fun'
