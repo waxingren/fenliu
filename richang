@@ -1,5 +1,26 @@
 payload:
   - '+.000webhost.com'
+  - '+.ax-ring.msedge.net'
+  - '+.client.wns.windows.com'
+  - '+.cmp1-hkg1.steamserver.net'
+  - '+.azr.footprintdns.com'
+  - '+.edge.microsoft.com'
+  - '+.fp-afd.azureedge.net'
+  - '+.ocsp.digicert.com'
+  - '+.cloudmessaging.edge.microsoft.com'
+  - '+.t-ring-s2.msedge.net'
+  - '+.t-ring.msedge.net'
+  - '+.wac-ring.msedge.net'
+  - '+.000webhost.com'
+
+
+
+
+
+
+
+
+
   - '+.greasyfork.org'
   - '+.qwenlm.ai'
   - '+.cloudflare.com'
