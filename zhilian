@@ -4,7 +4,7 @@ payload:
   - '+.msedge.net'
   - '+.wns.windows.com'
   - '+.edge.microsoft.com'
-
+  - '+.activity.windows.com'
 
 
 
