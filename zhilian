@@ -2,4 +2,4 @@ payload:
   - '+.push.apple.com'
   - '+.itunes.apple.com'
   - '+.msedge.net'
-
+wns.windows.com
