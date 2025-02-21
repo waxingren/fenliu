@@ -6,11 +6,11 @@ payload:
   - '+.edge.microsoft.com'
   - '+.activity.windows.com'
   - '+.go.microsoft.com'
+  - '+.bing.com'
   - '+.substrate.office.com'
-
-
-
-
+  - '+.graph.microsoft.com'
+  - '+.substrate.office.com'
+  - '+.substrate.office.com'
 
 
 
