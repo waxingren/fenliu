@@ -291,12 +291,12 @@ rules:
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,zxgz,流媒体  # 自定义规则集 zxgz，用于视频下载
   - RULE-SET,applications,DIRECT  # 直连软件
-  - RULE-SET,richang,🎯 节点选择 
   - RULE-SET,zhilian,DIRECT  # 自建直连域名
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
+  - RULE-SET,richang,🎯 节点选择 
   # ai 域名列表
   ### IP 类规则
   - RULE-SET,telegram,🇯🇵日本  # Telegram 使用的 IP 地址列表
