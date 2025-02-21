@@ -1,5 +1,6 @@
 payload:
   - '+.000webhost.com'
+  - '+.cloudflare.steamstatic.com'
   - '+.azr.footprintdns.com'
   - '+.fp-afd.azureedge.net'
   - '+.ocsp.digicert.com'
