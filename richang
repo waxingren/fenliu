@@ -1,5 +1,6 @@
 payload:
   - '+.000webhost.com'
+  - '+.greasyfork.org'
   - '+.qwenlm.ai'
   - '+.cloudflare.com'
   - '+.api.ip.sb'
