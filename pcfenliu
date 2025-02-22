@@ -26,8 +26,8 @@ nameserver:
   # 中国大陆域名的专用 DNS  
 nameserver-policy:    
 geosite:cn:
-      - https://223.5.5.5/dns-query # 阿里云公共 DNS
-      - https://1.12.12.12/dns-query # DNSPod 公共 DNS
+      - 223.5.5.5
+      - 1.12.12.12
   # 代理服务器的 DNS  
 proxy-server-nameserver:
     - https://223.5.5.5/dns-query
