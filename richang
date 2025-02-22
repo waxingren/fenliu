@@ -1,5 +1,6 @@
 payload:
   - '+.000webhost.com'
+  - '+.github.io'
   - '+.dht.libtorrent.org'
   - '+.raw.githubusercontent.com'
   - '+.cloudflare.steamstatic.com'
