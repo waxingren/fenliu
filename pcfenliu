@@ -193,14 +193,6 @@ proxy-groups:
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
 # 订阅规则
 rule-providers:
-  # 直连域名列表
-  direct:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
-    path: ./ruleset/direct.yaml
-    interval: 86400
-
   # 私有网络专用域名列表
   private:
     type: http
@@ -249,13 +241,6 @@ rule-providers:
     path: ./ruleset/lan.yaml
     interval: 86400
 
-  # 中国大陆 IP 地址列表
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
 
   # 自定义规则集
   zxgz:
@@ -283,19 +268,18 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
+  - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,zxgz,流媒体  # 自定义规则集 zxgz，用于视频下载
   - RULE-SET,applications,DIRECT  # 直连软件
-  - RULE-SET,direct,DIRECT  # 直连域名列表
-  - RULE-SET,private,DIRECT  # 私有网络专用域名列表
+
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
   # ai 域名列表
   ### IP 类规则
-  - RULE-SET,telegram,🇯🇵日本  # Telegram 使用的 IP 地址列表
-  - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
-  - RULE-SET,lan,DIRECT  # 局域网 IP 及保留 IP 地址列表
-  - GEOIP,cn,DIRECT
+  - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
+  - RULE-SET,telegram,🇯🇵日本,no-resolve  # Telegram 使用的 IP 地址列表
+  - GEOIP,CN,DIRECT,no-resolve
 
   ### 默认匹配策略
   - MATCH,🎯 节点选择  
