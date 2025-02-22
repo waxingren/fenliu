@@ -94,19 +94,13 @@ fake-ip-filter:
   - music.migu.cn
 
   # 抖音相关域名
-  - douyin.com
-  - www.douyin.com
-  - api.douyin.com
-  - aweme.snssdk.com
-  - lf.snssdk.com
-  - p3-douyin.byteimg.com
-  - pull-flv-l6-hs.pstatp.com
-  - "*.snssdk.com"
-  - "*.byteimg.com"
-  - "*.pstatp.com"
-  - "*.ixigua.com"
-  - "*.toutiao.com"
-
+  - "*.zijieapi.com"
+  - "*.bytedance.com"
+  - "*.doubao.com"
+  - "*.douyin.com"
+  - "*.bdurl.net"
+  - "*.douyinpic.com"
+  - "*.bytetos.com"
   # 其他特定服务
   - "*.msftconnecttest.com"
   - "*.msftncsi.com"
