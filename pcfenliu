@@ -19,20 +19,8 @@ dns:
   listen: :53
   ipv6: false
   # 默认 DNS（用于国际域名）  
-nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-    - https://9.9.9.9/dns-query
-  # 中国大陆域名的专用 DNS  
-nameserver-policy:    
-geosite:cn:
-      - 223.5.5.5
-      - 1.12.12.12
-  # 代理服务器的 DNS  
-proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://1.12.12.12/dns-query
-
+  nameserver:
+    - system  # 调用系统 DNS 兼容性和速度最佳
 enhanced-mode: fake-ip
 fake-ip-range: 198.18.0.1/16
 fake-ip-filter:
@@ -284,20 +272,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/appfenliu.yaml"
     path: ./ruleset/applications.yaml
     interval: 86400
-  #日常使用
-  richang:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/richang"
-    path: ./ruleset/richang.yaml
-    interval: 86400  
-  #自建直连域名
-  zhilian:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/zhilian"
-    path: ./ruleset/zhilian.yaml
-    interval: 86400  
 
 
 
@@ -312,19 +286,16 @@ rules:
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,zxgz,流媒体  # 自定义规则集 zxgz，用于视频下载
   - RULE-SET,applications,DIRECT  # 直连软件
-  - RULE-SET,zhilian,DIRECT  # 自建直连域名
   - RULE-SET,direct,DIRECT  # 直连域名列表
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
-  - RULE-SET,richang,🎯 节点选择 
   # ai 域名列表
   ### IP 类规则
   - RULE-SET,telegram,🇯🇵日本  # Telegram 使用的 IP 地址列表
   - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
   - RULE-SET,lan,DIRECT  # 局域网 IP 及保留 IP 地址列表
-  - GEOIP,lan,DIRECT  # 局域网 IP
-  - GEOIP,CN,DIRECT  # 中国大陆 IP
-  - GEOSITE,cn,DIRECT
+  - GEOIP,cn,DIRECT
+
   ### 默认匹配策略
   - MATCH,🎯 节点选择  
