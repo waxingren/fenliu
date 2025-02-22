@@ -264,7 +264,13 @@ rule-providers:
     interval: 86400
 
 
-
+  # 直连域名列表
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
 
 
 
