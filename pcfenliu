@@ -264,15 +264,6 @@ rule-providers:
     interval: 86400
 
 
-  # 直连域名列表
-  direct:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
-    path: ./ruleset/direct.yaml
-    interval: 86400
-
-
 
 
 
@@ -285,7 +276,6 @@ rules:
   - RULE-SET,applications,DIRECT  # 直连软件
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
-  - RULE-SET,direct,DIRECT  # 直连域名列表
   # ai 域名列表
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
