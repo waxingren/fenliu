@@ -20,18 +20,23 @@ geo-auto-update: true
 geo-update-interval: 24
 geox-url:
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-
-
-
-
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
 
 dns:
   enable: true
   listen: :53
   ipv6: false
   # 默认 DNS（用于国际域名）  
-  nameserver:
+  nameserver-policy:
+  geosite:cn,apple,private,icloud:
     - system  # 调用系统 DNS 兼容性和速度最佳
+
+  nameserver:
+  - tls://8.8.4.4#DNS
+  - tls://208.67.222.222#DNS
+
+
+
 enhanced-mode: fake-ip
 fake-ip-range: 198.18.0.1/16
 fake-ip-filter:
