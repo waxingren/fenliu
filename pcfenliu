@@ -18,16 +18,18 @@ dns:
   enable: true
   listen: :53
   ipv6: false
-  nameserver:
+  # 默认 DNS（用于国际域名）  
+nameserver:
     - https://1.1.1.1/dns-query
     - https://8.8.8.8/dns-query
-    - 1.1.1.1
-    - 8.8.8.8
-  nameserver-policy:
-    geosite:cn:
-    - https://223.5.5.5/dns-query
-    - https://1.12.12.12/dns-query
-  proxy-server-nameserver:
+    - https://9.9.9.9/dns-query
+  # 中国大陆域名的专用 DNS  
+nameserver-policy:    
+geosite:cn:
+      - https://223.5.5.5/dns-query # 阿里云公共 DNS
+      - https://1.12.12.12/dns-query # DNSPod 公共 DNS
+  # 代理服务器的 DNS  
+proxy-server-nameserver:
     - https://223.5.5.5/dns-query
     - https://1.12.12.12/dns-query
 
