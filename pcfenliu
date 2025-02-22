@@ -37,8 +37,6 @@ fake-ip-filter:
   # 局域网和本地服务
   - "*.lan"
   - "*.local"
-  - geosite:private
-  - geosite:cn
   - "*.example"
   - "*.invalid"
   - "*.localhost"
@@ -325,6 +323,6 @@ rules:
   - RULE-SET,lan,DIRECT  # 局域网 IP 及保留 IP 地址列表
   - GEOIP,lan,DIRECT  # 局域网 IP
   - GEOIP,CN,DIRECT  # 中国大陆 IP
-
+  - GEOSITE,cn,DIRECT
   ### 默认匹配策略
   - MATCH,🎯 节点选择  
