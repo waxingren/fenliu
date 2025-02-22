@@ -45,112 +45,87 @@ fake-ip-filter:
   - "*.home.arpa"
 
   # 时间同步服务
-  - time.*.com
-  - time.*.gov
-  - time.*.edu.cn
-  - time.*.apple.com
-  - time1.*.com
-  - time2.*.com
-  - time3.*.com
-  - time4.*.com
-  - time5.*.com
-  - time6.*.com
-  - time7.*.com
-  - ntp.*.com
-  - ntp1.*.com
-  - ntp2.*.com
-  - ntp3.*.com
-  - ntp4.*.com
-  - ntp5.*.com
-  - ntp6.*.com
-  - ntp7.*.com
+  - "time*.com"
+  - "ntp*.com"
   - "*.time.edu.cn"
   - "*.ntp.org.cn"
   - "+.pool.ntp.org"
-  - time1.cloud.tencent.com
+  - "time1.cloud.tencent.com"
 
   # 音乐流媒体服务
-  - music.163.com
   - "*.music.163.com"
   - "*.126.net"
-  - musicapi.taihe.com
-  - music.taihe.com
-  - songsearch.kugou.com
-  - trackercdn.kugou.com
   - "*.kuwo.cn"
-  - api-jooxtt.sanook.com
-  - api.joox.com
-  - joox.com
-  - y.qq.com
-  - "*.y.qq.com"
-  - streamoc.music.tc.qq.com
-  - mobileoc.music.tc.qq.com
-  - isure.stream.qqmusic.qq.com
-  - dl.stream.qqmusic.qq.com
-  - aqqmusic.tc.qq.com
-  - amobile.music.tc.qq.com
+  - "*.kugou.com"
+  - "*.qq.com"
   - "*.xiami.com"
   - "*.music.migu.cn"
-  - music.migu.cn
 
-  # 抖音相关域名
-  - "*.zijieapi.com"
-  - "*.bytedance.com"
-  - "*.doubao.com"
+  # 抖音相关
   - "*.douyin.com"
+  - "*.bytedance.com"
   - "*.bdurl.net"
-  - "*.douyinpic.com"
   - "*.bytetos.com"
-  # 其他特定服务
+
+  # 微软相关
   - "*.msftconnecttest.com"
   - "*.msftncsi.com"
-  - msftconnecttest.com
-  - msftncsi.com
-  - localhost.ptlogin2.qq.com
-  - localhost.sec.qq.com
-  - "+.srv.nintendo.net"
-  - "+.stun.playstation.net"
-  - xbox.*.microsoft.com
-  - xnotify.xboxlive.com
-  - "+.battlenet.com.cn"
-  - "+.wotgame.cn"
-  - "+.wggames.cn"
-  - "+.wowsgame.cn"
-  - "+.wargaming.net"
-  - proxy.golang.org
-  - stun.*.*
-  - stun.*.*.*
-  - "+.stun.*.*"
-  - "+.stun.*.*.*"
-  - "+.stun.*.*.*.*"
-  - heartbeat.belkin.com
+  - "xbox.*.*.microsoft.com"
+  - "*.*.xboxlive.com"
+
+  # 苹果相关
+  - "*.apple.com"
+  - "*.icloud.com"
+  - "*.mzstatic.com"
+  - "*.akamaized.net"
+
+  # 谷歌相关
+  - "*.google.com"
+  - "*.gstatic.com"
+  - "*.googleapis.com"
+  - "*.googleusercontent.com"
+  - "lens.l.google.com"
+  - "stun.l.google.com"
+
+  # 游戏和娱乐相关
+  - "*.nflxvideo.net"
+  - "*.square-enix.com"
+  - "*.ffxiv.com"
+  - "*.bilivideo.cn"
+  - "*.srv.nintendo.net"
+  - "*.stun.playstation.net"
+
+  # 米家相关
+  - "*.mi.com"
+  - "*.mi-home.cn"
+  - "*.xiaomi.com"
+  - "*.xiaomi.net"
+  - "*.miwifi.com"
+  - "*.miot-api.com"
+  - "*.miot-spec.com"
+  - "*.miot-spec.org"
+  - "*.api.io.mi.com"
+  - "*.api.mina.mi.com"
+  - "*.api.mijia.com"
+  - "*.api.mi.com"
+  - "*.home.mi.com"
+  - "*.mitv.mi.com"
+  - "*.miot-router.com"
+  - "*.miot-service.com"
+  - "*.miot-cloud.com"
+  - "*.miot-discovery.com"
+  - "*.miot-router.cn"
+  - "*.miot-service.cn"
+  - "*.miot-cloud.cn"
+  - "*.miot-discovery.cn"
+
+  # 其他
+  - "+stun.*"
+  - "heartbeat.belkin.com"
   - "*.linksys.com"
   - "*.linksyssmartwifi.com"
   - "*.router.asus.com"
-  - mesu.apple.com
-  - swscan.apple.com
-  - swquery.apple.com
-  - swdownload.apple.com
-  - swcdn.apple.com
-  - swdist.apple.com
-  - lens.l.google.com
-  - stun.l.google.com
-  - "+.nflxvideo.net"
-  - "*.square-enix.com"
-  - "*.finalfantasyxiv.com"
-  - "*.ffxiv.com"
-  - "*.mcdn.bilivideo.cn"
-  - time-ios.apple.com
-  - "+.msftconnecttest.com"
-  - "+.msftncsi.com"
-  - "*.n.n.srv.nintendo.net"
-  - xbox.*.*.microsoft.com
-  - "*.*.xboxlive.com"
-  - "+.stun.*.*.*.*.*"
-  - "*.ff14.sdo.com"
-  - ff.dorado.sdo.com
-  - "+.media.dssott.com"
-  - shark007.net
+  - "shark007.net"
 sniffer:
   enable: false
   force-dns-mapping: false
