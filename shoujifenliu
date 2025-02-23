@@ -28,7 +28,7 @@ dns:
   ipv6: false
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
-    geosite:cn,private,apple:
+    geosite:cn,private,apple,icloud:
     - system  # 调用系统 DNS 兼容性和速度最佳
 
   nameserver:
@@ -181,6 +181,8 @@ rules:
   - RULE-SET,ai,🇺🇸美国
   - GEOSITE,youtube,流媒体
   - GEOSITE,private,DIRECT
+  - GEOSITE,apple,DIRECT
+  - GEOSITE,icloud,DIRECT
   - GEOSITE,cn,DIRECT  
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
