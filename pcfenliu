@@ -178,30 +178,6 @@ proxy-groups:
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
 # 订阅规则
 rule-providers:
-  # 私有网络专用域名列表
-  private:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
-    path: ./ruleset/private.yaml
-    interval: 86400
-
-  # Apple 在中国大陆可直连的域名列表
-  apple:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
-    path: ./ruleset/apple.yaml
-    interval: 86400
-
-  # iCloud 域名列表
-  icloud:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
-    path: ./ruleset/icloud.yaml
-    interval: 86400
-
   # AI 域名列表
   ai:
     type: http
@@ -227,13 +203,6 @@ rule-providers:
     interval: 86400
 
 
-  # 自定义规则集
-  zxgz:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/video.yaml"
-    path: ./ruleset/zxgz.yaml
-    interval: 86400
 
   # 直连软件
   applications:
@@ -250,13 +219,12 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,ai,🇺🇸美国
-  - RULE-SET,zxgz,流媒体  # 自定义规则集 zxgz，用于视频下载
+  - GEOSITE,youtube,流媒体
   - RULE-SET,applications,DIRECT  # 直连软件
-  - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
-  - RULE-SET,icloud,DIRECT  # iCloud 域名列表
-  # ai 域名列表
+  - GEOSITE,private,DIRECT
+
+  - GEOSITE,cn,DIRECT
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - RULE-SET,telegram,🇯🇵日本,no-resolve  # Telegram 使用的 IP 地址列表
