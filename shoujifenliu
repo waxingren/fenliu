@@ -185,8 +185,8 @@ rules:
   - GEOSITE,cn,DIRECT  
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
-  - RULE-SET,telegram,🇯🇵日本,no-resolve  # Telegram 使用的 IP 地址列表
+  - RULE-SET,telegram,🇯🇵日本
   - GEOIP,CN,DIRECT
 
   ### 默认匹配策略
-  - MATCH,🎯 节点选择  
+  - MATCH,🎯 节点选择
