@@ -21,19 +21,13 @@ geo-update-interval: 24
 geox-url:
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
   geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-
 dns:
   enable: true
   listen: :53
   ipv6: false
   # 默认 DNS（用于国际域名）  
-nameserver-policy:
-  RULE-SET,private: system           # 私有网络专用域名列表使用系统 DNS
-  RULE-SET,applications: system      # 直连软件使用系统 DNS
-  RULE-SET,apple: system             # Apple 在中国大陆可直连的域名列表使用系统 DNS
-  RULE-SET,icloud: system            # iCloud 域名列表使用系统 DNS
-  RULE-SET,direct: system            # 直连域名列表使用系统 DNS
-  RULE-SET,cncidr: system            # 中国大陆 IP 地址列表使用系统 DNS
+  nameserver-policy:
+    geosite:cn,private,apple: system  # geosite 规则匹配到的域名使用系统 DNS
   nameserver:
   - 208.67.222.222
   - 1.1.1.1
