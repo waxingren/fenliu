@@ -223,8 +223,6 @@ rules:
   - GEOSITE,youtube,流媒体
   - RULE-SET,applications,DIRECT  # 直连软件
   - GEOSITE,private,DIRECT
-
-  - GEOSITE,cn,DIRECT
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - RULE-SET,telegram,🇯🇵日本,no-resolve  # Telegram 使用的 IP 地址列表
