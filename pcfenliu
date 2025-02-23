@@ -56,22 +56,14 @@ fake-ip-filter:
   - "*.ntp.org.cn"
   - "+.pool.ntp.org"
   - "time1.cloud.tencent.com"
-
+  - dht.libtorrent.org
   # 音乐流媒体服务
   - "*.music.163.com"
   - "*.126.net"
   - "*.kuwo.cn"
   - "*.kugou.com"
   - "*.qq.com"
-  - "*.xiami.com"
   - "*.music.migu.cn"
-
-  # 抖音相关
-  - "*.douyin.com"
-  - "*.bytedance.com"
-  - "*.bdurl.net"
-  - "*.bytetos.com"
-
   # 微软相关
   - "*.msftconnecttest.com"
   - "*.msftncsi.com"
@@ -101,29 +93,8 @@ fake-ip-filter:
   - "*.stun.playstation.net"
 
   # 米家相关
-  - "*.mi.com"
-  - "*.mi-home.cn"
-  - "*.xiaomi.com"
-  - "*.xiaomi.net"
-  - "*.miwifi.com"
-  - "*.miot-api.com"
-  - "*.miot-spec.com"
-  - "*.miot-spec.org"
-  - "*.api.io.mi.com"
-  - "*.api.mina.mi.com"
-  - "*.api.mijia.com"
-  - "*.api.mi.com"
-  - "*.home.mi.com"
-  - "*.mitv.mi.com"
-  - "*.miot-router.com"
-  - "*.miot-service.com"
-  - "*.miot-cloud.com"
-  - "*.miot-discovery.com"
-  - "*.miot-router.cn"
-  - "*.miot-service.cn"
-  - "*.miot-cloud.cn"
-  - "*.miot-discovery.cn"
-
+  - 'Mijia Cloud'
+  - 'dlg.io.mi.com'
   # 其他
   - "+stun.*"
   - "heartbeat.belkin.com"
