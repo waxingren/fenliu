@@ -28,7 +28,7 @@ dns:
   ipv6: false
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
-    geosite:cn,private:
+    geosite:cn,private,apple:
     - system  # 调用系统 DNS 兼容性和速度最佳
 
   nameserver:
@@ -67,11 +67,6 @@ fake-ip-filter:
   - "*.xiami.com"
   - "*.music.migu.cn"
 
-  # 抖音相关
-  - "*.douyin.com"
-  - "*.bytedance.com"
-  - "*.bdurl.net"
-  - "*.bytetos.com"
 
   # 微软相关
   - "*.msftconnecttest.com"
@@ -100,30 +95,6 @@ fake-ip-filter:
   - "*.bilivideo.cn"
   - "*.srv.nintendo.net"
   - "*.stun.playstation.net"
-
-  # 米家相关
-  - "*.mi.com"
-  - "*.mi-home.cn"
-  - "*.xiaomi.com"
-  - "*.xiaomi.net"
-  - "*.miwifi.com"
-  - "*.miot-api.com"
-  - "*.miot-spec.com"
-  - "*.miot-spec.org"
-  - "*.api.io.mi.com"
-  - "*.api.mina.mi.com"
-  - "*.api.mijia.com"
-  - "*.api.mi.com"
-  - "*.home.mi.com"
-  - "*.mitv.mi.com"
-  - "*.miot-router.com"
-  - "*.miot-service.com"
-  - "*.miot-cloud.com"
-  - "*.miot-discovery.com"
-  - "*.miot-router.cn"
-  - "*.miot-service.cn"
-  - "*.miot-cloud.cn"
-  - "*.miot-discovery.cn"
 
   # 其他
   - "+stun.*"
