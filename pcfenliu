@@ -14,22 +14,19 @@ mode: rule                 #clash工作模式（rule/global/direct,meta暂不支
 log-level: warning          #日志等级（info/warning/error/debug/silent）
 ipv6: false                #ip6开关，当为false时，停止解析hostanmes为ip6地址
 global-client-fingerprint: chrome
-geodata-mode: true
-geodata-loader: standard
-geo-auto-update: true
-geo-update-interval: 24
-geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
 
 dns:
   enable: true
   listen: :53
   ipv6: false
   # 默认 DNS（用于国际域名）  
-  nameserver-policy:
-    geosite:cn,private,apple: system  # geosite 规则匹配到的域名使用系统 DNS
-    RULE-SET,cnip: system             # RULE-SET 匹配到的流量使用系统 DNS
+nameserver-policy:
+  RULE-SET,private: system           # 私有网络专用域名列表使用系统 DNS
+  RULE-SET,applications: system      # 直连软件使用系统 DNS
+  RULE-SET,apple: system             # Apple 在中国大陆可直连的域名列表使用系统 DNS
+  RULE-SET,icloud: system            # iCloud 域名列表使用系统 DNS
+  RULE-SET,direct: system            # 直连域名列表使用系统 DNS
+  RULE-SET,cncidr: system            # 中国大陆 IP 地址列表使用系统 DNS
   nameserver:
   - 208.67.222.222
   - 1.1.1.1
@@ -172,15 +169,48 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./ruleset/lan.yaml
     interval: 86400
-  #cnip
-  cnip:
+#中国大陆 IP 地址列表 cncidr.txt
+  cncidr:
     type: http
     behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/CN-ip-cidr.txt"
-    path: ./ruleset/cnip.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
     interval: 86400
-
-
+ #直连域名列表direct.txt
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+#私有网络专用域名列表 private.txt
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+#Apple 在中国大陆可直连的域名列表 apple.txt
+  apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+#iCloud 域名列表 icloud.txt
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+  # 自定义规则集
+  spxz:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
+    path: ./ruleset/spxz.yaml
+    interval: 86400
   # 直连软件
   applications:
     type: http
@@ -189,23 +219,20 @@ rule-providers:
     path: ./ruleset/applications.yaml
     interval: 86400
 
-
-
-
-
 # 分流规则
 rules:
   ### 非 IP 类规则
   - RULE-SET,ai,🇺🇸美国
-  - GEOSITE,youtube,流媒体
+  - RULE-SET,spxz,流媒体  # 自定义规则集，用于视频下载
+  - RULE-SET,private,DIRECT  # 私有网络专用域名列表
   - RULE-SET,applications,DIRECT  # 直连软件
-  - GEOSITE,private,DIRECT
-  - GEOSITE,apple,DIRECT
-  - GEOSITE,cn,DIRECT  
+  - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
+  - RULE-SET,icloud,DIRECT  # iCloud 域名列表
+  - RULE-SET,direct,DIRECT  # 直连域名列表
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - RULE-SET,telegram,🇯🇵日本
-  - RULE-SET,cnip,DIRECT 
+  - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
   - MATCH,🎯 节点选择  
