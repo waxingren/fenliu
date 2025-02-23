@@ -28,9 +28,8 @@ dns:
   ipv6: false
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
-    geosite:cn,private,apple:
-    - system  # 调用系统 DNS 兼容性和速度最佳
-
+    geosite:cn,private,apple: system  # geosite 规则匹配到的域名使用系统 DNS
+    RULE-SET,cnip: system             # RULE-SET 匹配到的流量使用系统 DNS
   nameserver:
   - 208.67.222.222
   - 1.1.1.1
@@ -67,6 +66,11 @@ fake-ip-filter:
   - "*.xiami.com"
   - "*.music.migu.cn"
 
+  # 抖音相关
+  - "*.douyin.com"
+  - "*.bytedance.com"
+  - "*.bdurl.net"
+  - "*.bytetos.com"
 
   # 微软相关
   - "*.msftconnecttest.com"
@@ -95,6 +99,30 @@ fake-ip-filter:
   - "*.bilivideo.cn"
   - "*.srv.nintendo.net"
   - "*.stun.playstation.net"
+
+  # 米家相关
+  - "*.mi.com"
+  - "*.mi-home.cn"
+  - "*.xiaomi.com"
+  - "*.xiaomi.net"
+  - "*.miwifi.com"
+  - "*.miot-api.com"
+  - "*.miot-spec.com"
+  - "*.miot-spec.org"
+  - "*.api.io.mi.com"
+  - "*.api.mina.mi.com"
+  - "*.api.mijia.com"
+  - "*.api.mi.com"
+  - "*.home.mi.com"
+  - "*.mitv.mi.com"
+  - "*.miot-router.com"
+  - "*.miot-service.com"
+  - "*.miot-cloud.com"
+  - "*.miot-discovery.com"
+  - "*.miot-router.cn"
+  - "*.miot-service.cn"
+  - "*.miot-cloud.cn"
+  - "*.miot-discovery.cn"
 
   # 其他
   - "+stun.*"
@@ -173,6 +201,13 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./ruleset/lan.yaml
     interval: 86400
+  #cnip
+  cnip:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/CN-ip-cidr.txt"
+    path: ./ruleset/cnip.yaml
+    interval: 86400
 
 
 # 分流规则
@@ -186,7 +221,7 @@ rules:
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - RULE-SET,telegram,🇯🇵日本
-  - GEOIP,CN,DIRECT
+  - RULE-SET,cnip,DIRECT 
 
   ### 默认匹配策略
-  - MATCH,🎯 节点选择
+  - MATCH,🎯 节点选择  
