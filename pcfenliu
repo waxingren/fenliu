@@ -126,6 +126,7 @@ dns:
   - "+.media.dssott.com"
   - shark007.net
   - "+.io.mi.com"
+  - +.market.xiaomi.com
   use-hosts: false
   use-system-hosts: false
 
