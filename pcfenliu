@@ -13,8 +13,21 @@ dns:
   enable: true
   listen: :53
   ipv6: false
-  enhanced-mode: redir-host  # 使用 Redir-Host 模式
-  use-system-hosts: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+   - "*"
+   - '+.lan'
+   - '+.local'
+   - "RULE-SET,private"
+   - "RULE-SET,apple"
+   - "RULE-SET,icloud"
+   - "RULE-SET,direct"
+   - "RULE-SET,cncidr"
+   - "+.argotunnel.com"
+  use-hosts: true
+  use-system-hosts: true
+
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
     'RULE-SET,private': system
