@@ -217,7 +217,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/appfenliu.yaml"
     path: ./ruleset/applications.yaml
     interval: 86400
-
 # 分流规则
 rules:
   ### 非 IP 类规则
