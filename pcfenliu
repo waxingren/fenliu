@@ -23,10 +23,13 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-   - "*"
    - '+.lan'
    - '+.local'
    - "+.argotunnel.com"
+   - RULE-SET,private
+   - RULE-SET,apple
+   - RULE-SET,icloud
+   - RULE-SET,direct
   use-hosts: false
   use-system-hosts: false
 
