@@ -25,8 +25,9 @@ dns:
    - "RULE-SET,direct"
    - "RULE-SET,cncidr"
    - "+.argotunnel.com"
-  use-hosts: true
-  use-system-hosts: true
+  use-hosts: false
+  use-system-hosts: false
+
 
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
