@@ -26,11 +26,6 @@ dns:
    - "*"
    - '+.lan'
    - '+.local'
-   - "RULE-SET,private"
-   - "RULE-SET,apple"
-   - "RULE-SET,icloud"
-   - "RULE-SET,direct"
-   - "RULE-SET,cncidr"
    - "+.argotunnel.com"
   use-hosts: false
   use-system-hosts: false
