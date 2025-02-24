@@ -1,1 +1,9 @@
-
+payload:
+- '+.youtube.com'
+- '+.googlevideo.com'
+- '+.i.ytimg.com'
+- '+.youtu.be'
+- '+.youtube-nocookie.com'
+- '+.ytstatic.com'
+- '+.youtubei.googleapis.com'
+- '+.youtube.googleapis.com'
