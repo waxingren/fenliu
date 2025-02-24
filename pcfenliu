@@ -26,10 +26,10 @@ dns:
    - '+.lan'
    - '+.local'
    - "+.argotunnel.com"
-   - RULE-SET,private
-   - RULE-SET,apple
-   - RULE-SET,icloud
-   - RULE-SET,direct
+   - 'RULE-SET,private'
+   - 'RULE-SET,apple'
+   - 'RULE-SET,icloud'
+   - 'RULE-SET,direct'
   use-hosts: false
   use-system-hosts: false
 
