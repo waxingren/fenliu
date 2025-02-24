@@ -8,19 +8,26 @@ mode: rule                 # 工作模式：基于规则分流
 log-level: warning         # 日志级别：仅记录警告及以上信息
 ipv6: false                # 关闭 IPv6 解析，避免不必要的解析开销
 global-client-fingerprint: chrome  # 模拟 Chrome 浏览器指纹
-tun:
-  enable: true
-  stack: mixed  # 使用混合模式（Mixed）
-  dns-hijack:
-    - 0.0.0.0:53  # 劫持所有 DNS 请求
-  auto-route: true  # 自动路由所有流量
-  auto-detect-interface: true  # 自动检测网络接口
+
 dns:
   enable: true
   listen: :53
   ipv6: false
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+   - "*"
+   - '+.lan'
+   - '+.local'
+   - "RULE-SET,private"
+   - "RULE-SET,apple"
+   - "RULE-SET,icloud"
+   - "RULE-SET,direct"
+   - "RULE-SET,cncidr"
+   - "+.argotunnel.com"
+  use-hosts: false
   use-system-hosts: false
+
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
     'RULE-SET,private': system
@@ -120,12 +127,20 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
+  # 直连软件
+  applications:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/appfenliu.yaml"
+    path: ./ruleset/applications.yaml
+    interval: 86400
 # 分流规则
 rules:
   ### 非 IP 类规则
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,spxz,流媒体  # 自定义规则集，用于视频下载
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
+  - RULE-SET,applications,DIRECT  # 直连软件
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
   - RULE-SET,direct,DIRECT  # 直连域名列表
