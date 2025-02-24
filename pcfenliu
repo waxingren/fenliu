@@ -206,7 +206,7 @@ rule-providers:
   # 自定义规则集
   spxz:
     type: http
-    behavior: classical
+    behavior: domain
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
