@@ -24,7 +24,7 @@ dns:
   enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16 
   nameserver-policy:
-    geosite:cn,private,apple,microsoft:
+    geosite:cn,private,apple:
     - system
     nameserver:
     - 208.67.222.222 # OpenDNS
@@ -78,8 +78,7 @@ rules:
   ### 非 IP 类规则
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,spxz,流媒体  # 自定义规则集，用于视频下载
-  - GEOSITE,private,DIRECT 
-  - GEOSITE,microsoft,DIRECT
+  - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
   - GEOSITE,geolocation-!cn,🎯 节点选择
