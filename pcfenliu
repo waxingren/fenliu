@@ -13,6 +13,8 @@ dns:
   enable: true
   listen: :53
   ipv6: false
+  use-hosts: false
+  use-system-hosts: false
   enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
   # 默认 DNS（用于国际域名）  
