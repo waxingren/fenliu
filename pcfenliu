@@ -13,17 +13,8 @@ dns:
   enable: true
   listen: :53
   ipv6: false
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-   - '*.lan'
-   - localhost.ptlogin2.qq.com
-   - "dns.msftncsi.com"
-   - "www.msftncsi.com"
-   - "www.msftconnecttest.com"
-   - "*.steamserver.net"
-   - "*.steampowered.com"
-
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
     'RULE-SET,private': system
