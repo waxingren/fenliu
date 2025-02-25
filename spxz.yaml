@@ -6,4 +6,5 @@ payload:
   - '+.youtube-nocookie.com'
   - '+.ytstatic.com'
   - '+.youtubei.googleapis.com'
-  - '+.youtube.googleapis.com'
+  - '+.steamserver.net'
+  - '+.steampowered.com'
