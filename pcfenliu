@@ -16,10 +16,11 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-   - "*.lan"                     # 本地局域网域名
-   - "localhost.ptlogin2.qq.com" # QQ登录域名
-
-
+   - '*.lan'
+   - localhost.ptlogin2.qq.com
+   - "dns.msftncsi.com"
+   - "www.msftncsi.com"
+   - "www.msftconnecttest.com"
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
     'RULE-SET,private': system
