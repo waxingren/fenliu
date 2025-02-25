@@ -8,6 +8,15 @@ mode: rule                 # 工作模式：基于规则分流
 log-level: warning         # 日志级别：仅记录警告及以上信息
 ipv6: false                # 关闭 IPv6 解析，避免不必要的解析开销
 global-client-fingerprint: chrome  # 模拟 Chrome 浏览器指纹
+geodata-mode: true
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
 
 dns:
   enable: true
@@ -16,15 +25,11 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-   - '+.lan'
-   - '+.local'
-   - "+.argotunnel.com"
-   - 'RULE-SET,private'
-   - 'RULE-SET,apple'
-   - 'RULE-SET,icloud'
-   - 'RULE-SET,direct'
-  use-hosts: false
-  use-system-hosts: false
+   - "*.lan"                     # 本地局域网域名
+   - "localhost.ptlogin2.qq.com" # QQ登录域名
+   - "geosite:cn"                # 过滤所有中国大陆的域名
+   - "geoip:cn"                  # 过滤所有中国大陆的IP地址
+   - "geoip:private"             # 过滤所有私有IP地址（局域网）
 
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
