@@ -21,6 +21,8 @@ dns:
    - "dns.msftncsi.com"
    - "www.msftncsi.com"
    - "www.msftconnecttest.com"
+   - "*.steamserver.net"
+
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
     'RULE-SET,private': system
