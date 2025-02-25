@@ -15,9 +15,16 @@ dns:
   ipv6: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+   - '+.lan'
+   - '+.local'
+   - "+.argotunnel.com"
+   - 'RULE-SET,private'
+   - 'RULE-SET,apple'
+   - 'RULE-SET,icloud'
+   - 'RULE-SET,direct'
   use-hosts: false
   use-system-hosts: false
-
 
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
@@ -118,6 +125,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
+
   # 直连软件
   applications:
     type: http
