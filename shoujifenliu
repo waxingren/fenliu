@@ -1,8 +1,6 @@
 port: 7895                 # 本地 HTTP 代理端口
 socks-port: 7896           # 本地 SOCKS5 代理端口
 mixed-port: 7897           # 本地混合代理端口
-tproxy-port: 7898          # 透明代理端口
-
 tcp-concurrent: true       # TCP 连接并发，提升连接速度
 allow-lan: false           # 是否允许局域网设备连接
 bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时生效）
@@ -15,11 +13,10 @@ dns:
   enable: true
   listen: :53
   ipv6: false
-  enhanced-mode: redir-host
-
   use-hosts: false
   use-system-hosts: false
-
+  enhanced-mode: redir-host
+  fake-ip-range: 198.18.0.1/16
   # 默认 DNS（用于国际域名）  
   nameserver-policy:
     'RULE-SET,private': system
@@ -119,7 +116,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
-
 # 分流规则
 rules:
   ### 非 IP 类规则
