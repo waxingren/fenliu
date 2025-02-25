@@ -59,6 +59,13 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
     path: ./ruleset/ai.yaml
     interval: 86400
+  # 局域网 IP 及保留 IP 地址列表
+  lan:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lan.yaml
+    interval: 86400
   # 自定义规则集
   spxz:
     type: http
@@ -77,7 +84,7 @@ rules:
   - GEOSITE,cn,DIRECT
   - GEOSITE,geolocation-!cn,🎯 节点选择
   ### IP 类规则
-  - GEOIP,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
+  - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - GEOIP,telegram,🇯🇵日本,no-resolve 
   - GEOIP,cn,DIRECT,no-resolve   # 中国大陆 IP 地址列表
 
