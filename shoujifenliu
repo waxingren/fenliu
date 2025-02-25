@@ -1,6 +1,8 @@
 port: 7895                 # 本地 HTTP 代理端口
 socks-port: 7896           # 本地 SOCKS5 代理端口
 mixed-port: 7897           # 本地混合代理端口
+tproxy-port: 7898          # 透明代理端口
+
 tcp-concurrent: true       # TCP 连接并发，提升连接速度
 allow-lan: false           # 是否允许局域网设备连接
 bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时生效）
