@@ -125,20 +125,13 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
-  # 直连软件
-  applications:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/appfenliu.yaml"
-    path: ./ruleset/applications.yaml
-    interval: 86400
+
 # 分流规则
 rules:
   ### 非 IP 类规则
   - RULE-SET,ai,🇺🇸美国
   - RULE-SET,spxz,流媒体  # 自定义规则集，用于视频下载
   - RULE-SET,private,DIRECT  # 私有网络专用域名列表
-  - RULE-SET,applications,DIRECT  # 直连软件
   - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT  # iCloud 域名列表
   - RULE-SET,direct,DIRECT  # 直连域名列表
