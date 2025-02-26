@@ -108,6 +108,13 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
     path: ./ruleset/icloud.yaml
     interval: 86400
+#proxy域名
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
   # 自定义规则集
   spxz:
     type: http
@@ -118,12 +125,13 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,ai,🇺🇸美国
-  - RULE-SET,spxz,流媒体  # 自定义规则集，用于视频下载
-  - RULE-SET,private,DIRECT  # 私有网络专用域名列表
-  - RULE-SET,apple,DIRECT  # Apple 在中国大陆可直连的域名列表
-  - RULE-SET,icloud,DIRECT  # iCloud 域名列表
-  - RULE-SET,direct,DIRECT  # 直连域名列表
+  - RULE-SET,private,DIRECT     # 私有网络专用域名列表
+  - RULE-SET,apple,DIRECT       # Apple 在中国大陆可直连的域名列表
+  - RULE-SET,icloud,DIRECT      # iCloud 域名列表
+  - RULE-SET,direct,DIRECT      # 直连域名列表
+  - RULE-SET,ai,🇺🇸美国           #AI
+  - RULE-SET,spxz,流媒体        # 自定义规则集，用于视频下载
+  - RULE-SET,proxy,🎯 节点选择  # 国外域名列表
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - RULE-SET,telegram,🇯🇵日本,no-resolve
