@@ -17,10 +17,10 @@ dns:
   enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16 
   nameserver-policy:    
-   'RULE-SET,private': 223.5.5.5   # 私有域名使用阿里云 DNS    
-   'RULE-SET,apple': 223.5.5.5    # Apple 域名使用阿里云 DNS    
-   'RULE-SET,icloud': 223.5.5.5   # iCloud 域名使用阿里云 DNS    
-   'RULE-SET,direct': 223.5.5.5   # 直连域名使用阿里云 DNS
+    'RULE-SET,private': system   # 私有域名使用系统 DNS    
+    'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
+    'RULE-SET,icloud': system    # iCloud 域名使用系统 DNS    
+    'RULE-SET,direct': system    # 直连域名使用系统 DNS
   nameserver:
     - 208.67.222.222
     - 1.1.1.1 
