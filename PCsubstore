@@ -16,7 +16,14 @@ dns:
   use-system-hosts: false
   enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
+  nameserver-policy:    
+    'RULE-SET,private': system   # 私有域名使用系统 DNS    
+    'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
+    'RULE-SET,icloud': system    # iCloud 域名使用系统 DNS    
+    'RULE-SET,direct': system    # 直连域名使用系统 DNS
   nameserver:
+    - 1.1.1.1 
+  proxy-server-nameserver:
     - 1.1.1.1 
 # 过滤规则
 FilterHK: &FilterHK '^(?!.*(群|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
