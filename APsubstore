@@ -14,7 +14,7 @@ dns:
   ipv6: false
   use-hosts: false
   use-system-hosts: false
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 
   nameserver-policy:    
     'RULE-SET,private': system   # 私有域名使用系统 DNS    
