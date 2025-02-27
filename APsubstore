@@ -177,12 +177,12 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,ai,🇺🇸美国           #AI
-  - RULE-SET,spxz,流媒体        # 自定义规则集，用于视频下载
   - RULE-SET,private,DIRECT     # 私有网络专用域名列表
   - RULE-SET,apple,DIRECT       # Apple 在中国大陆可直连的域名列表
   - RULE-SET,icloud,DIRECT      # iCloud 域名列表
   - RULE-SET,direct,DIRECT      # 直连域名列表
+  - RULE-SET,ai,🇺🇸美国           #AI
+  - RULE-SET,spxz,流媒体        # 自定义规则集，用于视频下载
   - RULE-SET,proxy,🎯 节点选择  # 国外域名列表
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
