@@ -16,6 +16,60 @@ dns:
   use-system-hosts: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 
+  fake-ip-filter:    
+# 局域网设备
+    - "+.lan"
+    - "+.local"
+    - "router.local"
+    - "nas.local"
+    # 时间服务器
+    - "time.apple.com"
+    - "time.windows.com"
+    - "ntp.org"
+    - "pool.ntp.org"
+    # 米家设备
+    - "+.mi.com"
+    - "+.xiaomi.com"
+    - "+.miwifi.com"
+    - "stun.miwifi.com"
+    - "api.io.mi.com"
+    # 苹果服务
+    - "+.apple.com"
+    - "+.icloud.com"
+    - "+.mzstatic.com"
+    - "+.akamaiedge.net"
+    - "+.akamaihd.net"
+    - "gsa.apple.com"
+    - "gs.apple.com"
+    # 微软服务
+    - "+.microsoft.com"
+    - "+.windowsupdate.com"
+    - "download.windowsupdate.com"
+    - "+.onedrive.com"
+    - "+.live.com"
+    - "onedrive.live.com"
+    - "+.office.com"
+    - "+.office365.com"
+    - "+.sharepoint.com"
+    - "+.outlook.com"
+    - "+.azure.com"
+    - "+.azureedge.net"
+    - "+.blob.core.windows.net"
+    - "+.xboxlive.com"
+    - "+.skype.com"
+    - "+.msn.com"
+    # 游戏服务
+    - "+.steampowered.com"
+    - "+.steamcontent.com"
+    - "+.epicgames.com"
+    - "+.xboxlive.com"
+    - "+.playstation.net"
+    # 流媒体服务
+    - "+.netflix.com"
+    - "+.nflxvideo.net"
+    - "+.youtube.com"
+    - "dns.google"
+    - "GEOSITE:cn"
   nameserver-policy:    
     'RULE-SET,private': system   # 私有域名使用系统 DNS    
     'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
