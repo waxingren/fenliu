@@ -16,6 +16,7 @@ dns:
   use-system-hosts: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 
+  fake-ip-filter: ['rule-set:fakeip,direct']
   nameserver-policy:    
     'RULE-SET,private': system   # 私有域名使用系统 DNS    
     'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
@@ -117,6 +118,13 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
+    interval: 86400
+  # 自定义规则集
+  fakeip:
+    type: http
+    behavior: domain
+    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter.yaml"
+    path: ./ruleset/fakeip.yaml
     interval: 86400
 # 分流规则
 rules:
