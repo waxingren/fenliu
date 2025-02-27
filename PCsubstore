@@ -21,7 +21,7 @@ dns:
     'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
     'RULE-SET,icloud': system    # iCloud 域名使用系统 DNS    
     'RULE-SET,direct': system    # 直连域名使用系统 DNS
-    'RULE-SET,spxz: system 
+    'RULE-SET,spxz': system 
   nameserver:
     - 1.1.1.1 
   proxy-server-nameserver:
