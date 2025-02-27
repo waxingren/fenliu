@@ -16,6 +16,7 @@ dns:
   use-system-hosts: false
   enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
+  fake-ip-filter: ['rule-set:fakeip,direct']
   nameserver: 
     - 208.67.222.222    
     - 1.1.1.1                      
