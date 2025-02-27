@@ -19,7 +19,7 @@ dns:
   fake-ip-filter: ['rule-set:fakeip,direct']
   sniffer:
     enable: true  # 启用嗅探器
-    force-dns-mapping: false # 强制 DNS 映射
+    force-dns-mapping: true # 强制 DNS 映射
     parse-pure-ip: true  # 解析纯 IP 流量
     override-destination: true  # 覆盖目标地址
     sniff:
