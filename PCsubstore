@@ -14,13 +14,10 @@ dns:
   ipv6: false
   use-hosts: false
   use-system-hosts: false
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
-  nameserver-policy:    
-    'RULE-SET,private': system   # 私有域名使用系统 DNS    
-    'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
-    'RULE-SET,icloud': system    # iCloud 域名使用系统 DNS    
-    'RULE-SET,direct': system    # 直连域名使用系统 DNS
+  nameserver:  # 全局 DNS 服务器
+    - 208.67.222.222
   proxy-server-nameserver:
     - 208.67.222.222
 # 过滤规则
