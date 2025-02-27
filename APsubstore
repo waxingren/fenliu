@@ -17,6 +17,18 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 
   fake-ip-filter: ['rule-set:fakeip,direct']
+  sniffer:
+    enable: true  # 启用嗅探器
+    force-dns-mapping: false  # 强制 DNS 映射
+    parse-pure-ip: true  # 解析纯 IP 流量
+    override-destination: true  # 全局启用覆盖目标地址
+    sniff:
+      HTTP:
+        ports: [80, 8080]  # HTTP 协议的端口范围
+      TLS:
+        ports: [443, 8443]  # TLS 协议的端口范围
+      QUIC:
+        ports: [443, 8443]  # QUIC 协议的端口范围
   nameserver-policy:    
     'RULE-SET,private': system   # 私有域名使用系统 DNS    
     'RULE-SET,apple': system     # Apple 域名使用系统 DNS    
