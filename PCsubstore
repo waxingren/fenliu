@@ -1,1 +1,132 @@
+port: 7895                 # 本地 HTTP 代理端口
+socks-port: 7896           # 本地 SOCKS5 代理端口
+mixed-port: 7897           # 本地混合代理端口
+tcp-concurrent: true       # TCP 连接并发，提升连接速度
+allow-lan: false           # 是否允许局域网设备连接
+bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时生效）
+mode: rule                 # 工作模式：基于规则分流
+log-level: warning         # 日志级别：仅记录警告及以上信息
+ipv6: false                # 关闭 IPv6 解析，避免不必要的解析开销
+global-client-fingerprint: chrome  # 模拟 Chrome 浏览器指纹
+dns:
+  enable: true
+  listen: :53
+  ipv6: false
+  use-hosts: false
+  use-system-hosts: false
+  enhanced-mode: redir-host
+  fake-ip-range: 198.18.0.1/16 
+  nameserver:
+    - 1.1.1.1 
+# 过滤规则
+FilterHK: &FilterHK '^(?!.*(群|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
+FilterJP: &FilterJP '^(?!.*(群|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(日本|JP|Japan|🇯🇵).*'
+FilterSG: &FilterSG '^(?!.*(群|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(新加坡|SG|Singapore|🇸🇬).*'
+FilterUS: &FilterUS '^(?!.*(群|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(美国|US|United States|America|🇺🇸).*'
+FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|新加坡|🇺🇸|US|United States|America|美国|群|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*$'
+FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|跳过|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
+
+# 手动选择参数
+Select: &Select {type: select, url: 'https://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
+
+# 策略组
+proxy-groups: 
+  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
+  - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
+  - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
+  - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}  
+  - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
+  - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
+  - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
+# 订阅规则
+rule-providers:
+  # AI 域名列表
+  ai:
+    type: http
+    behavior: classical
+    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
+    path: ./ruleset/ai.yaml
+    interval: 86400
+
+  # Telegram 使用的 IP 地址列表
+  telegram:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegram.yaml
+    interval: 86400
+
+  # 局域网 IP 及保留 IP 地址列表
+  lan:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lan.yaml
+    interval: 86400
+#中国大陆 IP 地址列表 cncidr.txt
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+ #直连域名列表direct.txt
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+#私有网络专用域名列表 private.txt
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+#Apple 在中国大陆可直连的域名列表 apple.txt
+  apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+#iCloud 域名列表 icloud.txt
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+#proxy域名
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+  # 自定义规则集
+  spxz:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
+    path: ./ruleset/spxz.yaml
+    interval: 86400
+# 分流规则
+rules:
+  ### 非 IP 类规则
+  - RULE-SET,ai,🇺🇸美国           #AI
+  - RULE-SET,spxz,流媒体        # 自定义规则集，用于视频下载
+  - RULE-SET,private,DIRECT     # 私有网络专用域名列表
+  - RULE-SET,apple,DIRECT       # Apple 在中国大陆可直连的域名列表
+  - RULE-SET,icloud,DIRECT      # iCloud 域名列表
+  - RULE-SET,direct,DIRECT      # 直连域名列表
+  - RULE-SET,proxy,🎯 节点选择  # 国外域名列表
+  ### IP 类规则
+  - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
+  - RULE-SET,telegram,🇯🇵日本,no-resolve
+  - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
+
+  ### 默认匹配策略
+  - MATCH,🎯 节点选择  
