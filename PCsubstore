@@ -15,7 +15,6 @@ dns:
   use-hosts: false
   use-system-hosts: false
   enhanced-mode: redir-host
-  fake-ip-range: 198.18.0.1/16 
   nameserver:
     - 1.1.1.1 
 # 过滤规则
