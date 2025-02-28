@@ -95,7 +95,6 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - GEOSITE,category-ads-all,REJECT
   - GEOSITE,private,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,cn,DIRECT
