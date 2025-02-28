@@ -98,12 +98,10 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,private,DIRECT
   - GEOSITE,apple-cn,DIRECT
-
   - GEOSITE,cn,DIRECT
-
+  - RULE-SET,spxz,流媒体 
   - GEOSITE,category-games,DIRECT
   - RULE-SET,ai,🇺🇸美国     
-  - RULE-SET,spxz,流媒体 
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
   ### IP 类规则
