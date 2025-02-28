@@ -110,4 +110,4 @@ rules:
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
-  - MATCH,🎯 节点选择  
+  - MATCH,🎯 节点选择    
