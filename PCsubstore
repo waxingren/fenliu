@@ -40,7 +40,7 @@ dns:
     - 1.1.1.1   
 
   nameserver-policy:  
-    geosite:cn,apple,icloud,private:  
+    geosite:cn,apple-cn,private:  
         - 223.5.5.5
         - 101.226.4.6  
   proxy-server-nameserver:  
@@ -77,14 +77,6 @@ rule-providers:
     path: ./ruleset/ai.yaml
     interval: 86400
 
-  # Telegram 使用的 IP 地址列表
-  telegram:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-    path: ./ruleset/telegram.yaml
-    interval: 86400
-
   # 局域网 IP 及保留 IP 地址列表
   lan:
     type: http
@@ -104,16 +96,15 @@ rule-providers:
 rules:
   ### 非 IP 类规则
   - GEOSITE,private,DIRECT
-  - GEOSITE,apple,DIRECT
-  - GEOSITE,icloud,DIRECT
+  - GEOSITE,apple-cn,DIRECT
   - GEOSITE,cn,DIRECT
-  - RULE-SET,ai,🇺🇸美国           #AI
-  - RULE-SET,spxz,流媒体        # 自定义规则集，用于视频下载
+  - RULE-SET,ai,🇺🇸美国     
+  - RULE-SET,spxz,流媒体 
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
-  - RULE-SET,telegram,🇯🇵日本,no-resolve
+  - GEOIP:telegram,🇯🇵日本,no-resolve
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
