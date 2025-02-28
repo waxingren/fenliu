@@ -57,7 +57,7 @@ FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客�
 
 
 # 手动选择参数
-Select: &Select {type: select, url: 'https://cp.cloudflare.com'}
+Select: &Select {type: select, url: 'https://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 
 # 策略组
 proxy-groups: 
