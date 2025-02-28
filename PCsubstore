@@ -144,8 +144,7 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - GEOSITE,private,DIRECT 
-  - GEOSITE,microsoft,DIRECT
+  - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
   - GEOSITE,icloud,DIRECT
   - GEOSITE,cn,DIRECT
