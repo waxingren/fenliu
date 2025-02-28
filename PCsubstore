@@ -36,11 +36,11 @@ dns:
   direct-nameserver: #直连出口DNS
     - system  #默认路由器dns，可以自己选运营商或者公共dns  
   nameserver: #默认域名dns
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - 208.67.222.222    
+    - 1.1.1.1   
 
   nameserver-policy:  
-    geosite:cn,apple,icloud,private:     
+    geosite:cn,apple,icloud,private,microsoft:     
         - 223.5.5.5
         - 101.226.4.6 
   proxy-server-nameserver:  
@@ -144,17 +144,19 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,private,DIRECT     # 私有网络专用域名列表
-  - RULE-SET,apple,DIRECT       # Apple 在中国大陆可直连的域名列表
-  - RULE-SET,icloud,DIRECT      # iCloud 域名列表
-  - RULE-SET,direct,DIRECT      # 直连域名列表
+  - GEOSITE,private,DIRECT 
+  - GEOSITE,microsoft,DIRECT
+  - GEOSITE,apple,DIRECT
+  - GEOSITE,icloud,DIRECT
+  - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国           #AI
   - RULE-SET,spxz,流媒体        # 自定义规则集，用于视频下载
-  - RULE-SET,proxy,🎯 节点选择  # 国外域名列表
+  - GEOSITE,geolocation-!cn,🎯 节点选择
+
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - RULE-SET,telegram,🇯🇵日本,no-resolve
-  - RULE-SET,cncidr,DIRECT  # 中国大陆 IP 地址列表
+  - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
   - MATCH,🎯 节点选择  
