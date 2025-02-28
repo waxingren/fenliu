@@ -8,23 +8,27 @@ payload:
   - '+.youtubei.googleapis.com'
   - '+.steamcommunity.com'
   - '+.store.steampowered.com'
-  - '+.epicgames.com'
-  - '+.*.ol.epicgames.com'
-  - '+.store-content.ak.epicgames.com'
-  - '+.store-site-backend-static.ak.epicgames.com'
-  - '+.*.live.use1a.on.epicgames.com'
-  - '+.store.epicgames.com'                         # 商店
-  - '+.launcher.store.epicgames.com'               # 启动器商店
-  - '+.store-content.ak.epicgames.com'             # 商店内容（图片、视频）
-  - '+.store-site-backend-static.ak.epicgames.com' # 商店后端静态资源
-  - '+.catalog-public-service-prod06.ol.epicgames.com' # 商品目录
+  - '+.account-public-service-prod03.ol.epicgames.com'         # 账户服务
+  - '+.launcherwaitingroom-public-service-prod06.ol.epicgames.com' # 启动器等待室
+  - '+.launcher-public-service-prod06.ol.epicgames.com'        # 启动器核心服务
+  - '+.www.epicgames.com'                                      # 主网站
+  - '+.launcher-website-prod07.ol.epicgames.com'               # 启动器网站
+  - '+.tracking.epicgames.com'                                 # 用户行为跟踪
+  - '+.accounts.launcher-website-prod07.ol.epicgames.com'      # 启动器账户服务
+  - '+.accounts.epicgames.com'                                 # 主账户页面
+  - '+.datarouter.ol.epicgames.com'                            # 数据路由
+  - '+.entitlement-public-service-prod08.ol.epicgames.com'     # 权益管理
   - '+.orderprocessor-public-service-ecomprod01.ol.epicgames.com' # 订单处理
-  - '+.entitlement-public-service-prod08.ol.epicgames.com' # 用户权益
-  - '+.accounts.launcher-website-prod07.ol.epicgames.com' # 登录器账户服务
-  - '+.accounts.epicgames.com'                     # 账户登录服务
-  - '+.launcher-public-service-prod06.ol.epicgames.com' # 启动器核心服务
-  - '+.lightswitch-public-service-prod06.ol.epicgames.com' # 启动器状态检查
-  - '+.friends-public-service-prod06.ol.epicgames.com' # 好友系统
-  - '+.library-service.live.use1a.on.epicgames.com' # 游戏库
-  - '+.achievements-public-service-prod06.ol.epicgames.com' # 成就系统
-  - '+.datastorage-public-service-liveegs.live.use1a.on.epicgames.com' # 存档同步
+  - '+.catalog-public-service-prod06.ol.epicgames.com'         # 商品目录服务
+  - '+.friends-public-service-prod06.ol.epicgames.com'         # 好友系统
+  - '+.lightswitch-public-service-prod06.ol.epicgames.com'     # Lightswitch 服务
+  - '+.accountportal-website-prod07.ol.epicgames.com'          # 账户门户
+  - '+.ut-public-service-prod10.ol.epicgames.com'              # UT 服务
+  - '+.library-service.live.use1a.on.epicgames.com'            # 游戏库服务
+  - '+.datastorage-public-service-liveegs.live.use1a.on.epicgames.com' # 数据存储服务
+  - '+.static-assets-prod.epicgames.com'                       # 静态资源托管
+  - '+.store-site-backend-static.ak.epicgames.com'             # 商店静态资源
+  - '+.store-content.ak.epicgames.com'                         # 商店内容 API
+  - '+.store.epicgames.com'                                    # 主商店页面
+  - '+.launcher.store.epicgames.com'                           # 启动器商店
+  - '+.js.hcaptcha.com'                                        # hCaptcha 验证服务
