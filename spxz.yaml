@@ -13,3 +13,18 @@ payload:
   - '+.store-content.ak.epicgames.com'
   - '+.store-site-backend-static.ak.epicgames.com'
   - '+.*.live.use1a.on.epicgames.com'
+  - '+.store.epicgames.com'                         # 商店
+  - '+.launcher.store.epicgames.com'               # 启动器商店
+  - '+.store-content.ak.epicgames.com'             # 商店内容（图片、视频）
+  - '+.store-site-backend-static.ak.epicgames.com' # 商店后端静态资源
+  - '+.catalog-public-service-prod06.ol.epicgames.com' # 商品目录
+  - '+.orderprocessor-public-service-ecomprod01.ol.epicgames.com' # 订单处理
+  - '+.entitlement-public-service-prod08.ol.epicgames.com' # 用户权益
+  - '+.accounts.launcher-website-prod07.ol.epicgames.com' # 登录器账户服务
+  - '+.accounts.epicgames.com'                     # 账户登录服务
+  - '+.launcher-public-service-prod06.ol.epicgames.com' # 启动器核心服务
+  - '+.lightswitch-public-service-prod06.ol.epicgames.com' # 启动器状态检查
+  - '+.friends-public-service-prod06.ol.epicgames.com' # 好友系统
+  - '+.library-service.live.use1a.on.epicgames.com' # 游戏库
+  - '+.achievements-public-service-prod06.ol.epicgames.com' # 成就系统
+  - '+.datastorage-public-service-liveegs.live.use1a.on.epicgames.com' # 存档同步
