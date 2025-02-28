@@ -1,7 +1,7 @@
-port: 7895                 # 本地 HTTP 代理端口
-socks-port: 7896           # 本地 SOCKS5 代理端口
 mixed-port: 7897           # 本地混合代理端口
+unified-delay: true
 tcp-concurrent: true       # TCP 连接并发，提升连接速度
+
 allow-lan: false           # 是否允许局域网设备连接
 bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时生效）
 mode: rule                 # 工作模式：基于规则分流
@@ -70,6 +70,13 @@ proxy-groups:
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
 # 订阅规则
 rule-providers:
+  
+  reject:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    path: ./ruleset/reject.yaml
+    interval: 86400
   # AI 域名列表
   ai:
     type: http
@@ -96,6 +103,7 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
+  - RULE-SET,reject,REJECT  
   - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
