@@ -58,14 +58,13 @@ FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇯🇵|JP|Japan|�
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 Auto: &Auto {type: url-test, url: 'http://cp.cloudflare.com', interval: 300, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
 
-# 策略组
-proxy-groups: 
-  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🇭🇰自动,其他节点], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
+proxy-groups:
+  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🇭🇰自动,其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
-  - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}  
+  - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
-  - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}  
+  - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
   - {name: 🇭🇰自动, <<: *Auto, filter: *FilterZD}
 
