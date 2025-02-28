@@ -31,6 +31,7 @@ dns:
     - '*.lan'
     - "+.local"
     - 'geosite:private'
+    - 'geosite:apple'
     - 'geosite:cn'
     - 'geosite:geolocation-!cn'
   direct-nameserver: #直连出口DNS
@@ -101,7 +102,6 @@ rules:
   - RULE-SET,ai,🇺🇸美国     
   - RULE-SET,spxz,流媒体 
   - GEOSITE,category-games,DIRECT
-
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
   ### IP 类规则
