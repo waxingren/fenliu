@@ -40,7 +40,7 @@ dns:
     - 1.1.1.1   
 
   nameserver-policy:  
-    geosite:cn,apple,icloud,private,microsoft:     
+    geosite:cn,apple,icloud,private:  
         - 223.5.5.5
         - 101.226.4.6 
   proxy-server-nameserver:  
