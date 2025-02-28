@@ -8,27 +8,17 @@ payload:
   - '+.youtubei.googleapis.com'
   - '+.steamcommunity.com'
   - '+.store.steampowered.com'
-  - '+.account-public-service-prod03.ol.epicgames.com'         # 账户服务
-  - '+.launcherwaitingroom-public-service-prod06.ol.epicgames.com' # 启动器等待室
-  - '+.launcher-public-service-prod06.ol.epicgames.com'        # 启动器核心服务
-  - '+.www.epicgames.com'                                      # 主网站
-  - '+.launcher-website-prod07.ol.epicgames.com'               # 启动器网站
-  - '+.tracking.epicgames.com'                                 # 用户行为跟踪
-  - '+.accounts.launcher-website-prod07.ol.epicgames.com'      # 启动器账户服务
-  - '+.accounts.epicgames.com'                                 # 主账户页面
-  - '+.datarouter.ol.epicgames.com'                            # 数据路由
-  - '+.entitlement-public-service-prod08.ol.epicgames.com'     # 权益管理
-  - '+.orderprocessor-public-service-ecomprod01.ol.epicgames.com' # 订单处理
-  - '+.catalog-public-service-prod06.ol.epicgames.com'         # 商品目录服务
-  - '+.friends-public-service-prod06.ol.epicgames.com'         # 好友系统
-  - '+.lightswitch-public-service-prod06.ol.epicgames.com'     # Lightswitch 服务
-  - '+.accountportal-website-prod07.ol.epicgames.com'          # 账户门户
-  - '+.ut-public-service-prod10.ol.epicgames.com'              # UT 服务
-  - '+.library-service.live.use1a.on.epicgames.com'            # 游戏库服务
-  - '+.datastorage-public-service-liveegs.live.use1a.on.epicgames.com' # 数据存储服务
-  - '+.static-assets-prod.epicgames.com'                       # 静态资源托管
-  - '+.store-site-backend-static.ak.epicgames.com'             # 商店静态资源
-  - '+.store-content.ak.epicgames.com'                         # 商店内容 API
-  - '+.store.epicgames.com'                                    # 主商店页面
-  - '+.launcher.store.epicgames.com'                           # 启动器商店
-  - '+.js.hcaptcha.com'                                        # hCaptcha 验证服务
+  - '+.epicgames.com'                                # Epic Games 官方网站和商店
+  - '+.store.epicgames.com'                          # 商店页面
+  - '+.launcher-public-service-prod*.ol.epicgames.com'  # 启动器服务
+  - '+.api.epicgames.dev'                            # API 接口服务
+  - '+.account*.ol.epicgames.com'                    # 账户相关服务
+  - '+.payment-website-pci.ol.epicgames.com'         # 支付服务
+  - '+.checkout.epicgames.com'                       # 结账流程
+  - '+.purchase-website-pci.ol.epicgames.com'        # 购买服务
+  - '+.assets.epicgames.com'                         # 静态资源（图片、图标等）
+  - '+.media.contentapi.epicgames.com'              # 媒体内容（截图、预告片等）
+  - '+.videos.epicgames.com'                         # 视频资源
+  - '+.cdn1.unrealengine.com'                        # Unreal Engine 相关资源
+  - '+.epicgames.gsdk.247-inc.net'                   # 支付网关服务
+  - '+.images-na.ssl-images-amazon.com'              # 第三方托管图片资源
