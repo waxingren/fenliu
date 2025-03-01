@@ -70,13 +70,6 @@ proxy-groups:
 
 # 订阅规则
 rule-providers:
-  
-  adblock:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
-    path: ./ruleset/adblock.yaml
-    interval: 86400
   # AI 域名列表
   ai:
     type: http
