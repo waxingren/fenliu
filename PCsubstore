@@ -41,7 +41,7 @@ dns:
     - 1.1.1.1   
 
   nameserver-policy:  
-    geosite:apple,private,cn,category-games:  
+    geosite:apple,private,cn:  
         - 223.5.5.5
         - 101.226.4.6  
   proxy-server-nameserver:  
@@ -70,13 +70,6 @@ proxy-groups:
 
 # 订阅规则
 rule-providers:
-  # AI 域名列表
-  ad:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml"
-    path: ./ruleset/ad.yaml
-    interval: 86400
   ai:
     type: http
     behavior: classical
@@ -102,13 +95,11 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,ad,REJECT   
   - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国     
   - RULE-SET,spxz,流媒体 
-  - GEOSITE,category-games,DIRECT
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
   ### IP 类规则
