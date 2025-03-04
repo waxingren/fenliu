@@ -35,7 +35,7 @@ dns:
     - 'geosite:cn'
     - 'geosite:geolocation-!cn'
   direct-nameserver: #直连出口DNS
-    - system  #默认路由器dns，可以自己选运营商或者公共dns  
+    - 223.5.5.5  #默认路由器dns，可以自己选运营商或者公共dns  
   nameserver: #默认域名dns
     - 208.67.222.222    
     - 1.1.1.1   
