@@ -42,8 +42,8 @@ dns:
 
   nameserver-policy:  
     geosite:apple,private,cn:  
-        - 223.5.5.5
-        - 101.226.4.6  
+      - 223.5.5.5
+      - 101.226.4.6  
   proxy-server-nameserver:  
     - 208.67.222.222    
     - 1.1.1.1   
