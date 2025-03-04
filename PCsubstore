@@ -29,10 +29,6 @@ dns:
   fake-ip-filter:
     - '*.lan'
     - "+.local"
-    - 'geosite:private'
-    - 'geosite:apple'
-    - 'geosite:cn'
-    - 'geosite:geolocation-!cn'
   direct-nameserver: #直连出口DNS
     - 223.5.5.5  #默认路由器dns，可以自己选运营商或者公共dns  
   nameserver: #默认域名dns
