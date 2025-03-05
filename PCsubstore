@@ -40,7 +40,7 @@ dns:
     - 1.1.1.1   
 
   nameserver-policy:  
-    geosite:apple,private,cn:  
+    geosite:apple,private,cn,category-games@cn:  
       - 223.5.5.5
       - 101.226.4.6  
   proxy-server-nameserver:  
@@ -94,11 +94,12 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
+  - RULE-SET,ai,🇺🇸美国     
+  - RULE-SET,spxz,流媒体 
   - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
-  - RULE-SET,ai,🇺🇸美国     
-  - RULE-SET,spxz,流媒体 
+  - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
   ### IP 类规则
