@@ -70,7 +70,12 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
     path: ./ruleset/ai.yaml
     interval: 86400
-
+  richang:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/richang.yaml"
+    path: ./ruleset/richang.yaml
+    interval: 86400
   # 局域网 IP 及保留 IP 地址列表
   lan:
     type: http
@@ -94,7 +99,8 @@ rules:
   - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国     
-  - RULE-SET,spxz,流媒体 
+  - RULE-SET,spxz,流媒体
+  - RULE-SET,richang,🎯 节点选择
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
