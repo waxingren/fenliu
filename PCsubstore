@@ -57,6 +57,7 @@ proxy-groups:
   - {name: 🇸🇬新加坡, <<: *Auto, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
+  - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,其他节点], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}
   - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
 
 
@@ -97,7 +98,7 @@ rules:
   - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国     
-  - RULE-SET,spxz,🇸🇬新加坡
+  - RULE-SET,spxz,流媒体
   - RULE-SET,richang,🎯 节点选择
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
