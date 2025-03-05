@@ -42,7 +42,8 @@ dns:
       - 223.5.5.5
       - 119.29.29.29  
 # 过滤规则
-FilterHK: &FilterHK '^(?!.*(群|云通|一元|V6|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
+FilterHK: &FilterHKZD '^(?!.*(群|云通|一元|V6|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
+FilterZD: &FilterHK '^(?!.*(群|V6|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
 FilterJP: &FilterJP '^(?!.*(群|V6|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(日本|JP|Japan|🇯🇵).*'
 FilterSG: &FilterSG '^(?!.*(群|云通|三毛|V6|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(新加坡|SG|Singapore|🇸🇬).*'
 FilterUS: &FilterUS '^(?!.*(群|V6|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(美国|US|United States|America|🇺🇸).*'
@@ -52,9 +53,10 @@ Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: fal
 Auto: &Auto {type: url-test, url: 'http://cp.cloudflare.com', interval: 300, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
 
 proxy-groups:
-  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
-  - {name: 🇭🇰香港, <<: *Auto, filter: *FilterHK}
-  - {name: 🇸🇬新加坡, <<: *Auto, filter: *FilterSG}
+  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
+  - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK} 
+  - {name: 🇭🇰自动, <<: *Auto, filter: *FilterHKZD}
+  - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterHK}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
   - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,其他节点], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}
