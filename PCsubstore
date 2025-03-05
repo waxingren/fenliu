@@ -100,9 +100,8 @@ rules:
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
-  - GEOSITE,geolocation-!cn,🎯 节点选择
   - GEOSITE,cn,DIRECT
- 
+  - GEOSITE,geolocation-!cn,🎯 节点选择
 
 
 
