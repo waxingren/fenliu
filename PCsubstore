@@ -95,9 +95,9 @@ rules:
   - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国     
   - RULE-SET,spxz,流媒体 
+  - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
-  - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
   ### IP 类规则
