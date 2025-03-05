@@ -33,8 +33,6 @@ dns:
   - geosite:apple
   - geosite:cn
   - geosite:geolocation-!cn
-  direct-nameserver: #直连出口DNS
-    - system #默认路由器dns，可以自己选运营商或者公共dns  
   nameserver: #默认域名dns
     - 208.67.222.222    
     - 1.1.1.1   
@@ -43,9 +41,6 @@ dns:
     geosite:apple,private,cn:  
       - 223.5.5.5
       - 101.226.4.6  
-  proxy-server-nameserver:  
-    - 208.67.222.222    
-    - 1.1.1.1   
 # 过滤规则
 FilterZD: &FilterZD '^(?!.*(群|云通|V6|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
 FilterHK: &FilterHK '^(?!.*(群|V6|邀请|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
@@ -100,6 +95,8 @@ rules:
   - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国     
   - RULE-SET,spxz,流媒体 
+  - GEOSITE,gfw,🎯 节点选择
+  - GEOSITE,greatfire,🎯 节点选择
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,geolocation-!cn,🎯 节点选择
 
