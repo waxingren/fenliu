@@ -86,7 +86,6 @@ rules:
   ### 非 IP 类规则
   - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
-  - GEOSITE,cn,DIRECT
   - RULE-SET,ai,🇺🇸美国    
   - RULE-SET,richang,🎯 节点选择
   - RULE-SET,spxz,流媒体
@@ -94,9 +93,7 @@ rules:
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
   - GEOSITE,geolocation-!cn,🎯 节点选择
-
-
-
+  - GEOSITE,cn,DIRECT
 
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
