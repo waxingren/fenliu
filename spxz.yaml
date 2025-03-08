@@ -1,4 +1,5 @@
 payload:
+#油管
   - '+.youtube.com'
   - '+.googlevideo.com'
   - '+.i.ytimg.com'
@@ -6,3 +7,7 @@ payload:
   - '+.youtube-nocookie.com'
   - '+.ytstatic.com'
   - '+.youtubei.googleapis.com'
+  #dailymotion
+  - '+.api.dailymotion.com'
+  - '+.dailymotion.com'
+  
