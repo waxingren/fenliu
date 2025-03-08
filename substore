@@ -90,6 +90,7 @@ rules:
   - RULE-SET,richang,🎯 节点选择
   - RULE-SET,spxz,流媒体
   - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
   - GEOSITE,geolocation-!cn,🎯 节点选择
