@@ -1,5 +1,5 @@
 mixed-port: 7897           # 本地混合代理端口
-unified-delay: true
+unified-delay: true        # 真延迟
 tcp-concurrent: true       # TCP 连接并发，提升连接速度
 
 allow-lan: false           # 是否允许局域网设备连接
@@ -25,7 +25,7 @@ dns:
   use-hosts: false
   use-system-hosts: false
   enhanced-mode: redir-host
-  nameserver: #默认域名dns
+  nameserver: 
     - 208.67.222.222    
     - 1.1.1.1   
 
@@ -43,10 +43,9 @@ FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇯🇵|JP|Japan|�
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 
 proxy-groups:
-  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
-  - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK} 
-  - {name: 🇭🇰自动, <<: *Auto, filter: *FilterHKZD}
-  - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterHK}
+  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
+  - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
+  - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
   - {name: 📺流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
