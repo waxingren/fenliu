@@ -7,7 +7,7 @@ bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时
 mode: rule                 # 工作模式：基于规则分流
 log-level: warning         # 日志级别：仅记录警告及以上信息
 ipv6: false                # 关闭 IPv6 解析，避免不必要的解析开销
-global-client-fingerprint: ClashMetaForAndroid  # 模拟 Chrome 浏览器指纹
+global-client-fingerprint: chrome  # 模拟 Chrome 浏览器指纹
 geodata-mode: true
 geodata-loader: standard
 geo-auto-update: true
