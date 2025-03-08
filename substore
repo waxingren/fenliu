@@ -43,12 +43,12 @@ FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇯🇵|JP|Japan|�
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 
 proxy-groups:
-  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
+  - {name: 🎯节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他节点]}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
-  - {name: 📺流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
+  - {name: 📺流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他节点]}
   - {name: 🪐其他节点, <<: *Select, filter: *FilterOthers}
 
 
@@ -88,12 +88,12 @@ rules:
   - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
   - RULE-SET,ai,🇺🇸美国    
-  - RULE-SET,richang,🎯 节点选择
-  - RULE-SET,spxz,流媒体
+  - RULE-SET,richang,🎯节点选择
+  - RULE-SET,spxz,📺流媒体
   - GEOSITE,category-games@cn,DIRECT
-  - GEOSITE,gfw,🎯 节点选择
-  - GEOSITE,greatfire,🎯 节点选择
-  - GEOSITE,geolocation-!cn,🎯 节点选择
+  - GEOSITE,gfw,🎯节点选择
+  - GEOSITE,greatfire,🎯节点选择
+  - GEOSITE,geolocation-!cn,🎯节点选择
   - GEOSITE,cn,DIRECT
 
   ### IP 类规则
@@ -102,4 +102,4 @@ rules:
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
-  - MATCH,🎯 节点选择    
+  - MATCH,🎯节点选择   
