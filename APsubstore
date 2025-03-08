@@ -26,17 +26,10 @@ dns:
   use-system-hosts: false
   enhanced-mode: redir-host
   nameserver:
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-  proxy-server-nameserver:
-    - https://120.53.53.53/dns-query
-    - https://223.5.5.5/dns-query
+    - 208.67.222.222    
+    - 1.1.1.1   
   nameserver-policy:
-    # google 优先使用国外 dns 和下面的代理规则一致，可以解决 play 无法下载问题, 否则会被下面的 cn list 匹配使用国内 dns 解析到错误 ip
-    "geosite:google":
-      - tls://8.8.4.4
-      - tls://1.1.1.1
-    "geosite:private,onedrive,microsoft@cn,apple,category-games@cn,cn":
+    "geosite:private,microsoft@cn,apple,category-games@cn,cn":
       - 119.29.29.29
       - 223.5.5.5.5
 
@@ -97,6 +90,7 @@ rules:
   - RULE-SET,richang,🎯 节点选择
   - RULE-SET,spxz,流媒体
   - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
   - GEOSITE,geolocation-!cn,🎯 节点选择
