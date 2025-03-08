@@ -30,7 +30,7 @@ dns:
     - 1.1.1.1   
 
   nameserver-policy:
-    "geosite:private,apple,cn":
+    geosite:private,apple,cn:
       - 119.29.29.29
       - 223.5.5.5.5
 # 过滤规则
@@ -43,14 +43,14 @@ FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇯🇵|JP|Japan|�
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 
 proxy-groups:
-  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
+  - {name: 🎯 节点选择, type: select, proxies: [🇭🇰自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK} 
   - {name: 🇭🇰自动, <<: *Auto, filter: *FilterHKZD}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterHK}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
-  - {name: 流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点], icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/LineTV.png}
-  - {name: 其他节点, <<: *Select, filter: *FilterOthers, icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/airport.png}
+  - {name: 📺流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,其他节点]}
+  - {name: 🪐其他节点, <<: *Select, filter: *FilterOthers}
 
 
 
@@ -92,7 +92,6 @@ rules:
   - RULE-SET,richang,🎯 节点选择
   - RULE-SET,spxz,流媒体
   - GEOSITE,category-games@cn,DIRECT
-  - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,gfw,🎯 节点选择
   - GEOSITE,greatfire,🎯 节点选择
   - GEOSITE,geolocation-!cn,🎯 节点选择
