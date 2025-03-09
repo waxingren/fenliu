@@ -1,4 +1,5 @@
 payload:
+#steam
   - '+.steamcommunity.com'
   - '+.store.steampowered.com'
   - '+.epicgames.com'                                # Epic Games 官方网站和商店
@@ -15,5 +16,7 @@ payload:
   - '+.cdn1.unrealengine.com'                        # Unreal Engine 相关资源
   - '+.epicgames.gsdk.247-inc.net'                   # 支付网关服务
   - '+.images-na.ssl-images-amazon.com'              # 第三方托管图片资源
-  - '+.adguard.com' 
-  - '+.xdlovelife.com' 
+  #DNS
+  - '+.one.one.one.one'
+  - '+.resolver1.opendns.com'
+  - '+.dns.google'
