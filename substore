@@ -72,6 +72,13 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./ruleset/lan.yaml
     interval: 86400
+  # 非中国域名的顶级域
+  tldnotcn:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+    path: ./ruleset/tldnotcn.yaml
+    interval: 86400
 
   # 自定义规则集
   spxz:
@@ -92,6 +99,7 @@ rules:
   - GEOSITE,gfw,🎯节点选择
   - GEOSITE,greatfire,🎯节点选择
   - GEOSITE,geolocation-!cn,🎯节点选择
+  - RULE-SET,tldnotcn,🎯节点选择
   - GEOSITE,cn,DIRECT
 
   ### IP 类规则
