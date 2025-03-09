@@ -19,6 +19,3 @@ payload:
   #DNS
   - '+.one.one.one.one'
   - '+.dns.google'
-  - '+.opendns.com'
-  - '+.resolver1.opendns.com'
-  - '+.resolver2.opendns.com'
