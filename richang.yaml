@@ -18,5 +18,7 @@ payload:
   - '+.images-na.ssl-images-amazon.com'              # 第三方托管图片资源
   #DNS
   - '+.one.one.one.one'
-  - '+.resolver1.opendns.com'
   - '+.dns.google'
+  - '+.opendns.com'
+  - '+.resolver1.opendns.com'
+  - '+.resolver2.opendns.com'
