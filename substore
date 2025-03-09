@@ -42,14 +42,15 @@ FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇯🇵|JP|Japan|�
 
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 proxy-groups:
-  - {name: 🎯节点选择, <<: *Select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他节点]}
+  
+  - {name: 🎯节点选择, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
-  - {name: 📺流媒体, <<: *Select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他节点]}
-  - {name: 🪐其他节点, <<: *Select, filter: *FilterOthers}
-  - {name: 🐟漏网之鱼, <<: *Select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他节点]}
+  - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
+  - {name: 📺流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
+  - {name: 🐟漏网之鱼, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
 # 订阅规则
 rule-providers:
   ai:
