@@ -88,6 +88,25 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
+
+  #抖音
+  DouYin:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml"
+    path: ./ruleset/DouYin.yaml
+    interval: 86400
+  DouYinNo:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin_No_Resolve.yaml"
+    path: ./ruleset/DouYinNo.yaml
+    interval: 86400
+
+
+
+
+
 # 分流规则
 rules:
   ### 非 IP 类规则
@@ -97,6 +116,8 @@ rules:
   - RULE-SET,richang,🎯节点选择
   - RULE-SET,spxz,📺流媒体
   - GEOSITE,category-games@cn,DIRECT
+  - RULE-SET,DouYin,📺流媒体
+  - RULE-SET,DouYinNo,📺流媒体
   - GEOSITE,gfw,🎯节点选择
   - GEOSITE,greatfire,🎯节点选择
   - GEOSITE,geolocation-!cn,🎯节点选择
