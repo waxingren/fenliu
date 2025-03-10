@@ -89,20 +89,6 @@ rule-providers:
     path: ./ruleset/spxz.yaml
     interval: 86400
 
-  #抖音
-  DouYin:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml"
-    path: ./ruleset/DouYin.yaml
-    interval: 86400
-  DouYinNo:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin_No_Resolve.yaml"
-    path: ./ruleset/DouYinNo.yaml
-    interval: 86400
-
 
 
 
@@ -116,13 +102,11 @@ rules:
   - RULE-SET,richang,🎯节点选择
   - RULE-SET,spxz,📺流媒体
   - GEOSITE,category-games@cn,DIRECT
-  - RULE-SET,DouYin,📺流媒体
-  - RULE-SET,DouYinNo,📺流媒体
   - GEOSITE,gfw,🎯节点选择
   - GEOSITE,greatfire,🎯节点选择
   - GEOSITE,geolocation-!cn,🎯节点选择
-  - GEOSITE,cn,DIRECT
   - RULE-SET,tldnotcn,🎯节点选择
+  - GEOSITE,cn,DIRECT
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
   - GEOIP,telegram,🇯🇵日本,no-resolve
