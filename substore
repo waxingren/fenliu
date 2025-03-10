@@ -88,13 +88,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
     path: ./ruleset/spxz.yaml
     interval: 86400
-#ad
-  reject:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/reject.yaml
-    interval: 86400
 
 
 
@@ -103,7 +96,6 @@ rule-providers:
 rules:
   ### 非 IP 类规则
   - GEOSITE,private,DIRECT
-  - RULE-SET,reject,REJECT
   - RULE-SET,ai,🇺🇸美国    
   - RULE-SET,richang,🎯节点选择
   - RULE-SET,spxz,📺流媒体
