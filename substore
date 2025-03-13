@@ -50,7 +50,7 @@ proxy-groups:
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
   - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
   - {name: 📺流媒体, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
-  - {name: 🐟漏网之鱼, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
+  - {name: ✈电报, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
 # 订阅规则
 rule-providers:
   ai:
@@ -108,8 +108,8 @@ rules:
   - GEOSITE,cn,DIRECT
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
-  - GEOIP,telegram,📺流媒体,no-resolve
+  - GEOIP,telegram,✈电报,no-resolve
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
-  - MATCH,🐟漏网之鱼
+  - MATCH,🎯节点选择
