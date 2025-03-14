@@ -88,23 +88,29 @@ rule-providers:
     path: ./ruleset/spxz.yaml
     interval: 86400
 
-
+  # 直连
+  zhilian:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/zhilian"
+    path: ./ruleset/zhilian.yaml
+    interval: 86400
 
 
 # 分流规则
 rules:
   ### 非 IP 类规则
   - GEOSITE,private,DIRECT
+  - GEOSITE,apple,DIRECT
+  - RULE-SET,zhilian,DIRECT
   - RULE-SET,ai,🇺🇸美国    
   - RULE-SET,richang,🎯节点选择
   - RULE-SET,spxz,📺流媒体
   - GEOSITE,category-games@cn,DIRECT
-  - GEOSITE,apple,DIRECT
   - GEOSITE,gfw,🎯节点选择
   - GEOSITE,greatfire,🎯节点选择
   - GEOSITE,geolocation-!cn,🎯节点选择
   - RULE-SET,tldnotcn,🎯节点选择
-
   - GEOSITE,cn,DIRECT
   ### IP 类规则
   - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
