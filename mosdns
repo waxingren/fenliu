@@ -95,10 +95,15 @@ rules:
   ### 非 IP 类规则
   - GEOSITE,private,DIRECT
   - GEOSITE,apple,DIRECT
+  - GEOSITE,github,🎯节点选择
   - RULE-SET,ai,🇺🇸美国    
   - RULE-SET,richang,🎯节点选择
   - RULE-SET,spxz,📺流媒体
   - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,onedrive,DIRECT
+  - GEOSITE,microsoft,DIRECT
+  - GEOSITE,microsoft-dev,DIRECT
+  - GEOSITE,microsoft-pki,DIRECT
   - GEOSITE,gfw,🎯节点选择
   - GEOSITE,greatfire,🎯节点选择
   - GEOSITE,geolocation-!cn,🎯节点选择
