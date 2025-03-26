@@ -16,23 +16,42 @@
   // =======================
 
   const blockedUsersKey = "zhihu_blocked_users";
-  const killArticleKey = "zhihu_kill_article";
-  const killVideoKey = "zhihu_kill_video";
-
   let customBlockedUsers = JSON.parse($persistentStore.read(blockedUsersKey) || "{}");
-  let killArticleOn = $persistentStore.read(killArticleKey) === "true";
-  let killVideoOn = $persistentStore.read(killVideoKey) === "true";
 
-  function toggleKillArticle() {
-    killArticleOn = !killArticleOn;
-    $persistentStore.write(killArticleOn.toString(), killArticleKey);
-    $notification.post("屏蔽文章", "", killArticleOn ? "已启用" : "已禁用");
+  function addBlacklist(username, userId) {
+    try {
+      if (customBlockedUsers[username]) {
+        console.log(`[INFO] 用户“${username}”已在黑名单中`);
+        $notification.post("添加失败", "", `用户“${username}”已存在黑名单`);
+        return;
+      }
+
+      customBlockedUsers[username] = userId;
+      $persistentStore.write(JSON.stringify(customBlockedUsers), blockedUsersKey);
+      console.log(`[INFO] 已将用户“${username}”加入黑名单`);
+      $notification.post("黑名单更新成功", "", `已屏蔽用户“${username}”`);
+    } catch (err) {
+      console.error(`[ERROR] 添加黑名单失败：${err}`);
+      $notification.post("黑名单添加失败", "", "请检查日志");
+    }
   }
 
-  function toggleKillVideo() {
-    killVideoOn = !killVideoOn;
-    $persistentStore.write(killVideoOn.toString(), killVideoKey);
-    $notification.post("屏蔽视频", "", killVideoOn ? "已启用" : "已禁用");
+  function removeBlacklist(username) {
+    try {
+      if (!customBlockedUsers[username]) {
+        console.log(`[INFO] 用户“${username}”不在黑名单中`);
+        $notification.post("移除失败", "", `用户“${username}”不在黑名单`);
+        return;
+      }
+
+      delete customBlockedUsers[username];
+      $persistentStore.write(JSON.stringify(customBlockedUsers), blockedUsersKey);
+      console.log(`[INFO] 已将用户“${username}”移出黑名单`);
+      $notification.post("黑名单更新成功", "", `已移除用户“${username}”`);
+    } catch (err) {
+      console.error(`[ERROR] 移除黑名单失败：${err}`);
+      $notification.post("黑名单移除失败", "", "请检查日志");
+    }
   }
 
   // =======================
@@ -52,24 +71,6 @@
       }
     } catch (err) {
       console.error(`[ERROR] 移除广告失败：${err}`);
-    }
-  }
-
-  // =======================
-  // 屏蔽文章或视频
-  // =======================
-
-  function removeArticlesAndVideos(obj) {
-    try {
-      if (obj?.data?.length > 0) {
-        obj.data = obj.data.filter((item) => {
-          const isArticle = killArticleOn && item?.type === "article";
-          const isVideo = killVideoOn && item?.type === "video";
-          return !isArticle && !isVideo;
-        });
-      }
-    } catch (err) {
-      console.error(`[ERROR] 屏蔽文章或视频失败：${err}`);
     }
   }
 
@@ -129,9 +130,6 @@
 
       // 移除广告
       removeAds(obj);
-
-      // 屏蔽文章或视频
-      removeArticlesAndVideos(obj);
 
       // 黑名单过滤
       filterBlacklist(obj);
