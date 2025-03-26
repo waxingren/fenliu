@@ -1,6 +1,5 @@
 # > 知乎
-hostname = api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, link.zhihu.com, sugar.zhihu.com, zhihu-web-analytics.zhihu.com, datahub.zhihu.com
-
+hostname = api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, link.zhihu.com, sugar.zhihu.com, zhihu-web-analytics.zhihu.com, datahub.zhihu.com, 118.89.204.198, 103.41.167.237, 2402:4e00:1200:ed00:0:9089:6dac:96b6, 103.41.167.236, 103.41.167.234, 103.41.167.235, 103.41.167.226
 # 首页悬浮图标、顶部横幅、开屏广告、关注页推荐、推荐信息流、热榜信息流、热榜直播、回答底部卡片
 ^https:\/\/api\.zhihu\.com\/(answers|articles)\/v2\/\d+ url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 ^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
