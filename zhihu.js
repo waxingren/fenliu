@@ -23,7 +23,11 @@ hostname = api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com,
 ^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\? url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 ^https:\/\/api\.zhihu\.com\/moments_v3 url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 ^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\? url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
+# 修改知乎 API 响应数据
+^https?:\/\/api\.zhihu\.com\/.* url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 
+# 优化 link.zhihu.com 跳转链接
+^https?:\/\/link\.zhihu\.com\/.* url script-request-header https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 # > 会员页面弹窗、悬浮动图
 ^https:\/\/api\.zhihu\.com\/(bazaar\/float_window|market\/popovers_v2) url reject-dict
 ^https:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header\? url script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
