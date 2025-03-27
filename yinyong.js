@@ -1,180 +1,203 @@
-// ==UserScript==
-// @name         Quantumult X 版知乎去广告与黑名单管理
-// @namespace    https://github.com/fmz200/wool_scripts/
-// @version      1.0.0
-// @description  去除知乎广告、过滤推荐内容、屏蔽黑名单用户。
-// @author       YourName
-// @match        *://*.zhihu.com/*
-// @run-at       document-start
-// ==/UserScript==
+// 2024-10-15 10:50
 
-(function () {
-  "use strict";
+if (!$response.body) $done({});
+const url = $request.url;
+let obj = JSON.parse($response.body);
 
-  // =======================
-  // 配置管理
-  // =======================
-
-  const blockedUsersKey = "zhihu_blocked_users";
-  let customBlockedUsers = JSON.parse($persistentStore.read(blockedUsersKey) || "{}");
-
-  function addBlacklist(username, userId) {
-    try {
-      if (customBlockedUsers[username]) {
-        console.log(`[INFO] 用户“${username}”已在黑名单中`);
-        $notification.post("添加失败", "", `用户“${username}”已存在黑名单`);
-        return;
+if (url.includes("/answers/v2/") || url.includes("/articles/v2/")) {
+  // 2024-04-29 新版知乎 回答列表下的相关提问
+  if (obj?.third_business?.related_queries?.queries?.length > 0) {
+    obj.third_business.related_queries.queries = [];
+  }
+} else if (url.includes("/api/cloud/zhihu/config/all")) {
+  // 全局配置
+  if (obj?.data?.configs?.length > 0) {
+    for (let i of obj.data.configs) {
+      if (i?.configKey === "feed_gray_theme") {
+        if (i?.configValue) {
+          i.configValue.start_time = 3818332800; // Unix 时间戳 2090-12-31 00:00:00
+          i.configValue.end_time = 3818419199; // Unix 时间戳 2090-12-31 23:59:59
+          i.status = false;
+        }
+      } else if (i?.configKey === "feed_top_res") {
+        // 首页顶部背景图
+        if (i?.configValue) {
+          i.configValue.start_time = 3818332800; // Unix 时间戳 2090-12-31 00:00:00
+          i.configValue.end_time = 3818419199; // Unix 时间戳 2090-12-31 23:59:59
+        }
       }
-
-      customBlockedUsers[username] = userId;
-      $persistentStore.write(JSON.stringify(customBlockedUsers), blockedUsersKey);
-      console.log(`[INFO] 已将用户“${username}”加入黑名单`);
-      $notification.post("黑名单更新成功", "", `已屏蔽用户“${username}”`);
-    } catch (err) {
-      console.error(`[ERROR] 添加黑名单失败：${err}`);
-      $notification.post("黑名单添加失败", "", "请检查日志");
     }
   }
-
-  function removeBlacklist(username) {
-    try {
-      if (!customBlockedUsers[username]) {
-        console.log(`[INFO] 用户“${username}”不在黑名单中`);
-        $notification.post("移除失败", "", `用户“${username}”不在黑名单`);
-        return;
-      }
-
-      delete customBlockedUsers[username];
-      $persistentStore.write(JSON.stringify(customBlockedUsers), blockedUsersKey);
-      console.log(`[INFO] 已将用户“${username}”移出黑名单`);
-      $notification.post("黑名单更新成功", "", `已移除用户“${username}”`);
-    } catch (err) {
-      console.error(`[ERROR] 移除黑名单失败：${err}`);
-      $notification.post("黑名单移除失败", "", "请检查日志");
-    }
-  }
-
-  // =======================
-  // 广告屏蔽
-  // =======================
-
-  function removeAds(obj) {
-    try {
-      if (obj?.data?.length > 0) {
-        obj.data = obj.data.filter((item) => {
-          const isAd =
-            item?.resource_type === "ad" ||
-            item?.extra?.recommend_start === true ||
-            item?.type === "ad";
-          return !isAd;
-        });
-      }
-    } catch (err) {
-      console.error(`[ERROR] 移除广告失败：${err}`);
-    }
-  }
-
-  // =======================
-  // 黑名单过滤
-  // =======================
-
-  function filterBlacklist(obj) {
-    try {
-      if (obj?.data?.length > 0) {
-        obj.data = obj.data.filter((item) => {
-          const authorName = item?.author?.fullname;
-          const isBlackUser = customBlockedUsers[authorName];
-          if (isBlackUser) {
-            console.log(`[INFO] 已屏蔽黑名单用户“${authorName}”的内容`);
-          }
-          return !isBlackUser;
-        });
-      }
-    } catch (err) {
-      console.error(`[ERROR] 过滤黑名单失败：${err}`);
-    }
-  }
-
-  // =======================
-  // 自动调用「不感兴趣」接口
-  // =======================
-
-  function dismissRecommendation(id, type) {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    fetch("https://www.zhihu.com/api/v4/feed/dismiss_recommendation", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({ id, type }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log(`[INFO] 已屏蔽推荐内容：${id}`);
+} else if (url.includes("/api/v4/answers")) {
+  delete obj.data;
+  delete obj.paging;
+} else if (url.includes("/api/v4/articles")) {
+  const item = ["ad_info", "paging", "recommend_info"];
+  item.forEach((i) => {
+    delete obj[i];
+  });
+} else if (url.includes("/appcloud2.zhihu.com/v3/config")) {
+  delete obj.config.hp_channel_tab;
+  if (obj?.config) {
+    if (obj.config?.homepage_feed_tab) {
+      obj.config.homepage_feed_tab.tab_infos = obj.config.homepage_feed_tab.tab_infos.filter((i) => {
+        if (i.tab_type === "activity_tab") {
+          i.start_time = "3818332800"; // Unix 时间戳 2090-12-31 00:00:00
+          i.end_time = "3818419199"; // Unix 时间戳 2090-12-31 23:59:59
+          return true;
         } else {
-          console.error(`[ERROR] 屏蔽推荐内容失败：${id}`);
+          return false;
         }
-      })
-      .catch((err) => {
-        console.error(`[ERROR] 请求失败：${err}`);
       });
-  }
-
-  // =======================
-  // 主逻辑
-  // =======================
-
-  function processResponse(response) {
-    try {
-      let obj = JSON.parse(response.body);
-
-      // 移除广告
-      removeAds(obj);
-
-      // 黑名单过滤
-      filterBlacklist(obj);
-
-      // 更新响应数据
-      response.body = JSON.stringify(obj);
-    } catch (err) {
-      console.error(`[ERROR] 处理响应失败：${err}`);
     }
-    return response;
+    if (obj.config?.zombie_conf) {
+      obj.config.zombie_conf.zombieEnable = false;
+    }
+    if (obj.config?.gray_mode) {
+      obj.config.gray_modeenable = false;
+      obj.config.gray_mode.start_time = "3818332800"; // Unix 时间戳 2090-12-31 00:00:00
+      obj.config.gray_mode.end_time = "3818419199"; // Unix 时间戳 2090-12-31 23:59:59
+    }
+    if (obj.config?.zhcnh_thread_sync) {
+      obj.config.zhcnh_thread_sync.LocalDNSSetHostWhiteList = [];
+      obj.config.zhcnh_thread_sync.isOpenLocalDNS = "0";
+      obj.config.zhcnh_thread_sync.ZHBackUpIP_Switch_Open = "0";
+      obj.config.zhcnh_thread_sync.dns_ip_detector_operation_lock = "1";
+      obj.config.zhcnh_thread_sync.ZHHTTPSessionManager_setupZHHTTPHeaderField = "1";
+    }
+    obj.config.zvideo_max_number = 1;
+    obj.config.is_show_followguide_alert = false;
   }
-
-  function handleRequest(request) {
-    try {
-      // 取消二次跳转链接
-      if (request.url.includes("link.zhihu.com")) {
-        const regRet = request.url.match(/target=(.+?)(&|$)/);
-        if (regRet && regRet.length === 3) {
-          const targetUrl = decodeURIComponent(regRet[1]);
-          $done({ redirect: targetUrl });
-          return;
+} else if (url.includes("/commercial_api/app_float_layer")) {
+  // 悬浮图标
+  if ("feed_egg" in obj) {
+    delete obj;
+  }
+} else if (url.includes("/feed/render/tab/config")) {
+  // 首页二级标签 白名单 live直播 edu人工智能AI
+  if (obj?.selected_sections?.length > 0) {
+    obj.selected_sections = obj.selected_sections.filter((i) => ["recommend", "section"]?.includes(i?.tab_type));
+  }
+} else if (url.includes("/moments_v3")) {
+  if (obj?.data?.length > 0) {
+    obj.data = obj.data.filter((i) => !i?.title?.includes("为您推荐"));
+  }
+} else if (url.includes("/next-bff")) {
+  if (obj?.data?.length > 0) {
+    obj.data = obj.data.filter(
+      (i) =>
+        !(
+          i?.origin_data?.type?.includes("ad") ||
+          i?.origin_data?.resource_type?.includes("ad") ||
+          i?.origin_data?.next_guide?.title?.includes("推荐")
+        )
+    );
+  }
+} else if (url.includes("/next-data")) {
+  if (obj?.data?.data?.length > 0) {
+    obj.data.data = obj.data.data.filter((i) => !(i?.type?.includes("ad") || i?.data?.answer_type?.includes("PAID")));
+  }
+} else if (url.includes("/next-render")) {
+  if (obj?.data?.length > 0) {
+    obj.data = obj.data.filter(
+      (i) =>
+        !(
+          i?.adjson ||
+          i?.biz_type_list?.includes("article") ||
+          i?.biz_type_list?.includes("content") ||
+          i?.business_type?.includes("paid") ||
+          i?.section_info ||
+          i?.tips ||
+          i?.type?.includes("ad")
+        )
+    );
+  }
+} else if (url.includes("/questions/")) {
+  // 问题回答列表
+  delete obj.ad_info;
+  delete obj.data.ad_info;
+  delete obj.query_info;
+  if (obj?.data?.length > 0) {
+    obj.data = obj.data.filter((i) => !i?.target?.answer_type?.includes("paid"));
+  }
+} else if (url.includes("/root/tab")) {
+  // 首页一级标签 白名单
+  if (obj?.tab_list?.length > 0) {
+    obj.tab_list = obj.tab_list.filter((i) => ["follow", "hot", "recommend"]?.includes(i?.tab_type));
+  }
+} else if (url.includes("/topstory/hot-lists/everyone-seeing")) {
+  // 热榜信息流
+  if (obj?.data?.data?.length > 0) {
+    // 合作推广
+    obj.data.data = obj.data.data.filter((i) => !i.target?.metrics_area?.text?.includes("合作推广"));
+  }
+} else if (url.includes("/topstory/hot-lists/total")) {
+  // 热榜排行榜
+  if (obj?.data?.length > 0) {
+    // 品牌甄选
+    obj.data = obj.data.filter((i) => !i.hasOwnProperty("ad"));
+  }
+} else if (url.includes("/topstory/recommend")) {
+  // 推荐信息流
+  if (obj?.data?.length > 0) {
+    obj.data = obj.data.filter((i) => {
+      if (i.type === "market_card" && i.fields?.header?.url && i.fields.body?.video?.id) {
+        let videoID = getUrlParamValue(item.fields.header.url, "videoID");
+        if (videoID) {
+          i.fields.body.video.id = videoID;
         }
+      } else if (i.type === "common_card") {
+        if (i.extra?.type === "drama") {
+          // 直播内容
+          return false;
+        } else if (i.extra?.type === "zvideo") {
+          // 推广视频
+          let videoUrl = i.common_card.feed_content.video.customized_page_url;
+          let videoID = getUrlParamValue(videoUrl, "videoID");
+          if (videoID) {
+            i.common_card.feed_content.video.id = videoID;
+          }
+        } else if (i.common_card?.feed_content?.video?.id) {
+          let search = '"feed_content":{"video":{"id":';
+          let str = $response.body.substring($response.body.indexOf(search) + search.length);
+          let videoID = str.substring(0, str.indexOf(","));
+          i.common_card.feed_content.video.id = videoID;
+        } else if (i.common_card?.footline?.elements?.[0]?.text?.panel_text?.includes("广告")) {
+          return false;
+        } else if (i.common_card?.feed_content?.source_line?.elements?.[1]?.text?.panel_text?.includes("盐选")) {
+          return false;
+        } else if (i?.promotion_extra) {
+          // 营销信息
+          return false;
+        }
+        return true;
+      } else if (i.type?.includes("aggregation_card")) {
+        // 横排卡片 知乎热榜
+        return false;
+      } else if (i.type === "feed_advert") {
+        // 伪装成正常内容的卡片
+        return false;
       }
-    } catch (err) {
-      console.error(`[ERROR] 处理请求失败：${err}`);
-    }
+      return true;
+    });
+    fixPos(obj.data);
   }
+}
 
-  // =======================
-  // 初始化
-  // =======================
+$done({ body: JSON.stringify(obj) });
 
-  function init() {
-    console.log("[INFO] 脚本已启动...");
-
-    // 监听请求
-    if ($request) {
-      handleRequest($request);
-    }
-
-    // 处理响应
-    if ($response) {
-      processResponse($response);
-    }
+// 修复offset
+function fixPos(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].offset = i + 1;
   }
+}
 
-  init();
-})();
+function getUrlParamValue(url, queryName) {
+  return Object.fromEntries(
+    url
+      .substring(url.indexOf("?") + 1)
+      .split("&")
+      .map((pair) => pair.split("="))
+  )[queryName];
+}
