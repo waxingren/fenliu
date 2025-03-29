@@ -23,7 +23,7 @@
 ^https?:\/\/api\.zhihu\.com\/commercial_api\/(launch_v2|real_time_launch_v2)\? url reject-dict
 
 # 信息流广告
-^https?:\/\/api\.zhihu\.com\/topstory\/(recommend|hot-lists?) url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+^https?:\/\/api\.zhihu\.com\/topstory\/(recommend|hot-lists?) url script-response-body https://gist.githubusercontent.com/blackmatrix7/fhttps://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 
 # 回答页广告
 ^https?:\/\/api\.zhihu\.com\/answers\/\d+\/recommendations url reject-dict
@@ -32,17 +32,17 @@
 ^https?:\/\/api\.zhihu\.com\/commercial_api\/banners_v3\/app_topstory_banner url reject-dict
 
 # 用户页推广
-^https?:\/\/api\.zhihu\.com\/people\/\d+\/activities url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+^https?:\/\/api\.zhihu\.com\/people\/\d+\/activities url script-response-body https://gist.githubusercontent.com/blackmatrix7/fhttps://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 
 # 评论推广
-^https?:\/\/api\.zhihu\.com\/comment_v5\/.*\/comments url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+^https?:\/\/api\.zhihu\.com\/comment_v5\/.*\/comments url script-response-body https://gist.githubusercontent.com/blackmatrix7/fhttps://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 
 # 搜索推广
-^https?:\/\/api\.zhihu\.com\/search\/preset_words\? url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+^https?:\/\/api\.zhihu\.com\/search\/preset_words\? url script-response-body https://gist.githubusercontent.com/blackmatrix7/fhttps://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 
 # ------------ 配置更新 ------------
 # 动态配置拦截
-^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/config\/all\? url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/config\/all\? url script-response-body https://gist.githubusercontent.com/blackmatrix7/fhttps://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
 ^https?:\/\/appcloud2\.zhihu\.com\/v\d+\/config url reject-dict
 
 # ------------ 其他优化 ------------
