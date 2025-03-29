@@ -1,20 +1,59 @@
-# -------------------- MITM 及重写规则 --------------------
-# 开启 MITM
-[MITM]
-hostname = *.zhihu.com
-# 过滤知乎 APP 内广告（去除推广信息）
-[Rewrite]
-^https://api\.zhihu\.com/moments\? script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://api\.zhihu\.com/topstory/recommend script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://api\.zhihu\.com/v4/questions/\d+/related-readings script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://api\.zhihu\.com/market/popovers script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://api\.zhihu\.com/ab/api/v1/products/zhihu/platforms/ios/config script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://api\.zhihu\.com/ad-style-service/request script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-# 过滤网页端知乎广告
-^https://www\.zhihu\.com/api/v4/mcn/v2/linkcards\? script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://www\.zhihu\.com/api/v4/hot_recommendation script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://www\.zhihu\.com/api/v4/(answers|questions)/\d+/related-readings script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://www\.zhihu\.com/commercial_api/banners_v3/mobile_banner script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-^https://zhuanlan\.zhihu\.com/api/articles/\d+/recommendation script-response-body https://github.com/waxingren/fenliu/raw/refs/heads/main/yinyong.js
-# 处理知乎外链跳转
-^https://link\.zhihu\.com/\?target=(.+) url 302 %1
+#!name=知乎去广告强化版
+#!desc=基于日志分析更新，覆盖最新广告接口
+
+# ------------ IP/域名直接拦截 ------------
+^https?:\/\/(118\.89\.204\.198|103\.41\.167\.237|2402:4e00:1200:ed00:0:9089:6dac:96b6) url reject
+
+# ------------ 广告追踪拦截 ------------
+# Sugar广告主接口
+^https?:\/\/sugar\.zhihu\.com\/plutus_adreaper url reject-dict
+^https?:\/\/sugar\.zhihu\.com\/adx\/ url reject-dict
+
+# Web分析接口
+^https?:\/\/zhihu-web-analytics\.zhihu\.com\/api\/v\d+\/za\/logs\/batch url reject-dict
+
+# APM性能监控
+^https?:\/\/apm\.zhihu\.com\/collector\/apm url reject-dict
+
+# DataHub数据收集
+^https?:\/\/datahub\.zhihu\.com\/collector\/zlab url reject-dict
+
+# ------------ 动态内容广告拦截 ------------
+# 启动页广告
+^https?:\/\/api\.zhihu\.com\/commercial_api\/(launch_v2|real_time_launch_v2)\? url reject-dict
+
+# 信息流广告
+^https?:\/\/api\.zhihu\.com\/topstory\/(recommend|hot-lists?) url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+
+# 回答页广告
+^https?:\/\/api\.zhihu\.com\/answers\/\d+\/recommendations url reject-dict
+
+# 横幅广告
+^https?:\/\/api\.zhihu\.com\/commercial_api\/banners_v3\/app_topstory_banner url reject-dict
+
+# 用户页推广
+^https?:\/\/api\.zhihu\.com\/people\/\d+\/activities url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+
+# 评论推广
+^https?:\/\/api\.zhihu\.com\/comment_v5\/.*\/comments url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+
+# 搜索推广
+^https?:\/\/api\.zhihu\.com\/search\/preset_words\? url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+
+# ------------ 配置更新 ------------
+# 动态配置拦截
+^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/config\/all\? url script-response-body https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+^https?:\/\/appcloud2\.zhihu\.com\/v\d+\/config url reject-dict
+
+# ------------ 其他优化 ------------
+# 屏蔽用户引导
+^https?:\/\/api\.zhihu\.com\/moments\/(tab_v2|recent) url reject-dict
+
+# 屏蔽小红点
+^https?:\/\/api\.zhihu\.com\/notifications\/v\d\/count url reject-dict
+
+# 屏蔽直播推广
+^https?:\/\/api\.zhihu\.com\/live\/v\d\/recommendation\/list url reject-dict
+
+# ------------ Hostname ------------
+hostname = www.zhihu.com, api.zhihu.com, zhuanlan.zhihu.com, sugar.zhihu.com, zhihu-web-analytics.zhihu.com, apm.zhihu.com, datahub.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com
