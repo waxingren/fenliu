@@ -1,31 +1,9 @@
 {
   "log": {
     "disabled": false,
-    "level": "info",
+    "level": "warn",
     "output": "",
     "timestamp": false
-  },
-  "experimental": {
-    "clash_api": {
-      "external_controller": "127.0.0.1:20123",
-      "external_ui": "",
-      "external_ui_download_url": "",
-      "external_ui_download_detour": "🎯 全球直连",
-      "secret": "ID_o6cm7bhc",
-      "default_mode": "rule",
-      "access_control_allow_origin": [
-        "*"
-      ],
-      "access_control_allow_private_network": false
-    },
-    "cache_file": {
-      "enabled": true,
-      "path": "cache.db",
-      "cache_id": "",
-      "store_fakeip": true,
-      "store_rdrc": true,
-      "rdrc_timeout": "7d"
-    }
   },
   "inbounds": [
     {
