@@ -98,6 +98,18 @@
             ]
         },
         {
+            "type": "selector",
+            "tag": "🐟漏网之鱼",
+            "interrupt_exist_connections": true,
+            "outbounds": [
+                "hk",
+                "tw",
+                "jp",
+                "sg",
+                "all"
+            ]
+        },
+        {
             "type": "direct",
             "tag": "🎯 全球直连"
         },
@@ -343,7 +355,7 @@
             }
         ],
         "auto_detect_interface": true,
-        "final": "🎈 手动选择"
+        "final": "🐟漏网之鱼"
     },
     "dns": {
         "servers": [
