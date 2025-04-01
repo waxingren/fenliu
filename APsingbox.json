@@ -1,54 +1,57 @@
 {
-    "log": {
-        "disabled": false,
-        "level": "info",
-        "output": "",
-        "timestamp": false
+  "log": {
+    "disabled": false,
+    "level": "warn",
+    "output": "",
+    "timestamp": false
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:20123",
+      "external_ui": "",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "🎯 全球直连",
+      "secret": "ID_o6cm7bhc",
+      "default_mode": "rule",
+      "access_control_allow_origin": [
+        "*"
+      ],
+      "access_control_allow_private_network": false
     },
-    "experimental": {
-        "clash_api": {
-            "external_controller": "127.0.0.1:20123",
-            "external_ui": "",
-            "external_ui_download_url": "",
-            "external_ui_download_detour": "🎯 全球直连",
-            "secret": "ID_o6cm7bhc",
-            "default_mode": "rule",
-            "access_control_allow_origin": [
-                "*"
-            ],
-            "access_control_allow_private_network": false
-        },
-        "cache_file": {
-            "enabled": true,
-            "path": "cache.db",
-            "cache_id": "",
-            "store_fakeip": true,
-            "store_rdrc": true,
-            "rdrc_timeout": "7d"
-        }
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "cache_id": "",
+      "store_fakeip": true,
+      "store_rdrc": true,
+      "rdrc_timeout": "7d"
+    }
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 20122,
+      "tcp_fast_open": false,
+      "tcp_multi_path": false,
+      "udp_fragment": false
     },
-    "inbounds": [
-        {
-            "type": "mixed",
-            "listen": "::",
-            "listen_port": 7890,
-            "tcp_fast_open": false,
-            "tcp_multi_path": false,
-            "udp_fragment": false
-        },
-        {
-            "type": "tun",
-            "address": [
-                "172.18.0.1/30",
-                "fdfe:dcba:9876::1/126"
-            ],
-            "mtu": 9000,
-            "auto_route": true,
-            "strict_route": false,
-            "endpoint_independent_nat": false,
-            "stack": "mixed"
-        }
-    ],
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "",
+      "address": [
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": false,
+      "endpoint_independent_nat": false,
+      "stack": "gvisor"
+    }
+  ],
     "outbounds": [
         {
             "type": "selector",
