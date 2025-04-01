@@ -1,76 +1,50 @@
 {
     "log": {
         "disabled": false,
-        "level": "warn",
+        "level": "info",
         "timestamp": true
     },
-    "dns": {
-        "servers": [
-            {
-                "tag": "Local-DNS-Resolver",
-                "address": "udp://223.5.5.5",
-                "strategy": "ipv4_only",
-                "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "Local-DNS",
-                "address": "https://223.5.5.5/dns-query",
-                "address_resolver": "Local-DNS-Resolver",
-                "strategy": "ipv4_only",
-                "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "Remote-DNS-Resolver",
-                "address": "udp://8.8.8.8",
-                "strategy": "ipv4_only",
-                "detour": "🎈 手动选择"
-            },
-            {
-                "tag": "Remote-DNS",
-                "address": "https://8.8.8.8/dns-query",
-                "address_resolver": "Remote-DNS-Resolver",
-                "strategy": "ipv4_only",
-                "detour": "🎈 手动选择"
-            }
-        ],
-        "rules": [
-            {
-                "outbound": "any",
-                "server": "Local-DNS"
-            },
-            {
-                "clash_mode": "direct",
-                "server": "Local-DNS"
-            },
-            {
-                "clash_mode": "global",
-                "server": "Remote-DNS"
-            },
-            {
-                "rule_set": "geosite-cn",
-                "server": "Local-DNS"
-            },
-            {
-                "rule_set": "geoip-cn",
-                "server": "Local-DNS"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "server": "Remote-DNS"
-            }
-        ],
-        "independent_cache": true,
-        "final": "Remote-DNS"
+    "experimental": {
+        "clash_api": {
+            "external_controller": "127.0.0.1:20123",
+            "external_ui": "",
+            "external_ui_download_url": "",
+            "external_ui_download_detour": "🎯 全球直连",
+            "secret": "ID_o6cm7bhc",
+            "default_mode": "rule",
+            "access_control_allow_origin": [
+                "*"
+            ],
+            "access_control_allow_private_network": false
+        },
+        "cache_file": {
+            "enabled": true,
+            "path": "cache.db",
+            "cache_id": "",
+            "store_fakeip": true,
+            "store_rdrc": true,
+            "rdrc_timeout": "7d"
+        }
     },
     "inbounds": [
         {
             "type": "mixed",
-            "listen": "127.0.0.1",
-            "listen_port": 12080,
-            "sniff": false,
-            "users": [
-
-            ]
+            "tag": "mixed-in",
+            "listen": "::",
+            "listen_port": 8888
+        },
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "address": [
+                "172.18.0.1/30",
+                "fdfe:dcba:9876::1/126"
+            ],
+            "mtu": 9000,
+            "auto_route": true,
+            "strict_route": false,
+            "endpoint_independent_nat": false,
+            "stack": "mixed"
         }
     ],
     "outbounds": [
@@ -110,18 +84,6 @@
         {
             "type": "selector",
             "tag": "🛫电报",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-                "hk",
-                "tw",
-                "jp",
-                "sg",
-                "all"
-            ]
-        },
-        {
-            "type": "selector",
-            "tag": "🐟漏网之鱼",
             "interrupt_exist_connections": true,
             "outbounds": [
                 "hk",
@@ -190,106 +152,6 @@
         }
     ],
     "route": {
-        "rule_set": [
-            {
-                "tag": "games",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-games.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "bing",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-bing.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "youtube",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-youtube.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "geosite-cn",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-cn.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "geolocation-!cn",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-geolocation-!cn.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "microsoft",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-microsoft.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "onedrive",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-onedrive.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "ai",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "github",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-github.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "private",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-private.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "apple",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-apple.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "telegramip",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-telegram.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "geoip-private",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-private.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            },
-            {
-                "tag": "geoip-cn",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-cn.srs",
-                "format": "binary",
-                "update_interval": "1d"
-            }
-        ],
         "rules": [
             {
                 "action": "sniff",
@@ -324,13 +186,6 @@
             {
                 "action": "route",
                 "rule_set": [
-                    "github"
-                ],
-                "outbound": "🎈 手动选择"
-            },
-            {
-                "action": "route",
-                "rule_set": [
                     "youtube"
                 ],
                 "outbound": "📺流媒体"
@@ -338,14 +193,16 @@
             {
                 "action": "route",
                 "rule_set": [
-                    "games"
+                    "github",
+                    "google"
                 ],
-                "outbound": "🎯 全球直连"
+                "outbound": "🎈 手动选择"
             },
             {
                 "action": "route",
                 "rule_set": [
                     "private",
+                    "games",
                     "apple",
                     "onedrive",
                     "microsoft",
@@ -376,7 +233,191 @@
                 "outbound": "🎯 全球直连"
             }
         ],
-        "final": "🐟漏网之鱼",
-        "auto_detect_interface": true
+        "rule_set": [
+            {
+                "tag": "games",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-games.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "google",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-google.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "bing",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-bing.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "youtube",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-youtube.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "geosite-cn",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-cn.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "geolocation-!cn",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-geolocation-!cn.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "microsoft",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-microsoft.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "onedrive",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-onedrive.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "ai",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "github",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-github.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "private",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-private.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "apple",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-apple.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "telegramip",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-telegram.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "geoip-private",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-private.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "geoip-cn",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-cn.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            }
+        ],
+        "auto_detect_interface": true,
+        "final": "🎈 手动选择"
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "Local-DNS-Resolver",
+                "address": "udp://223.5.5.5",
+                "detour": "🎯 全球直连"
+            },
+            {
+                "tag": "Local-DNS",
+                "address": "https://223.5.5.5/dns-query",
+                "address_resolver": "Local-DNS-Resolver",
+                "detour": "🎯 全球直连"
+            },
+            {
+                "tag": "Remote-DNS-Resolver",
+                "address": "udp://8.8.8.8",
+                "detour": "🎈 手动选择"
+            },
+            {
+                "tag": "Remote-DNS",
+                "address": "https://8.8.8.8/dns-query",
+                "address_resolver": "Remote-DNS-Resolver",
+                "detour": "🎈 手动选择"
+            }
+        ],
+        "rules": [
+            {
+                "action": "route",
+                "server": "Local-DNS",
+                "outbound": "any"
+            },
+            {
+                "action": "route",
+                "clash_mode": "direct",
+                "server": "Local-DNS"
+            },
+            {
+                "action": "route",
+                "clash_mode": "global",
+                "server": "Remote-DNS"
+            },
+            {
+                "action": "route",
+                "rule_set": [
+                    "github",
+                    "bing",
+                    "google",
+                    "ai"
+                ],
+                "server": "Remote-DNS"
+            },
+            {
+                "action": "route",
+                "rule_set": [
+                    "apple",
+                    "onedrive",
+                    "microsoft",
+                    "private",
+                    "geosite-cn",
+                    "games"
+                ],
+                "server": "Local-DNS"
+            },
+            {
+                "action": "route",
+                "rule_set": [
+                    "geolocation-!cn"
+                ],
+                "server": "Remote-DNS"
+            }
+        ],
+        "disable_cache": false,
+        "disable_expire": false,
+        "independent_cache": false,
+        "final": "Remote-DNS",
+        "strategy": "ipv4_only"
     }
 }
