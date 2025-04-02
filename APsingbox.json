@@ -179,6 +179,7 @@
             {
                 "action": "route",
                 "rule_set": [
+                    "telegram",
                     "telegramip"
                 ],
                 "outbound": "🛫电报"
@@ -226,6 +227,13 @@
                 "tag": "games",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-games.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "telegram",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-telegram.srs",
                 "format": "binary",
                 "download_detour": "🎯 全球直连"
             },
@@ -385,7 +393,6 @@
                     "github",
                     "bing",
                     "google",
-                    "googleip",
                     "ai"
                 ],
                 "server": "Remote-DNS"
@@ -398,8 +405,7 @@
                     "microsoft",
                     "games",
                     "private",
-                    "geosite-cn",
-                    "geoip-cn"
+                    "geosite-cn"
                 ],
                 "server": "Local-DNS"
             },
