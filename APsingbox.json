@@ -169,10 +169,6 @@
                 "outbound": "GLOBAL"
             },
             {
-                "action": "reject",
-                "protocol": "quic"
-            },
-            {
                 "action": "route",
                 "rule_set": [
                     "ai",
