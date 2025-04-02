@@ -29,7 +29,6 @@
     "inbounds": [
         {
             "type": "mixed",
-            "tag": "mixed-in",
             "listen": "::",
             "listen_port": 8888
         },
@@ -154,8 +153,7 @@
     "route": {
         "rules": [
             {
-                "action": "sniff",
-                "inbound": "tun-in"
+                "action": "sniff"
             },
             {
                 "action": "hijack-dns",
@@ -170,10 +168,6 @@
                 "action": "route",
                 "clash_mode": "global",
                 "outbound": "GLOBAL"
-            },
-            {
-                "action": "reject",
-                "protocol": "quic"
             },
             {
                 "action": "route",
@@ -344,6 +338,7 @@
         "final": "🎈 手动选择"
     },
     "dns": {
+        "independent_cache": true,
         "servers": [
             {
                 "tag": "Local-DNS-Resolver",
