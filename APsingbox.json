@@ -179,6 +179,13 @@
             {
                 "action": "route",
                 "rule_set": [
+                    "telegramip"
+                ],
+                "outbound": "🛫电报"
+            },
+            {
+                "action": "route",
+                "rule_set": [
                     "youtube"
                 ],
                 "outbound": "📺流媒体"
@@ -187,6 +194,7 @@
                 "action": "route",
                 "rule_set": [
                     "github",
+                    "googleip",
                     "google"
                 ],
                 "outbound": "🎈 手动选择"
@@ -199,7 +207,9 @@
                     "apple",
                     "onedrive",
                     "microsoft",
-                    "geosite-cn"
+                    "geosite-cn",
+                    "geoip-cn",
+                    "geoip-private"
                 ],
                 "outbound": "🎯 全球直连"
             },
@@ -209,21 +219,6 @@
                     "geolocation-!cn"
                 ],
                 "outbound": "🎈 手动选择"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "telegramip"
-                ],
-                "outbound": "🛫电报"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "geoip-cn",
-                    "geoip-private"
-                ],
-                "outbound": "🎯 全球直连"
             }
         ],
         "rule_set": [
@@ -238,6 +233,13 @@
                 "tag": "google",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-google.srs",
+                "format": "binary",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "googleip",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-google.srs",
                 "format": "binary",
                 "download_detour": "🎯 全球直连"
             },
@@ -383,6 +385,7 @@
                     "github",
                     "bing",
                     "google",
+                    "googleip",
                     "ai"
                 ],
                 "server": "Remote-DNS"
@@ -393,9 +396,10 @@
                     "apple",
                     "onedrive",
                     "microsoft",
+                    "games",
                     "private",
                     "geosite-cn",
-                    "games"
+                    "geoip-cn"
                 ],
                 "server": "Local-DNS"
             },
