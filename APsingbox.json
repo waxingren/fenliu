@@ -40,7 +40,9 @@
             ],
             "mtu": 9000,
             "auto_route": true,
-            "strict_route": false
+            "strict_route": false,
+            "endpoint_independent_nat": false,
+            "stack": "mixed"
         }
     ],
     "outbounds": [
@@ -165,6 +167,10 @@
                 "action": "route",
                 "clash_mode": "global",
                 "outbound": "GLOBAL"
+            },
+            {
+                "action": "reject",
+                "protocol": "quic"
             },
             {
                 "action": "route",
