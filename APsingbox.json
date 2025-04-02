@@ -281,7 +281,7 @@
             {
                 "tag": "microsoft",
                 "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-microsoft.srs",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-microsoft@cn.srs",
                 "format": "binary",
                 "download_detour": "🎯 全球直连"
             },
