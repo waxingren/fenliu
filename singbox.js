@@ -16,23 +16,17 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  if (['all'].includes(i.tag)) {
+  if (['手动选择'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
-  if (['hk'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i))
+  if (['Telegram'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies))
   }
-  if (['tw'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇹🇼/i))
+  if (['YouTube'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies))
   }
-  if (['jp'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
-  }
-  if (['sg'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i))
-  }
-  if (['us'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /美|us|unitedstates|united states|🇺🇸/i))
+  if (['AI'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies))
   }
 })
 
