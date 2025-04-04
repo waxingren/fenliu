@@ -1,425 +1,317 @@
 {
     "log": {
-        "disabled": false,
-        "level": "info",
-        "timestamp": true
+        "disabled": false, 
+        "level": "info",   
+        "timestamp": true  
     },
     "experimental": {
-        "clash_api": {
-            "external_controller": "127.0.0.1:20123",
-            "external_ui": "",
-            "external_ui_download_url": "",
-            "external_ui_download_detour": "🎯 全球直连",
-            "secret": "ID_o6cm7bhc",
-            "default_mode": "rule",
-            "access_control_allow_origin": [
-                "*"
-            ],
-            "access_control_allow_private_network": false
+        "external_controller": "", 
+        "external_ui": "",         
+        "external_ui_download_url": "", 
+        "external_ui_download_detour": "手动选择", 
+            "default_mode": "rule"                
         },
         "cache_file": {
-            "enabled": true,
-            "path": "cache.db",
-            "cache_id": "",
-            "store_fakeip": true,
-            "store_rdrc": true,
-            "rdrc_timeout": "7d"
+            "enabled": true 
         }
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "dns_proxy",                
+                "address": "https://1.1.1.1/dns-query", 
+                "address_resolver": "proxyresolver", 
+                "strategy": "ipv4_only",          
+                "detour": "手动选择"             
+            },
+            {
+                "tag": "proxyresolver",
+                "address": "1.1.1.1",
+                "strategy": "ipv4_only",
+                "detour": "手动选择"
+            },			
+            {
+                "tag": "dns_direct",
+                "address": "h3://223.5.5.5/dns-query", 
+                "address_resolver": "dns_resolver",
+                "strategy": "ipv4_only",
+                "detour": "direct"
+            },
+            {
+                "tag": "dns_resolver",
+                "address": "223.5.5.5",    
+                "strategy": "ipv4_only",
+                "detour": "direct"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": "any",                 
+                "server": "dns_direct"             
+            },
+            {
+                "clash_mode": "direct",            
+                "server": "dns_direct"            
+            },
+            {
+                "clash_mode": "global",         
+                "server": "dns_proxy"           
+            },
+            {
+                "rule_set": "geosite-cn",          
+                "server": "dns_direct"            
+            },
+            {
+                "rule_set": "geoip-cn",          
+                "server": "dns_direct"          
+            },
+            {
+                "rule_set": "geosite-geolocation-!cn", 
+                "server": "dns_proxy"           
+            }
+        ],
+        "independent_cache": true,               
+        "final": "dns_proxy"                 
     },
     "inbounds": [
         {
-            "type": "mixed",
-            "listen": "::",
-            "listen_port": 8888
-        },
-        {
-            "type": "tun",
-            "address": [
-                "172.18.0.1/30"
-            ],
-            "mtu": 9000,
-            "auto_route": true,
-            "strict_route": false,
-            "endpoint_independent_nat": false,
-            "stack": "mixed"
+            "type": "mixed",                     
+            "listen": "127.0.0.1",             
+            "listen_port": 12080,               
+            "sniff": true,                   
+            "users": []                      
         }
     ],
     "outbounds": [
         {
-            "type": "selector",
-            "tag": "🎈 手动选择",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-                "hk",
-                "tw",
-                "jp",
-                "sg",
-                "all"
+            "type": "selector",                 
+            "tag": "手动选择",
+            "outbounds": [                     
             ]
         },
         {
-            "type": "selector",
-            "tag": "💬AI",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-                "us",
-                "all"
+            "type": "selector",                 
+            "tag": "Telegram",
+            "outbounds": [                       
             ]
         },
         {
-            "type": "selector",
-            "tag": "📺流媒体",
-            "interrupt_exist_connections": true,
+            "type": "selector",      
+            "tag": "YouTube",
             "outbounds": [
-                "hk",
-                "tw",
-                "jp",
-                "sg",
-                "all"
             ]
         },
         {
-            "type": "selector",
-            "tag": "🛫电报",
-            "interrupt_exist_connections": true,
+            "type": "selector",          
+            "tag": "AI",
             "outbounds": [
-                "hk",
-                "tw",
-                "jp",
-                "sg",
-                "all"
             ]
         },
         {
-            "type": "direct",
-            "tag": "🎯 全球直连"
-        },
-        {
-            "tag": "hk",
-            "type": "selector",
-            "outbounds": [
-
-            ]
-        },
-        {
-            "tag": "tw",
-            "type": "selector",
-            "outbounds": [
-
-            ]
-        },
-        {
-            "tag": "jp",
-            "type": "selector",
-            "outbounds": [
-
-            ]
-        },
-        {
-            "tag": "sg",
-            "type": "selector",
-            "outbounds": [
-
-            ]
-        },
-        {
-            "tag": "us",
-            "type": "selector",
-            "outbounds": [
-
-            ]
-        },
-        {
-            "tag": "all",
-            "type": "selector",
-            "outbounds": [
-
-            ]
-        },
-        {
-            "tag": "GLOBAL",
-            "type": "selector",
-            "outbounds": [
-                "hk",
-                "tw",
-                "jp",
-                "sg",
-                "all"
-            ]
+            "tag": "direct",                 
+            "type": "direct"
         }
     ],
     "route": {
-        "rules": [
-            {
-                "action": "sniff"
-            },
-            {
-                "action": "hijack-dns",
-                "protocol": "dns"
-            },
-            {
-                "action": "route",
-                "clash_mode": "direct",
-                "outbound": "🎯 全球直连"
-            },
-            {
-                "action": "route",
-                "clash_mode": "global",
-                "outbound": "GLOBAL"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "ai",
-                    "bing"
-                ],
-                "outbound": "💬AI"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "telegram",
-                    "telegramip"
-                ],
-                "outbound": "🛫电报"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "youtube"
-                ],
-                "outbound": "📺流媒体"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "github",
-                    "googleip",
-                    "google"
-                ],
-                "outbound": "🎈 手动选择"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "private",
-                    "games",
-                    "apple",
-                    "onedrive",
-                    "microsoft",
-                    "geosite-cn",
-                    "geoip-cn",
-                    "geoip-private"
-                ],
-                "outbound": "🎯 全球直连"
-            },
-            {
-                "action": "route",
-                "rule_set": [
-                    "geolocation-!cn"
-                ],
-                "outbound": "🎈 手动选择"
-            }
-        ],
         "rule_set": [
             {
                 "tag": "games",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-games.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
+            },	
+            {
+                "tag": "bing",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-bing.srs",
+                "format": "binary",
+                "download_detour": "direct"
             },
             {
-                "tag": "telegram",
+                "tag": "YouTube",
                 "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-telegram.srs",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-youtube.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "google",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-google.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
-            },
-            {
-                "tag": "googleip",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-google.srs",
-                "format": "binary",
-                "download_detour": "🎯 全球直连"
-            },
-            {
-                "tag": "bing",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-bing.srs",
-                "format": "binary",
-                "download_detour": "🎯 全球直连"
-            },
-            {
-                "tag": "youtube",
-                "type": "remote",
-                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-youtube.srs",
-                "format": "binary",
-                "download_detour": "🎯 全球直连"
-            },
+                "download_detour": "direct"
+            },			
             {
                 "tag": "geosite-cn",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-cn.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
-                "tag": "geolocation-!cn",
+                "tag": "geosite-geolocation-!cn",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-geolocation-!cn.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "microsoft",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-microsoft@cn.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "onedrive",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-onedrive.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "ai",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "github",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-github.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "private",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-private.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "apple",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-apple.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "telegramip",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-telegram.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
+            {
+                "tag": "telegram",
+                "type": "remote",
+                "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-telegram.srs",
+                "format": "binary",
+                "download_detour": "direct"
+            },				
             {
                 "tag": "geoip-private",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-private.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
+                "download_detour": "direct"
             },
             {
                 "tag": "geoip-cn",
                 "type": "remote",
                 "url": "https://ghfast.top/https://github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-cn.srs",
                 "format": "binary",
-                "download_detour": "🎯 全球直连"
-            }
-        ],
-        "auto_detect_interface": true,
-        "final": "🎈 手动选择"
-    },
-    "dns": {
-        "servers": [
-            {
-                "tag": "Local-DNS-Resolver",
-                "address": "udp://223.5.5.5",
-                "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "Local-DNS",
-                "address": "https://223.5.5.5/dns-query",
-                "address_resolver": "Local-DNS-Resolver",
-                "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "Remote-DNS-Resolver",
-                "address": "udp://8.8.8.8",
-                "detour": "🎈 手动选择"
-            },
-            {
-                "tag": "Remote-DNS",
-                "address": "https://8.8.8.8/dns-query",
-                "address_resolver": "Remote-DNS-Resolver",
-                "detour": "🎈 手动选择"
+                "download_detour": "direct"
             }
         ],
         "rules": [
             {
-                "action": "route",
-                "server": "Local-DNS",
-                "outbound": "any"
+                "action": "sniff"               
             },
             {
-                "action": "route",
-                "clash_mode": "direct",
-                "server": "Local-DNS"
+                "protocol": "dns",              
+                "action": "hijack-dns"
             },
             {
-                "action": "route",
-                "clash_mode": "global",
-                "server": "Remote-DNS"
+                "clash_mode": "global",           
+                "outbound": "手动选择"           
             },
             {
-                "action": "route",
+                "clash_mode": "direct",           
+                "outbound": "direct"         
+            },
+            {
+                "type": "logical",               
+                "mode": "or",                
+                "rules": [
+                    {
+                        "domain_regex": "^stun\\..+" 
+                    },
+                    {
+                        "domain_keyword": [
+                            "stun",             
+                            "httpdns"       
+                        ]
+                    },
+                    {
+                        "protocol": "stun"       
+                    }
+                ],
+                "action": "reject",            
+                "method": "default",
+                "no_drop": false
+            },
+            {
+                "rule_set": [
+                    "ai",
+                    "bing"
+                ],
+                "outbound": "AI"
+            },
+            {
+                "rule_set": [
+                    "telegram",
+                    "telegramip"
+                ],
+                "outbound": "Telegram"
+            },
+            {
+                "rule_set": [
+                    "YouTube"
+                ],
+                "outbound": "YouTube"
+            },
+            {
                 "rule_set": [
                     "github",
-                    "bing",
-                    "google",
-                    "ai"
+                    "google"
                 ],
-                "server": "Remote-DNS"
+                "outbound": "手动选择"
             },
             {
-                "action": "route",
                 "rule_set": [
+                    "private",
+					"geoip-private",
+                    "games",
                     "apple",
                     "onedrive",
                     "microsoft",
-                    "games",
-                    "private",
-                    "geosite-cn"
+                    "geosite-cn",
+                    "geoip-cn"
                 ],
-                "server": "Local-DNS"
+                "outbound": "direct"
             },
             {
-                "action": "route",
                 "rule_set": [
                     "geolocation-!cn"
                 ],
-                "server": "Remote-DNS"
+                "outbound": "手动选择"
             }
         ],
-        "disable_cache": false,
-        "disable_expire": false,
-        "independent_cache": false,
-        "final": "Remote-DNS",
-        "strategy": "ipv4_only"
+        "final": "手动选择",                 
+        "auto_detect_interface": true      
     }
 }
