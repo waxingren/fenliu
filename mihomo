@@ -43,64 +43,34 @@ Auto: &Auto {type: url-test, url: 'https://cp.cloudflare.com', interval: 1800, t
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 proxy-groups:
   
-  - {name: 🎯节点选择, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
+  - {name: 🎯节点选择, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 1800}
   - {name: 🌈自动, <<: *Auto, filter: *FilterZD}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
   - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
-  - {name: 📺流媒体, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
-  - {name: ✈电报, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 300}
-# 订阅规则
-rule-providers:
-  ai:
-    type: http
-    behavior: classical
-    url: "https://testingcf.jsdelivr.net/gh/dler-io/Rules@main/Clash/Provider/AI%20Suite.yaml"
-    path: ./ruleset/ai.yaml
-    interval: 86400
-  richang:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/richang.yaml"
-    path: ./ruleset/richang.yaml
-    interval: 86400
-  # 局域网 IP 及保留 IP 地址列表
-  lan:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-    path: ./ruleset/lan.yaml
-    interval: 86400
-
-  # 自定义规则集
-  spxz:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/spxz.yaml"
-    path: ./ruleset/spxz.yaml
-    interval: 86400
-
-
+  - {name: AI, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
+  - {name: TG|X, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
 
 # 分流规则
 rules:
   ### 非 IP 类规则
   - GEOSITE,private,DIRECT
-  - GEOSITE,apple,DIRECT
+  - GEOSITE,category-ai-!cn,AI
+  - GEOSITE,bing,AI
+  - GEOSITE,twitter,TG|X
+  - GEOSITE,telegram,TG|X
   - GEOSITE,github,🎯节点选择
-  - RULE-SET,ai,🇺🇸美国    
-  - RULE-SET,richang,🎯节点选择
-  - RULE-SET,spxz,📺流媒体
-  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,google,🎯节点选择
   - GEOSITE,microsoft,DIRECT
-  - GEOSITE,gfw,🎯节点选择
-  - GEOSITE,geolocation-!cn,🎯节点选择
+  - GEOSITE,apple,DIRECT
   - GEOSITE,cn,DIRECT
+  - GEOSITE,geolocation-!cn,🎯节点选择
   ### IP 类规则
-  - RULE-SET,lan,DIRECT,no-resolve  # 局域网 IP 及保留 IP 地址列表
-  - GEOIP,telegram,✈电报,no-resolve
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,telegram,TG|X,no-resolve
+  - GEOIP,twitter,TG|X,no-resolve
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
