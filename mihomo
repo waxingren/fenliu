@@ -52,11 +52,18 @@ proxy-groups:
   - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
   - {name: AI, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
   - {name: TG|X, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
+rule-providers:
+  #pt域名列表
+  ptdirect:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/ptdirect.yaml"
+    path: ./ruleset/ptdirect.yaml
+    interval: 86400
 
-# 分流规则
 rules:
-  ### 非 IP 类规则
   - GEOSITE,private,DIRECT
+  - RULE-SET,ptdirect,DIRECT 
   - GEOSITE,category-ai-!cn,AI
   - GEOSITE,bing,AI
   - GEOSITE,twitter,TG|X
