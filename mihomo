@@ -50,8 +50,7 @@ proxy-groups:
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
   - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
-  - {name: AI, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
-  - {name: TG|X, type: select, proxies: [🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
+  - {name: X, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
 rule-providers:
   #pt域名列表
   ptdirect:
@@ -64,10 +63,10 @@ rule-providers:
 rules:
   - GEOSITE,private,DIRECT
   - RULE-SET,ptdirect,DIRECT 
-  - GEOSITE,category-ai-!cn,AI
-  - GEOSITE,bing,AI
-  - GEOSITE,twitter,TG|X
-  - GEOSITE,telegram,TG|X
+  - GEOSITE,category-ai-!cn,X
+  - GEOSITE,bing,X
+  - GEOSITE,twitter,X
+  - GEOSITE,telegram,X
   - GEOSITE,github,🎯节点选择
   - GEOSITE,google,🎯节点选择
   - GEOSITE,microsoft,DIRECT
@@ -76,8 +75,8 @@ rules:
   - GEOSITE,geolocation-!cn,🎯节点选择
   ### IP 类规则
   - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,telegram,TG|X,no-resolve
-  - GEOIP,twitter,TG|X,no-resolve
+  - GEOIP,telegram,X,no-resolve
+  - GEOIP,twitter,X,no-resolve
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
