@@ -50,7 +50,6 @@ proxy-groups:
   - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
   - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
   - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
-  - {name: X, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
 rule-providers:
   #pt域名列表
   ptdirect:
