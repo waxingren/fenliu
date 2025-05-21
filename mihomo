@@ -63,10 +63,6 @@ rule-providers:
 rules:
   - GEOSITE,private,DIRECT
   - RULE-SET,ptdirect,DIRECT 
-  - GEOSITE,category-ai-!cn,X
-  - GEOSITE,bing,X
-  - GEOSITE,twitter,X
-  - GEOSITE,telegram,X
   - GEOSITE,github,🎯节点选择
   - GEOSITE,google,🎯节点选择
   - GEOSITE,microsoft,DIRECT
@@ -75,8 +71,6 @@ rules:
   - GEOSITE,geolocation-!cn,🎯节点选择
   ### IP 类规则
   - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,telegram,X,no-resolve
-  - GEOIP,twitter,X,no-resolve
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
