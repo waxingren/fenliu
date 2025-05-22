@@ -62,6 +62,7 @@ rule-providers:
 rules:
   - GEOSITE,private,DIRECT
   - RULE-SET,ptdirect,DIRECT 
+  - GEOSITE,docker,🎯节点选择
   - GEOSITE,github,🎯节点选择
   - GEOSITE,google,🎯节点选择
   - GEOSITE,microsoft,DIRECT
