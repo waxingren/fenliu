@@ -1,7 +1,7 @@
 mixed-port: 7897           # 本地混合代理端口
 unified-delay: true        # 真延迟
 tcp-concurrent: true       # TCP 连接并发，提升连接速度
-allow-lan: false           # 是否允许局域网设备连接
+allow-lan: true            # 是否允许局域网设备连接
 bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时生效）
 mode: rule                 # 工作模式：基于规则分流
 log-level: warning         # 日志级别：仅记录警告及以上信息
