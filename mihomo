@@ -44,7 +44,7 @@ Auto: &Auto {type: url-test, url: 'https://cp.cloudflare.com', interval: 1800, t
 Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
 proxy-groups:
   
-  - {name: 🎯节点选择, type: select, proxies: [🌈自动,🇭🇰香港,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 1800}
+  - {name: 🎯节点选择, type: select, proxies: [🌈自动,🇭🇰香港,🇹🇼台湾,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 1800}
   - {name: 🌈自动, <<: *Auto, filter: *FilterZD}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇹🇼台湾, <<: *Select, filter: *FilterTW}
