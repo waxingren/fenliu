@@ -12,10 +12,10 @@ geodata-loader: standard
 geo-auto-update: true
 geo-update-interval: 48
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 profile:
   store-selected: true
 dns:
@@ -45,7 +45,9 @@ Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: fal
 proxy-groups:
   
   - {name: 🎯节点选择, type: select, proxies: [🌈自动,🇭🇰香港,🇹🇼台湾,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 1800}
+
   - {name: 🌈自动, <<: *Auto, filter: *FilterZD}
+  - {name: X, type: select, proxies: [🇭🇰香港,🇹🇼台湾,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
   - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
   - {name: 🇹🇼台湾, <<: *Select, filter: *FilterTW}
   - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
@@ -63,7 +65,10 @@ rule-providers:
 
 rules:
   - GEOSITE,private,DIRECT
-  - RULE-SET,ptdirect,DIRECT 
+  - RULE-SET,ptdirect,DIRECT   
+  - GEOSITE,category-ai-chat-!cn,X
+  - GEOSITE,twitter,X
+  - GEOSITE,telegram,X
   - GEOSITE,github,🎯节点选择
   - GEOSITE,google,🎯节点选择
   - GEOSITE,microsoft,DIRECT
@@ -72,6 +77,8 @@ rules:
   - GEOSITE,geolocation-!cn,🎯节点选择
   ### IP 类规则
   - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,telegram,X,no-resolve
+  - GEOIP,twitter,X,no-resolve
   - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
 
   ### 默认匹配策略
