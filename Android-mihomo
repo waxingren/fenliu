@@ -1,0 +1,85 @@
+mixed-port: 7897           # 本地混合代理端口
+unified-delay: true        # 真延迟
+tcp-concurrent: true       # TCP 连接并发，提升连接速度
+allow-lan: true            # 是否允许局域网设备连接
+bind-address: '*'          # 监听所有 IP 地址（当 allow-lan 为 true 时生效）
+mode: rule                 # 工作模式：基于规则分流
+log-level: warning         # 日志级别：仅记录警告及以上信息
+ipv6: false                # 关闭 IPv6 解析，避免不必要的解析开销
+global-client-fingerprint: chrome  # 模拟 Chrome 浏览器指纹
+geodata-mode: true
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+profile:
+  store-selected: true
+dns:
+  enable: true
+  listen: :53
+  ipv6: false
+  use-hosts: false
+  use-system-hosts: false
+  enhanced-mode: redir-host
+  nameserver: 
+    - 1.1.1.1
+    - 8.8.8.8
+  nameserver-policy:
+    geosite:private,apple,cn:
+      - 223.5.5.5
+      - 119.29.29.29
+# 过滤规则
+FilterZD: &FilterZD '^(?!.*(群|V6|v6|邀请|流量|重置|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰|台湾|tw|🇹🇼|TW|日本|JP|Japan|🇯🇵|新加坡|SG|Singapore|🇸🇬|美国|US|United States|America|🇺🇸).*'
+FilterHK: &FilterHK '^(?!.*(群|V6|v6|邀请|流量|重置|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(香港|HK|Hong|🇭🇰).*'
+FilterTW: &FilterTW '^(?!.*(群|V6|v6|邀请|流量|重置|跳过|返利|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(台|TW|Taiwan|🇹🇼).*'
+FilterJP: &FilterJP '^(?!.*(群|V6|v6|邀请|流量|重置|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(日本|JP|Japan|🇯🇵).*'
+FilterSG: &FilterSG '^(?!.*(群|V6|v6|邀请|流量|重置|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(新加坡|SG|Singapore|🇸🇬).*'
+FilterUS: &FilterUS '^(?!.*(群|V6|v6|邀请|流量|重置|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*(美国|US|United States|America|🇺🇸).*'
+FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|台湾|🇹🇼|tw|TW|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|新加坡|🇺🇸|US|United States|America|美国|群|V6|v6|流量|重置|邀请|返利|跳过|循环|官网|客服|网站|网址|获取|订阅|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|com)).*$'
+Auto: &Auto {type: url-test, url: 'https://cp.cloudflare.com', interval: 1800, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
+Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
+proxy-groups:
+  
+  - {name: 🎯节点选择, type: select, proxies: [🌈自动,🇭🇰香港,🇹🇼台湾,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他], url: 'http://cp.cloudflare.com', interval: 1800}
+
+  - {name: 🌈自动, <<: *Auto, filter: *FilterZD}
+  - {name: X, type: select, proxies: [🇭🇰香港,🇹🇼台湾,🇸🇬新加坡,🇯🇵日本,🇺🇸美国,🪐其他]}
+  - {name: 🇭🇰香港, <<: *Select, filter: *FilterHK}
+  - {name: 🇹🇼台湾, <<: *Select, filter: *FilterTW}
+  - {name: 🇸🇬新加坡, <<: *Select, filter: *FilterSG}
+  - {name: 🇯🇵日本, <<: *Select, filter: *FilterJP}
+  - {name: 🇺🇸美国, <<: *Select, filter: *FilterUS}
+  - {name: 🪐其他, <<: *Select, filter: *FilterOthers}
+rule-providers:
+  #pt域名列表
+  ptdirect:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/ptdirect.yaml"
+    path: ./ruleset/ptdirect.yaml
+    interval: 86400
+
+rules:
+  - GEOSITE,private,DIRECT
+  - RULE-SET,ptdirect,DIRECT   
+  - GEOSITE,category-ai-chat-!cn,X
+  - GEOSITE,twitter,X
+  - GEOSITE,telegram,X
+  - GEOSITE,github,🎯节点选择
+  - GEOSITE,google,🎯节点选择
+  - GEOSITE,microsoft,DIRECT
+  - GEOSITE,apple,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOSITE,geolocation-!cn,🎯节点选择
+  ### IP 类规则
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,telegram,X,no-resolve
+  - GEOIP,twitter,X,no-resolve
+  - GEOIP,cn,DIRECT  # 中国大陆 IP 地址列表
+
+  ### 默认匹配策略
+  - MATCH,🎯节点选择
