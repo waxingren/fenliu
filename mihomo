@@ -64,6 +64,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
   - GEOSITE,private,DIRECT
   - RULE-SET,ptdirect,DIRECT   
   - GEOSITE,category-ai-chat-!cn,X
