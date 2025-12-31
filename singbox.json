@@ -200,7 +200,7 @@
       {
         "tag": "pt-geosite",
         "type": "remote",
-        "url": "https://cdn.jsdelivr.net/gh/waxingren/fenliu@refs/heads/main/pt-geosite.json",
+        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/pt-geosite.json",
         "format": "source",
         "download_detour": "🎯 全球直连"
       },
@@ -221,7 +221,7 @@
       {
         "tag": "cn-geosite",
         "type": "remote",
-        "url": "https://cdn.jsdelivr.net/gh/YiXuanZX/sing-box-geosite@main/rule/cn-additional-list-clash-classical.srs",
+        "url": "https://gh-proxy.org/https://github.com/YiXuanZX/sing-box-geosite/raw/refs/heads/main/rule/cn-additional-list-clash-classical.srs",
         "format": "binary",
         "download_detour": "🎯 全球直连"
       },
