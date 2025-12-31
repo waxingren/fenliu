@@ -8,8 +8,8 @@
   "experimental": {
     "clash_api": {
       "external_controller": "127.0.0.1:20123",
-      "external_ui": "",
-      "external_ui_download_url": "",
+      "external_ui": "/etc/momo/run/ui",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
       "external_ui_download_detour": "🎯 全球直连",
       "secret": "d5d6b627dafe80110f2200bcc27f6e629a493d3d8dc4d4898e70bce578602ee9",
       "default_mode": "rule",
