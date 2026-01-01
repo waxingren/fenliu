@@ -79,10 +79,16 @@
     },
     {
       "type": "selector",
-      "tag": "X",
+      "tag": "聊天GPT",
       "interrupt_exist_connections": true,
       "outbounds": []
     },
+    {
+      "type": "selector",
+      "tag": "TikTok",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },	
     {
       "type": "direct",
       "tag": "🎯 全球直连"
@@ -139,14 +145,14 @@
         "rule_set": [
           "category-ai-chat-!cn-geosite"
         ],
-        "outbound": "X"
+        "outbound": "聊天GPT"
       },
       {
         "action": "route",
         "rule_set": [
           "tiktok-geosite"
         ],
-        "outbound": "X"
+        "outbound": "TikTok"
       },
       {
         "action": "route",
@@ -154,7 +160,7 @@
           "twitter-geosite",
           "twitter-geoip"
         ],
-        "outbound": "X"
+        "outbound": "聊天GPT"
       },
       {
         "action": "route",
@@ -162,7 +168,7 @@
           "telegram-geosite",
           "telegram-geoip"
         ],
-        "outbound": "X"
+        "outbound": "聊天GPT"
       },
       {
         "action": "route",
@@ -208,13 +214,6 @@
         "tag": "tiktok-geosite",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs",
-        "format": "binary",
-        "download_detour": "🎯 全球直连"
-      },
-      {
-        "tag": "geolocation-!cn-geosite",
-        "type": "remote",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
         "format": "binary",
         "download_detour": "🎯 全球直连"
       },
