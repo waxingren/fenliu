@@ -135,14 +135,6 @@
       {
         "action": "route",
         "rule_set": [
-          "private-geosite",
-          "private-geoip"
-        ],
-        "outbound": "🎯 全球直连"
-      },
-      {
-        "action": "route",
-        "rule_set": [
           "category-ai-chat-!cn-geosite"
         ],
         "outbound": "聊天GPT"
@@ -188,6 +180,21 @@
       {
         "action": "route",
         "rule_set": [
+          "gfw-geosite"
+        ],
+        "outbound": "🚀 节点选择"
+      },	  
+      {
+        "action": "route",
+        "rule_set": [
+          "private-geosite",
+          "private-geoip"
+        ],
+        "outbound": "🎯 全球直连"
+      },	  	  
+      {
+        "action": "route",
+        "rule_set": [
           "apple-geosite",
           "microsoft-geosite"
         ],
@@ -196,13 +203,48 @@
       {
         "action": "route",
         "rule_set": [
+          "tld-cn"
+        ],
+        "outbound": "🎯 全球直连"
+      },	  
+      {
+        "action": "route",
+        "rule_set": [
           "cn-geosite",
           "cn-geoip"
         ],
         "outbound": "🎯 全球直连"
-      }
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "geolocation-!cn-geosite"
+        ],
+        "outbound": "🚀 节点选择"
+      }	  
     ],
     "rule_set": [
+      {
+        "tag": "tld-cn",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tld-cn.srs",
+        "format": "binary",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "gfw-geosite",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/gfw.srs",
+        "format": "binary",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geolocation-!cn-geosite",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "format": "binary",
+        "download_detour": "🎯 全球直连"
+      },	
       {
         "tag": "pt-geosite",
         "type": "remote",
@@ -362,6 +404,13 @@
       {
         "action": "route",
         "rule_set": [
+          "tld-cn"
+        ],
+        "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
           "microsoft-geosite",
           "apple-geosite"
         ],
@@ -373,6 +422,13 @@
           "cn-geosite"
         ],
         "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "geolocation-!cn-geosite"
+        ],
+        "server": "Remote-DNS"
       }
     ],
     "disable_cache": false,
