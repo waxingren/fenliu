@@ -89,13 +89,17 @@
         "🎯 全球直连"
       ]
     }
-  ],
+  ]，
 
   "route": {
     "rules": [
-      { "action": "sniff" },
-      { "action": "hijack-dns", "protocol": "dns" },
-
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "hijack-dns",
+        "protocol": "dns"
+      },
       {
         "action": "route",
         "clash_mode": "direct",
@@ -113,7 +117,8 @@
       },
       {
         "action": "reject",
-        "protocol": "quic"
+        "protocol": "quic",
+        "method": ""
       },
       {
         "action": "route",
