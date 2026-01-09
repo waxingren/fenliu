@@ -1,0 +1,625 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "",
+    "timestamp": false
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:20123",
+      "external_ui": "",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "🎯 Direct",
+      "secret": "c5bd9575a8be55573d741f785aeb89f3a45f09e69a2585285201087014dd5020",
+      "default_mode": "rule",
+      "access_control_allow_origin": [
+        "*"
+      ],
+      "access_control_allow_private_network": false
+    },
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "cache_id": "ID_kanmifsf",
+      "store_fakeip": true,
+      "store_rdrc": true,
+      "rdrc_timeout": "7d"
+    }
+  },
+  "inbounds": [
+    {
+      "tag": "dns-in",
+      "type": "direct",
+      "listen": "::",
+      "listen_port": 1053
+    },
+    {
+      "tag": "http-in",
+      "type": "http",
+      "listen": "::",
+      "listen_port": 8080
+    },
+    {
+      "tag": "socks-in",
+      "type": "socks",
+      "listen": "::",
+      "listen_port": 1080
+    },
+    {
+      "tag": "redirect-in",
+      "type": "redirect",
+      "listen": "::",
+      "listen_port": 7890
+    },
+    {
+      "tag": "tproxy-in",
+      "type": "tproxy",
+      "listen": "::",
+      "listen_port": 7891
+    },
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "interface_name": "momo",
+      "address": [
+        "172.31.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "auto_route": false,
+      "auto_redirect": false
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "🚀 Proxy",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇭🇰 HK",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇯🇵 JP",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇸🇬 SG",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇺🇸 US",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇪🇺 EU",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇹🇼 TW",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🧋 Nex",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🕳 Dler",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🍥 Bilibili",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "direct",
+        "🇭🇰 HK"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "📺 Youtube",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🇹🇼 TW"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "☁️ Cloudflare",
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🎯 Direct",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "direct",
+        "block"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "🛑 Block",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "block",
+        "direct"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "GLOBAL",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🚀 Proxy",
+        "🎯 Direct",
+        "🛑 Block"
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "hijack-dns",
+        "protocol": "dns"
+      },
+      {
+        "action": "reject",
+        "rule_set": [
+          "217",
+          "秋风"
+        ],
+        "method": "default"
+      },
+      {
+        "action": "route",
+        "domain_keyword": "dler.cloud",
+        "outbound": "🕳 Dler"
+      },
+      {
+        "action": "route",
+        "domain_keyword": [
+          "69yun69",
+          "iwara"
+        ],
+        "outbound": "🇪🇺 EU"
+      },
+      {
+        "action": "route",
+        "domain_keyword": [
+          "hanime1",
+          "vdownload"
+        ],
+        "outbound": "🇭🇰 HK"
+      },
+      {
+        "action": "route",
+        "domain_keyword": [
+          "primehelix",
+          "sfeed.cc",
+          "synergypeak"
+        ],
+        "outbound": "🧋 Nex"
+      },
+      {
+        "action": "route",
+        "domain_keyword": [
+          "xujc",
+          "emos",
+          "hohai",
+          "lilyemby",
+          "meoow"
+        ],
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "domain": [
+          "tanhuatv.site",
+          "pornemby.maoxiong.cloud",
+          "global-endpoint.anisaga.tv",
+          "hka-emby.aliz.work",
+          "lite.liminalnet.com",
+          "cherrytv.one",
+          "streaming.biliblili.uk",
+          "ap-cn03.emby.bangumi.ca",
+          "kessoku-bando.biliblili.uk",
+          "default.cdn.bgp.yt",
+          "emby.istyboe.top",
+          "src-emby.istyboe.top",
+          "emby.as174.de"
+        ],
+        "outbound": "🇪🇺 EU"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Bilibili"
+        ],
+        "outbound": "🍥 Bilibili"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Bahamut"
+        ],
+        "outbound": "🇹🇼 TW"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Youtube"
+        ],
+        "outbound": "📺 Youtube"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Cloudflare"
+        ],
+        "outbound": "☁️ Cloudflare"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Ehentai",
+          "Yandex",
+          "Bybit"
+        ],
+        "outbound": "🇪🇺 EU"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Pixiv",
+          "Gemini",
+          "Github",
+          "Openai",
+          "PPLEX"
+        ],
+        "outbound": "🇯🇵 JP"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Google"
+        ],
+        "outbound": "🇸🇬 SG"
+      },
+      {
+        "action": "route",
+        "network": "icmp",
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "ip_is_private": true,
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoSite-CN",
+          "GeoSite-CN Private",
+          "GeoIP-V4",
+          "GeoIP-V6",
+          "Tencent"
+        ],
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "reject",
+        "ip_cidr": "95.161.76.100/31",
+        "method": "default"
+      },
+      {
+        "action": "route",
+        "ip_cidr": [
+          "91.108.16.0/22",
+          "91.108.56.0/23",
+          "149.154.168.0/22",
+          "2001:b28:f23f::/48"
+        ],
+        "outbound": "🇭🇰 HK"
+      },
+      {
+        "action": "route",
+        "ip_cidr": [
+          "91.108.12.0/22",
+          "149.154.172.0/22",
+          "2001:b28:f23d::/48"
+        ],
+        "outbound": "🇯🇵 JP"
+      },
+      {
+        "action": "route",
+        "ip_cidr": [
+          "5.28.192.0/18",
+          "91.105.192.0/23",
+          "91.108.4.0/22",
+          "91.108.8.0/22",
+          "95.161.64.0/20",
+          "109.239.140.0/24",
+          "149.154.160.0/21",
+          "185.76.151.0/24",
+          "2001:67c:4e8::/48",
+          "2a0a:f280:203::/48",
+          "2001:b28:f23c::/48"
+        ],
+        "outbound": "🇪🇺 EU"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "Tencent",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-tencent.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Cloudflare",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-cloudflare.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Bybit",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-bybit.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Gemini",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-google-gemini.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "秋风",
+        "type": "remote",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
+        "format": "source",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Bilibili",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-bilibili.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "217",
+        "type": "remote",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksingbox.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Pixiv",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-pixiv.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Bahamut",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-bahamut.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Ehentai",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-ehentai.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Openai",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-openai.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Google",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-google.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Youtube",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-youtube.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Github",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-github.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "PPLEX",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-perplexity.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Yandex",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-yandex.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "Google Play",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/SagerNet/sing-geosite/blob/rule-set/geosite-google-play.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoIP-V6",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/lurixo/sing-box-rules/blob/geoip/geoip-cn-ipv6.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoIP-V4",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/lurixo/sing-box-rules/blob/geoip/geoip-cn-ipv4.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoSite-CN",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/lurixo/sing-box-rules/blob/geosite/geosite-cn.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoSite-CN Private",
+        "type": "remote",
+        "url": "https://v6.gh-proxy.com/https://github.com/lurixo/sing-box-rules/blob/geosite/geosite-private.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      }
+    ],
+    "auto_detect_interface": true,
+    "final": "🚀 Proxy",
+    "default_domain_resolver": {
+      "server": "PZDNS"
+    }
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "Fake-IP",
+        "type": "fakeip",
+        "inet4_range": "28.0.0.1/8",
+        "inet6_range": "fc00::/18"
+      },
+      {
+        "tag": "PZDNS",
+        "type": "quic",
+        "domain_resolver": "Tencent",
+        "server_port": 853,
+        "server": "pz.fyi"
+      },
+      {
+        "tag": "Tencent",
+        "type": "tls",
+        "server_port": 853,
+        "server": "1.12.12.12"
+      },
+      {
+        "tag": "Google",
+        "type": "tls",
+        "detour": "🚀 Proxy",
+        "domain_resolver": "Google UDP",
+        "server_port": 853,
+        "server": "dns.google"
+      },
+      {
+        "tag": "Google UDP",
+        "type": "udp",
+        "detour": "🚀 Proxy",
+        "server_port": 53,
+        "server": "8.8.8.8"
+      }
+    ],
+    "rules": [
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoSite-CN"
+        ],
+        "server": "PZDNS"
+      },
+      {
+        "action": "route",
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "domain_suffix": [
+              ".lan",
+              ".localdomain",
+              ".example",
+              ".invalid",
+              ".localhost",
+              ".test",
+              ".local",
+              ".home.arpa",
+              ".msftconnecttest.com",
+              ".msftncsi.com"
+            ],
+            "invert": true
+          },
+          {
+            "query_type": [
+              "A",
+              "AAAA"
+            ]
+          }
+        ],
+        "server": "Fake-IP",
+        "strategy": "ipv4_only"
+      }
+    ],
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": true,
+    "final": "Google",
+    "strategy": "ipv4_only"
+  }
+}
