@@ -45,8 +45,7 @@
       "type": "tun",
       "interface_name": "momo",
       "address": [
-        "172.31.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.31.0.1/30"
       ],
       "auto_route": false,
       "auto_redirect": false
