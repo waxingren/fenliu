@@ -217,7 +217,7 @@
         "rule_set": [
           "apple-geosite",
           "microsoft-geosite"
-        ],
+        ]，
         "outbound": "🎯 全球直连"
       },
       {
@@ -268,7 +268,7 @@
       {
         "tag": "proxy-geosite",
         "type": "remote",
-        "url": "https://cdn.jsdelivr.net/gh/waxingren/fenliu@refs/heads/main/singboxproxy.json",
+        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/waxingren/fenliu/refs/heads/main/singboxproxy.json",
         "format": "source",
         "download_detour": "🎯 全球直连"
       },	  
