@@ -79,7 +79,7 @@
     },
     {
       "type": "selector",
-      "tag": "聊天GPT",
+      "tag": "X",
       "interrupt_exist_connections": true,
       "outbounds": []
     },
@@ -87,7 +87,19 @@
       "type": "selector",
       "tag": "TikTok",
       "interrupt_exist_connections": true,
-      "outbounds": []
+      "outbounds": [
+        "🚀 节点选择",
+        "X"
+      ]
+    },	
+    {
+      "type": "selector",
+      "tag": "视频下载",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🚀 节点选择",
+        "X"
+      ]
     },	
     {
       "type": "direct",
@@ -137,7 +149,7 @@
         "rule_set": [
           "category-ai-chat-!cn-geosite"
         ],
-        "outbound": "聊天GPT"
+        "outbound": "X"
       },
       {
         "action": "route",
@@ -152,7 +164,7 @@
           "twitter-geosite",
           "twitter-geoip"
         ],
-        "outbound": "聊天GPT"
+        "outbound": "X"
       },
       {
         "action": "route",
@@ -160,8 +172,16 @@
           "telegram-geosite",
           "telegram-geoip"
         ],
-        "outbound": "聊天GPT"
+        "outbound": "X"
       },
+      {
+        "action": "route",
+        "rule_set": [
+          "proxy-geosite",
+          "youtube-geosite"
+        ],
+        "outbound": "视频下载"
+      },	  
       {
         "action": "route",
         "rule_set": [
@@ -239,6 +259,20 @@
         "download_detour": "🎯 全球直连"
       },
       {
+        "tag": "youtube-geosite",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+        "format": "binary",
+        "download_detour": "🎯 全球直连"
+      },	
+      {
+        "tag": "proxy-geosite",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/waxingren/fenliu@refs/heads/main/singboxproxy.json",
+        "format": "source",
+        "download_detour": "🎯 全球直连"
+      },	  
+      {
         "tag": "geolocation-!cn-geosite",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
@@ -262,7 +296,7 @@
       {
         "tag": "cn-geosite",
         "type": "remote",
-        "url": "https://gh-proxy.org/https://github.com/YiXuanZX/sing-box-geosite/raw/refs/heads/main/rule/cn-additional-list-clash-classical.srs",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
         "format": "binary",
         "download_detour": "🎯 全球直连"
       },
