@@ -2,10 +2,9 @@
   "version": 2,
   "rules": [
     {
-      "ip_cidr": [
-        "159.195.33.21/32"
+      "domain_suffix": [
+        "maomao-wrt.ggff.net"
       ]
     }
   ]
 }
-
