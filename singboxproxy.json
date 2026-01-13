@@ -1,9 +1,9 @@
 {
-  "version": 2,
+  "version": 2，
   "rules": [
     {
-      "domain_suffix": [
-        "maomao-wrt.ggff.net"
+      "domain": [
+        "ncemby.maomao-wrt.ggff.net"
       ]
     }
   ]
