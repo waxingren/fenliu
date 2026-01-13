@@ -85,6 +85,14 @@
     },
     {
       "type": "selector",
+      "tag": "AI",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "X"
+      ]
+    },	
+    {
+      "type": "selector",
       "tag": "TikTok",
       "interrupt_exist_connections": true,
       "outbounds": [
@@ -149,7 +157,7 @@
         "rule_set": [
           "category-ai-chat-!cn-geosite"
         ],
-        "outbound": "X"
+        "outbound": "AI"
       },
       {
         "action": "route",
