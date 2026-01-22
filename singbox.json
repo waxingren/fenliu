@@ -81,13 +81,16 @@
       "type": "selector",
       "tag": "X",
       "interrupt_exist_connections": true,
-      "outbounds": []
-    },
+      "outbounds": [
+        "🚀 节点选择"
+      ]
+    },	
     {
       "type": "selector",
       "tag": "AI",
       "interrupt_exist_connections": true,
       "outbounds": [
+        "🚀 节点选择",
         "X"
       ]
     },	
