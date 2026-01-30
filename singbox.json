@@ -217,7 +217,7 @@
         "action": "route",
         "rule_set": [
           "gfw-geosite"
-        ]，
+        ],
         "outbound": "🚀 节点选择"
       },	  
       {
@@ -237,7 +237,7 @@
         "outbound": "🎯 全球直连"
       },
       {
-        "action": "route"，
+        "action": "route",
         "rule_set": [
           "tld-cn"
         ],
