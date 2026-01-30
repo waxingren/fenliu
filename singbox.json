@@ -88,7 +88,7 @@
     {
       "type": "selector",
       "tag": "AI",
-      "interrupt_exist_connections": true,
+      "interrupt_exist_connections": true，
       "outbounds": [
         "🚀 节点选择",
         "X"
@@ -151,14 +151,9 @@
         "outbound": "🎯 全球直连"
       },
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "protocol": "udp" },
-          { "port": 443 },
-          { "rule_set": "cn-geoip", "invert": true }
-        ],
-        "action": "reject"
+        "action": "reject",
+        "protocol": "quic",
+        "method": ""
       },
       {
         "action": "route",
