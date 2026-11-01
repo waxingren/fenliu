@@ -33,15 +33,6 @@
   ],
   "inbounds": [
     {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 20122,
-      "tcp_fast_open": false,
-      "tcp_multi_path": false,
-      "udp_fragment": false
-    },
-    {
       "type": "tun",
       "tag": "tun-in",
       "interface_name": "",
@@ -51,8 +42,7 @@
       "mtu": 9000,
       "auto_route": true,
       "strict_route": true,
-      "endpoint_independent_nat": false,
-      "stack": "mixed"
+      "endpoint_independent_nat": false
     }
   ],
   "outbounds": [
@@ -80,7 +70,7 @@
     "rules": [
       {
         "action": "sniff",
-        "inbound": "mixed-in"
+        "inbound": "tun-in"
       },
       {
         "action": "hijack-dns",
@@ -111,6 +101,13 @@
         "rule_set": [
           "private-geosite",
           "private-geoip"
+        ],
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "direct"
         ],
         "outbound": "🎯 全球直连"
       },
@@ -184,6 +181,13 @@
       }
     ],
     "rule_set": [
+      {
+        "tag": "direct",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/waxingren/fenliu@refs/heads/main/tailscale.json",
+        "format": "source",
+        "http_client": "🎯 全球直连"
+      },
       {
         "tag": "gfw-geosite",
         "type": "remote",
@@ -347,21 +351,6 @@
         "action": "route",
         "clash_mode": "global",
         "server": "Remote-DNS"
-      },
-      {
-        "action": "route",
-        "rule_set": [
-          "tld-cn"
-        ],
-        "server": "Local-DNS"
-      },
-      {
-        "action": "route",
-        "rule_set": [
-          "microsoft-geosite",
-          "apple-geosite"
-        ],
-        "server": "Local-DNS"
       },
       {
         "action": "route",
